@@ -1,0 +1,388 @@
+===========================
+Ogden Area Linux User Group
+===========================
+Wine
+----
+
+:Presenter: Seth House
+:Date: 2008-06-28
+
+.. include:: <s5defs.txt>
+.. footer:: Wine http://www.winehq.org/
+
+Wine
+----
+
+.. class:: handout
+
+    Wine is a recursive acronym that stands for Wine is Not an Emulator. Wine
+    is an Open Source implementation of the Windows API on top of X, OpenGL,
+    and Unix.
+
+        “Think of Wine as a compatibility layer for running Windows programs.
+        Wine does not require Microsoft Windows, as it is a completely free
+        alternative implementation of the Windows API consisting of 100%
+        non-Microsoft code.”
+
+        — http://winehq.org
+
+    Even the fastest emulators are slow and must 'fake' running emulated
+    programs natively. Wine natively runs Windows programs at native speeds.
+    Also, it should be noted that speed is currently not a goal for the Wine
+    project.
+
+.. class:: incremental
+
+    Wine Is Not an Emulator
+
+        “Windows applications that do not make system calls will run just as
+        fast as on Windows.”
+
+        — http://www.winehq.org/site/myths
+
+
+So What is Wine?
+----------------
+
+.. class:: handout
+
+        “Wine provides both a development toolkit for porting Windows source
+        code to Unix as well as a program loader, allowing many unmodified
+        Windows programs to run on x86-based Unixes.”
+
+        — http://winehq.org
+
+.. class:: incremental
+
+    * Wine
+    * Winelib
+
+A Not-So-Short History
+----------------------
+
+.. class:: handout
+
+    In 1992 Sun Microsystems aquired a company with a product that allowed
+    users of Solaris x86 and Solaris 2.2 for SPARC to run Windows applications
+    out of the box. Wabi was unique in that it allowed Windows windowing calls
+    to be translated directly to X Windows calls.
+
+    At the time, the chances of Wabi being ported to Linux were slim to none.
+    So in 1993 a mailing list was formed to discuss a similar project for
+    Linux. Several of the early developers included some of the first Linux
+    kernel hackers.
+
+    In 1994 Microsoft began releasing 32-bit code and adding new functionality
+    to their operating systems. It was no longer enough to just load code and
+    run it, a more sophisticated integration was needed with the underlying
+    operating systems (primarily Linux.) Mechanisms needed to be added that
+    supported network connections and registry files.
+
+    Doug Ridgway set up the WineHQ web site in 1997. The site was taken over by
+    Corel for a few years, and then CodeWeavers took it over from them in
+    March, 2002.
+
+    In 1998 a strategic decision was made by Corel to wholeheartedly support
+    Linux. Corel’s suite of office programs demanded a high level of Wine
+    sophistication. For the first time Wine was being supported by commercial
+    development. CodeWeavers was contracted by Corel to improve parts of Wine
+    in 1999.
+
+    Early 2001 Corel spun off its Linux division and CodeWeavers began
+    developing their own products and putting a lot of polish on Wine. Their
+    own version of Wine included graphical management tools and an easy setup.
+    Their first product, CrossOver Plugin, allowed Linux users to run Netscape
+    plugins designed for Windows. Newer versions of the product have added
+    support for even more plugins. They released CrossOver Office in March,
+    2002 to provide support for office applications like Excel and Lotus Notes. 
+
+    TransGaming formed in August of 2001. Gavriel State, who had been with
+    Corel, left and formed his own company. Limited DirectX support had been in
+    Wine since 1997 and Gavriel sought to make it more robust. WineX 1.0 was
+    released in October of 2001 with support for six games. Some of the early
+    TransGaming work also sought to include support for copy protection
+    measures.
+
+    The Linux distribution Lindows also formed in 2001. It’s goal was to create
+    a simple to use Linux desktop and to let users run Windows programs. They
+    quickly abandoned the idea in favor of native applications, but before that
+    happened they sponsored Wineconf - a three day event in March, 2002 that
+    brought together developers from around the world.
+
+    Licensing debates plagued the project for several years. In the beginning
+    it was under a BSD-style license, but in 1999 Richard Stallman pointed out
+    that was incompatible with the GPL which potentially causes problems with
+    any open source project wishing to use Wine code. A vote was called for and
+    in January of 2000 the project switched to the X11 license. In March of
+    2002 a poll was conducted among both the free and commercial developers of
+    Wine—there was concern that the code may be appropriated by a commercial
+    entity—so they chose the Lesser General Public License since that meant
+    changes to Wine required that you release the source code with your changes
+    but simply linking with Wine does not require you to release the source to
+    your application. Wine development picked up speed after this change.
+
+    Another developer’s conference was held in January, 2004 in St. Paul
+    Minnesota sponsored by CodeWeavers.
+
+    — http://www.winehq.org/site/history
+
+    Microsoft has not made public statements about Wine. However, the Microsoft
+    Update software will block updates to Microsoft application software
+    running in Wine-based environments. On February 16, 2005, Ivan Leo Puoti
+    discovered that Microsoft had started checking the Windows registry for the
+    Wine configuration key and would block the Windows Update for any
+    component. The Windows Genuine Advantage (WGA) system also checks for
+    existence of Wine registry keys.
+
+.. class:: incremental tiny
+
+    * September 1992
+
+      Sun Microsystems demonstrates Wabi
+
+    * June 1993
+
+      A list for a Linux tool like Wabi was set up
+
+    * May 1995
+
+      Beginnings of Win32 support
+
+    * January 1996
+
+      Word and Excel reported to run
+
+    * November 1997
+
+      Creation of winehq.com web site
+
+More of a Not-So-Short History
+------------------------------
+
+.. class:: incremental tiny
+
+    * 1998
+
+      Corel jumps on the Linux bandwagon
+
+    * 2001
+
+      CodeWeavers begins developing for Wine independently
+
+      Transgaming started by an ex-Corel employee
+
+      Lindows was formed that was simple to use and let users run Windows
+      programs
+
+    * 2004
+
+      Another developers conference, sponsored by CodeWeavers
+
+    * June 17, 2008
+
+      Wine 1.0 was released
+
+Some Features
+-------------
+
+.. class:: small
+
+    * Loads Windows 9x/NT/2000/XP, Windows 3.x and DOS programs and libraries
+    * “bug-for-bug” compatibility with Windows
+    * DirectX support
+    * OpenGL support
+    * Sound device interaction (ALSA, OSS, ARTS, JACK, libaudio)
+    * Networking
+    * Permits mixing of ELF (.so) and PE (.dll/.exe) binaries
+
+The whole list
+
+    http://www.winehq.org/site/wine_features
+
+Versions
+--------
+
+.. class:: handout
+
+    CodeWeavers employs the lead Wine developer, Alexandre Julliard, and has a
+    long history of contributing back to the project.
+
+    CrossOver (formerly CrossOver Office) now has Linux and Mac (x86) versions,
+    and recently launched a Gaming version which has a faster release cycle and
+    less emphasis on stability. CrossOver has Standard and Professional
+    versions. The professional version provides enhanced deployability and
+    manageability features for corporate users. The Standard version allows a
+    single user of a single machine. The Professional version allows multiple
+    users.
+
+    Transgaming focuses on gaming. Cedega (formerly WineX) is a fork of the
+    last X11-licensed version of Wine and is proprietary. Transgaming has a bad
+    reputation for not contributing back to the Wine project, although they
+    initially promised to contribute their DirectX improvements. Cedega
+    includes licensed support for several types of CD-based copy protection.
+
+        “TransGaming currently gives back very little code to Wine. Cedega is
+        not ‘Wine with more gaming support’ — because Wine has had years of
+        development since Cedega was made, many games actually run better under
+        Wine than under Cedega. Currently, Wine has more advanced Direct3D
+        support than Cedega, but Cedega still has more advanced copy protection
+        support due tTransGaming’s licensing of (closed source) code from a
+        handful of copy protection companies. Unlike CrossOver, most
+        improvements to Wine don’t get into Cedega due to the license
+        differences between Cedega and Wine.”
+
+        — http://wiki.winehq.org/FAQ#head-72731b215bbd1ce36e3b84ac7ce114925ce16460
+
+    * CrossOver Standard $39.95
+    * CrossOver Professional $69.95
+    * CrossOver Games $39.95
+    * Cedega 6 mo. $25
+    * Cedega 12 mo. $45
+
+.. class:: incremental
+
+    * Wine
+    * CodeWeavers
+
+      * CrossOver Linux
+      * CrossOver Mac
+      * CrossOver Games
+
+    * Transgaming
+
+      * Cedega
+      * Cider
+
+    * ReactOS
+
+How to Get Started
+------------------
+
+``wine ~/.wine/drive_c/windows/notepad.exe``
+
+``wine "C:\windows\notepad.exe"``
+
+A Note about ``WINEPREFIX``
+---------------------------
+
+.. class:: handout
+
+    (CrossOver has a similar convention called “bottles”.) This allows you to
+    segregate Windows programs from one another that require different
+    configurations or need to be kept in isolation so as not to threaten other
+    Windows programs. Note that this does make other prefixed directories
+    invisible to one another.
+
+    Previous to Wine 1.0 you had to run ``wineprefixcreate``, now it handles it
+    automatically.
+
+``WINEPREFIX=$HOME/games/warcraftiii wine notepad.exe``
+
+Configuration
+-------------
+
+.. class:: handout
+
+    It is sometimes necessary to create fake DLL files to trick many programs
+    that check for file existence to determine whether a particular feature
+    (such as Winsock and its TCP/IP networking) is available.
+
+    In case Wine complains about a missing DLL, you should check whether this
+    file is a publicly available DLL or a custom DLL belonging to your program
+    (by searching for its name on the internet).
+
+    You can copy your .ttf fonts into the ``c:\windows\fonts`` directory.
+
+.. class:: incremental
+
+    * ``winecfg``
+    * ``regedit``
+
+      * ``system.reg`` contains ``HKEY_LOCAL_MACHINE``
+      * ``user.reg`` contains ``HKEY_CURRENT_USER``
+      * ``userdef.reg`` contains ``HKEY_USERS\.Default``
+
+Running Wine
+------------
+
+.. class:: handout
+
+    Wine will pass on your shell environment to the Windows program which is
+    useful if you want to set any environment variables. The exceptions to this
+    are the ``PATH``, ``SYSTEM``, and ``TEMP`` variables.
+
+.. class:: incremental
+
+    * ``uninstaller``
+    * ``wine eject``
+    * ``wineboot``
+    * ``wine control``
+    * ``wineconsole``
+    * ``winefile``
+    * ``WINEDEBUG=-all``
+    * ``AUDIODEV=/dev/dsp2`` for OSS
+
+Getting Out of Trouble
+----------------------
+
+.. class:: incremental
+
+    * ``wineserver -k``
+    * ``killall -9 program.exe``
+
+Solving Problems
+----------------
+
+.. class:: incremental
+
+    * AppDB: http://appdb.winehq.org/
+    * Use different Windows version settings
+    * Use different startup paths
+
+      * ``wine prg.exe``  and ``wine x:\\full\\path\\to\\prg.exe``
+
+    * Use different GUI modes
+    * Fiddle with DLL configuration
+
+      * ``WINEDEBUG=+loaddll``
+      * http://www.dll-files.com/
+
+Searching for Solutions
+-----------------------
+
+.. class:: incremental
+
+    * Google
+    * Wine FAQ: http://wiki.winehq.org/FAQ
+    * Wine Wiki: http://wiki.winehq.org/
+    * Frank’s Corner: http://frankscorner.org/
+
+Helper Tools
+------------
+
+.. class:: handout
+
+    Wine-Doors
+        An application-management tool for the GNOME desktop.
+    WineTricks
+        Script to install some basic components (typically Microsoft DLLs and
+        fonts)
+    PlayOnLinux
+        An application to ease the installation of Windows games using Wine. It
+        uses an online database of scripts to apply to different games that
+        need special configurations and if the game is not in the database, a
+        manual installation can be performed.
+
+.. class:: incremental
+
+    * Wine-Doors_
+    * WineTricks_
+    * IEs4Linux_
+    * PlayOnLinux_
+
+.. _Wine-Doors: http://www.wine-doors.org
+.. _WineTricks: http://wiki.winehq.org/winetricks
+.. _IEs4Linux: http://www.tatanka.com.br
+.. _PlayOnLinux: http://www.playonlinux.com/en/
+
+.. vim:filetype=rst

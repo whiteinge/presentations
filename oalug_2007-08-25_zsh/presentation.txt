@@ -1,0 +1,282 @@
+===========
+Why Z shell
+===========
+
+:Author: Seth House
+
+---------------
+A Short History
+---------------
+
+* Written in 1990 by Paul Falstad at Princeton University
+* Named for the login of a teaching assistant, Zhong Shao
+* Implements many of the features of bash, ksh, and csh
+
+------
+Basics
+------
+
+* ``~/.zprofile``
+* ``~/.zshrc``
+* ``~/.zlogin``
+* ``~/.zlogout``
+
+*Everything* is configurable.
+
+``man zsh`` vs. ``man zshall``
+
+-------------------
+The Emacs of Shells
+-------------------
+
+* Tetris
+* IRC client
+* Web server
+* Check multiple mailboxes
+
+-------------------
+Compatibility Modes
+-------------------
+
+Tries to emulate *sh* or *ksh* when invoked as ``sh`` or ``ksh``, respectively.
+
+-----------------
+Themeable Prompts
+-----------------
+
+Some built-in themes, others can be created.
+
+Preview all built-in themes::
+
+    prompt -p
+
+-------------
+Shell Options
+-------------
+
+http://zsh.sunsite.dk/Doc/Release/zsh_15.html
+
+Some of my favorites
+
+* ``auto_cd``
+* ``extendedglob``
+* ``no_clobber``
+* ``rm_star_wait``
+* ``share_history``
+
+--------------
+Spell Checking
+--------------
+
+``zsh: correct 'aptg-et' to 'apt-get' [nyae]?``
+
+---------------
+Zsh Line Editor
+---------------
+
+* **Zsh does not use readline!**
+* Excellent Multiline Editing
+
+----------------
+Pattern Matching
+----------------
+
+Recursive Search
+    ``**/``
+Numeric Ranges
+    ``ls file<1-5>``, ``ls file<50->``
+Negate Matches
+    ``ls ^*.o``
+Grouping
+    ``ls (foo|bar)``
+
+---------------
+Globbing Basics
+---------------
+
+Regular Files
+    ``ls *(.)``
+Irregular Files
+    ``ls *(^.)``
+Directories
+    ``ls *(/)``
+Executable Files (non-directories)
+    ``ls *(*)``
+Symbolic Links
+    ``ls *(@)``
+Follows Symbolic Links
+    ``ls *(-)``
+
+-----------------------
+Globbing by Permissions
+-----------------------
+
+Current user
+    ``(r)``, ``(w)``, ``(x)``
+All users
+    ``(R)``, ``(W)``, ``(X)``
+Owned by you
+    ``(U)``
+Setuid
+    ``(s)``
+
+--------
+
+All setuid files on your system::
+
+    ls /**/*(s)
+
+---------------------
+Globbing Combinations
+---------------------
+
+Readable, not writable for you::
+
+    ls *(r^w)
+
+Executable files (after following symbolic links)::
+
+    ls *(-*)
+
+Broken Symbolic Links::
+
+    rm *(-@)
+
+---------------------
+Globbing by File Size
+---------------------
+
+File Size qualifier: ``(L)`` (length)
+
+Default unit is bytes, modifiers include
+    ``k`` kilobytes, ``m`` megabytes
+
+--------
+
+Files over 100 KB::
+
+    ls *(Lk+100)
+
+----------------------
+Globbing by Timestamps
+----------------------
+
+Time qualifiers: ``(m)`` modified, ``(a)`` last accessed, or ``(c)`` changed
+
+Default unit is days, modifiers include:
+    ``M`` months, ``w`` weeks, ``h`` hours, ``m`` minutes, ``s`` seconds
+
+--------
+
+File modified within the last two hours::
+
+    ls *(mh+2)
+
+File modified between one and four days ago::
+
+    ls *(m-4m+1)
+
+----------------------------------
+Globbing Qualifiers with Arguments
+----------------------------------
+
+File owners
+    ``(u:username:)``
+File permissions (complicated)
+    ``(f:chmod-options:)``
+
+--------
+
+Files not owned by root::
+
+    ls *(^u:root:)
+
+Files that are group readable and writable, but not readable, writeable, or
+executable by others::
+
+    ls *(f:g+rw,o-rwx:)
+
+--------------
+Alias Suffixes
+--------------
+
+Allow for default handlers based on file extensions::
+
+    alias -s php="/opt/local/share/vim/vim71/macros/less.sh"
+
+--------------
+Global Aliases
+--------------
+
+Examples::
+
+    alias -g H='| head'
+    alias -g T='| tail'
+    alias -g NUL="> /dev/null 2>&1"
+
+Global aliases can be anywhere in a command::
+
+    cat somefile T
+
+----------
+Completion
+----------
+
+* compinit
+* compinstall
+* bashcompinit
+
+Completion style syntax::
+
+    :completion:function:completer:command:argument:tag
+
+Known hosts example::
+
+    zstyle -e ':completion:*:(ssh|scp|sshfs|ping|telnet|ftp):*'\
+               hosts 'reply=(${=${${(f)"$(cat\
+               {/etc/ssh_,$HOME/.ssh/known_}hosts(|2)(N)\
+               /dev/null)"}%%[# ]*}//,/ })'
+
+------------------
+Completion Caching
+------------------
+
+Cache expensive completions::
+
+    zstyle ':completion:*' use-cache on
+    zstyle ':completion:*' cache-path ~/.zsh/cache
+
+------------------
+Completion Sorting
+------------------
+
+Sort specific completions::
+
+    zstyle ':completion:*:*:xdvi:*' menu yes select
+    zstyle ':completion:*:*:xdvi:*' file-sort time
+
+---------------------
+Completion Menu Demos
+---------------------
+
+``ls``::
+
+    oalug_demo1()
+    ls -<tab><tab>
+
+``kill``::
+
+    kill <tab>
+
+``chmod``::
+
+    chmod <tab>
+
+---------
+Resources
+---------
+
+* http://zsh.org/
+* http://zshwiki.org/
+
+.. vim:filetype=rst foldmethod=expr foldtext=foldtext()[0\:match(foldtext(),'\:')].'\ '.getline(v\:foldstart+1) foldexpr=getline(v\:lnum)=~'^-\\+$'&&getline(v\:lnum+1)=~'^\\w\\+.*$'&&getline(v\:lnum+2)=~'^-\\+$'?'>1'\:1

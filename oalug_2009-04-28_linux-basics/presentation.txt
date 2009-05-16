@@ -1,0 +1,759 @@
+===========================
+Ogden Area Linux User Group
+===========================
+Linux Basics
+------------
+
+:Presenter: Seth House
+:Date: 2009-04-28
+
+.. include:: <s5defs.txt>
+.. footer: http://tldp.org/guides.html#intro-linux
+
+..
+    Outline
+    =======
+
+    * Distro differences
+
+    * Fedora, RHEL, CentOS, Mandriva (Mandrake)
+
+        * yum (RPM)
+        * Anaconda (Install from NFS, FTP, HTTP, CDROM and HDD; do automated
+        installs from Kickstart; perform upgrades of older installs)
+        * RPM has built-in HIDS, easy to create custom repo with ``createrepo``.
+        * Kickstart for automating installs
+        * ``system-config-*`` tools (note: some of these come with Ubuntu) such as
+        ``system-config-printer``, ``system-config-samba``
+        * Oracle
+        * SELinux
+
+    * Ubuntu, Debian
+
+        * apt
+        * Upgrade without rebooting. “If your sources has 'stable' instead of
+        'lenny', for example, you'll get it automatically upon release.”
+        * ‘meta packages’ that bring down several so you don’t have to remember the
+        individual packages such as the 'build-essential' package package is all
+        that's needed to install the necessary dependencies for building C/C++
+        applications.
+        * Four kernels and 15 architectures.
+
+    * OpenSUSE
+
+        * yast (RPM)
+        * AppArmor
+
+    * Slack, Arch
+
+        * slackbuilds / pacman
+        * simple, vanilla
+        * excellent for learning
+
+    * Gnome vs KDE
+
+    * Installation
+
+    * WUBI
+    * Partitioning (quick, Aaron presenting next month)
+
+        * Extended partitions or logical & physical volumes
+        * Resizing volumes
+        * Swap
+        * A note about Windows partitions
+
+    * File Systems
+    * File System Hierarchy Standard (FHS)
+    * Upgrading (having /home on a separate partition)
+
+    * Post-Installation
+
+    * Installing Software
+    * Drivers
+
+        * Graphic Cards
+        * Wireless
+        * Sound/Volume & Microphones
+
+    * Terminal Basics
+
+        * Everything is a file!
+        * 40-year history of working with plain text
+        * ls cd pwd mkdir rm rmdir cp find touch mv
+        * more less ed vi emacs head tail
+        * echo cat grep sort uniq sed awk cut tr split printf
+        * comm cmp diff patch
+        * yes test xargs tee
+        * chmod chown ps su w who
+        * mail telnet ftp finger ssh
+
+            File Utilities
+
+            chcon 	Change file security context (SELinux)
+            chgrp 	Changes file group ownership
+            chown 	Changes file ownership
+            chmod 	Changes the permissions of a file or folder
+            cp 	Copies a file or folder
+            dd 	Copies and converts a file
+            df 	Shows disk free space on filesystems
+            dir 	Is exactly like "ls -C -b". (Files are by default listed in columns and sorted vertically.)
+            dircolors 	Setup color for ls
+            install 	Copies files and set attributes
+            ln 	Creates a link to a file
+            ls 	Lists the files in a directory
+            mkdir 	Creates a directory
+            mkfifo 	Makes named pipes (FIFOs)
+            mknod 	Makes block or character special files
+            mktemp 	Create a temporary file or directory
+            mv 	Moves files or rename files
+            rm 	Removes (deletes) files
+            rmdir 	Removes empty directories
+            shred 	Overwrites a file to hide its contents, and optionally delete it
+            sync 	Flushes file system buffers
+            touch 	Changes file timestamps
+            truncate 	Shrink or extend the size of a file to the specifed size
+            vdir 	Is exactly like "ls -l -b". (Files are by default listed in long format.)
+
+            Text utilities
+
+            base64 	base64 encode/decode data and print to standard output
+            cat 	Concatenates and prints files on the standard output
+            cksum 	Checksums and count the bytes in a file
+            comm 	Compares two sorted files line by line
+            csplit 	Splits a file into sections determined by context lines
+            cut 	Removes sections from each line of files
+            expand 	Converts tabs to spaces
+            fmt 	Simple optimal text formatter
+            fold 	Wraps each input line to fit in specified width
+            head 	Outputs the first part of files
+            join 	Joins lines of two files on a common field
+            md5sum 	Computes and checks MD5 message digest
+            nl 	Numbers lines of files
+            od 	Dumps files in octal and other formats
+            paste 	Merges lines of files
+            ptx 	Produces a permuted index of file contents
+            pr 	Converts text files for printing
+            sha1sum,
+            sha224sum,
+            sha256sum,
+            sha384sum,
+            sha512sum 	Computes and checks SHA-1, SHA-224/256/384/512 message digest
+            shuf 	generate random permutations
+            sort 	sort lines of text files
+            split 	split a file into pieces
+            sum 	Checksums and counts the blocks in a file
+            tac 	Concatenates and prints files in reverse
+            tail 	Outputs the last part of files
+            tr 	Translates or deletes characters
+            tsort 	Performs a topological sort
+            unexpand 	Converts spaces to tabs
+            uniq 	Removes duplicate lines from a sorted file
+            wc 	Prints the number of bytes, words, and lines in files
+
+            Shell utilities
+
+            arch 	print machine hardware name (same as uname -m)
+            basename 	Removes the path prefix from a given pathname
+            chroot 	Changes the root directory
+            date 	Prints/sets the system date and time
+            dirname 	Strips non-directory suffix from file name
+            du 	Shows disk usage on file systems
+            echo 	Displays a specified line of text
+            env 	Displays and modifies environment variables
+            expr 	Evaluates expressions
+            factor 	Factors numbers
+            false 	Does nothing, but exits unsuccessfully
+            groups 	Prints the groups of which the user is a member
+            hostid 	Prints the numeric identifier for the current host
+            id 	Prints real/effective UID and GID
+            link 	Creates a link to a file
+            logname 	Print the user's login name
+            nice 	Modifies scheduling priority
+            nohup 	Allows a command to continue running after logging out
+            pathchk 	Checks whether file names are valid or portable
+            pinky 	A lightweight version of finger
+            printenv 	Prints environment variables
+            printf 	Formats and prints data
+            pwd 	Prints the current working directory
+            readlink 	Displays value of a symbolic link
+            runcon 	Run command with specified security context
+            seq 	Prints a sequence of numbers
+            sleep 	Delays for a specified amount of time
+            stat 	Returns useful data about an inode
+            stty 	Changes and prints terminal line settings
+            su 	Run a shell or command with substitute user and group IDs
+            tee 	Sends output to multiple files
+            test 	Evaluates an expression
+            timeout 	Run a command with a time limit
+            true 	Does nothing, but exits successfully
+            tty 	Prints terminal name
+            uname 	Prints system information
+            unlink 	Removes the specified file using the unlink function
+            uptime 	Tell how long the system has been running
+            users 	Prints the user names of users currently logged in to the current host
+            who 	Prints a list of all users currently logged in.
+            whoami 	Prints the effective userid
+            yes 	Prints a string repeatedly   * sudo su login passwd
+
+    * Configuring Startup Services
+    * Security
+    * Dual-booting, Wine, and VirtualBox/VMWare
+    * Where to Go For Help
+
+    * What happens at Boot?
+
+    * Init
+    * Runlevels
+    * X
+
+    * Servers (Headless Machines)
+
+    * File Servers (Samba) - Windows File Sharing--but stable!
+    * Web Servers
+    * Print Servers (Cups)
+    * eBox (Landscape, Spacewalk?)
+
+
+-------------
+Linux History
+-------------
+
+.. class:: handout
+
+    The Unix philosophy:
+
+        The use of plain text for storing data; a hierarchical file system;
+        treating devices and certain types of inter-process communication as
+        files; and the use of a large number of software tools, small programs
+        that can be strung together through a command line interpreter using
+        pipes, as opposed to using a single monolithic program that includes
+        all of the same functionality.
+
+    — http://en.wikipedia.org/wiki/Unix
+
+    The Berkeley Software Distribution, or Berkeley Unix, shared the initial
+    codebase and design with the original AT&T UNIX. They started releasing
+    non-AT&T code as open source and ran afoul of AT&T lawyers. The lawsuit was
+    settled in 1994, largely in BSD’s favor, but the delay slowed BSD adoption
+    and prompted the creation of Linux.
+
+    GNU began with the goal of making a free software operating system. It also
+    nearly used the BSD kernel, but was also delayed by the legal hassles.
+
+    Linux began as a desire to run a Unix-like OS on commodity hardware. Linus
+    has stated that if either the GNU or 386BSD kernels were available at the
+    time, he likely would not have written his own.
+
+Unix
+    1969
+BSD
+    1977
+GNU Project
+    1984—GPL, Utilities & libraries
+Linux
+    1991—Kernel
+
+
+-------------------
+Linux Distributions
+-------------------
+
+.. class:: handout
+
+    Early distributions:
+
+        Before the first Linux distributions, a would-be Linux user was
+        required to be something of a Unix expert, not only knowing what
+        libraries and executables were needed to successfully get the system to
+        boot and run, but also important details concerning configuration and
+        placement of files in the system.
+
+    — http://en.wikipedia.org/wiki/Linux_distribution
+
+    Yggdrasil last shipped in 1995.
+
+    Slackware was based on SLS, which was not well-maintained. It is the oldest
+    distribution that is still maintained. Slackware 1.0 came on 24 floppy
+    disks and was built on top of Linux kernel version 0.99pl11-alpha. Once the
+    most popular distribution with an install-base probably around 80%, it’s
+    popularity sharply declined in 1995 with the release of RedHat.
+
+    SUSE is the oldest existing commercial distribution.
+
+    Modern distributions are usually Debian, Gentoo, RPM, or Slackware-based.
+    Others do exist, however.
+
+.. class:: incremental
+
+    * H J Lu’s “Boot-root”, MCC Interim Linux, TAMU, SLS
+    * 1992—Yggdrasil, the first CD-ROM based distribution
+    * 1993-07—Slackware
+    * 1993-08—Debian
+    * 1994—SUSE
+    * 1995—RedHat
+    * 1998—Mandriva
+    * 2004—Ubuntu
+
+
+--------------
+Distro: Fedora
+--------------
+
+.. class:: handout
+
+    Red Hat:
+
+        Red Hat sponsors the Fedora Project, a community-supported open-source
+        project which aims to promote the rapid progress of free and
+        open-source software and content.
+
+        […]
+
+        Red Hat went public on August 11, 1999, the eighth-biggest first-day
+        gain in the history of Wall Street.
+
+        […]
+
+        In 2002, Red Hat introduced the first enterprise-class Linux operating
+        system: Red Hat Advanced Server, later re-named Red Hat Enterprise
+        Linux (RHEL). Dell, IBM, HP and Oracle Corporation announced their
+        support of the platform.
+
+    — http://en.wikipedia.org/wiki/Red_Hat
+
+    If you need enterprise-level features such as Oracle support or SELinux
+    security, RHEL is the industry standard.
+
+    RPM has built-in intrusion detection.
+    Easy to create custom repo with ``createrepo``.
+
+    Some of the ``system-config`` tools are available in Ubuntu.
+
+    system-config-authentication
+    system-config-boot
+    system-config-date
+    system-config-firewall
+    system-config-firewall-tui
+    system-config-keyboard
+    system-config-language
+    system-config-lvm
+    system-config-network
+    system-config-network-cmd
+    system-config-network-gui
+    system-config-network-tui
+    system-config-printer
+    system-config-printer-applet
+    system-config-rootpassword
+    system-config-selinux
+    system-config-services
+    system-config-time
+    system-config-users
+    system-control-network
+    system-install-packages
+
+Community-run base for Red Hat Enterprise Linux.
+
+.. class:: incremental
+
+    * RPM-based
+    * “yum” package manager
+    * Anaconda installer (NFS, FTP, HTTP, CDROM, & HDD)
+    * ``system-config-*`` tools
+
+      * ``system-config-samba``
+      * ``system-config-printer``
+
+
+----------------
+Distro: OpenSUSE
+----------------
+
+.. class:: handout
+
+    “The other” enterprise-level distribution from our own Novel in Provo.
+    Has AppArmor security, although SELinux is arguably replacing it.
+
+“The other” enterprise-level distribution.
+
+.. class:: incremental
+
+    * RPM-based
+    * “yast” package manager
+
+
+-----------------------
+Distro: Ubuntu & Debian
+-----------------------
+
+.. class:: handout
+
+    Debian supports four different kernels and 15 architectures.
+
+    Arguably the best package manager.
+
+    Debian has a strong reputation for stability.
+
+    Ubuntu has a strong reputation for usability and ease-of-installation.
+    Ubuntu is a Zulu word meaning “humanity to others”. The Ubuntu philosophy
+    is “I am what I am because of who we all are.” It was forked from Debian
+    with the goal of more frequently updated system. Ubuntu has stayed fairly
+    close to Debian’s philosophy of free (as in freedom) software with the
+    exception of some proprietary hardware drivers and contributes back to
+    Debian.
+
+.. class:: incremental
+
+    * “apt” package manager
+    * Stability
+    * Usability
+
+
+------------------------
+Distro: Slackware & Arch
+------------------------
+
+.. class:: incremental
+
+    * “slackbuilds” / “pacman” package manager
+    * BSD-like
+    * Simple & vanilla
+
+
+---------------------
+Distro: KDE vs. GNOME
+---------------------
+
+.. class:: handout
+
+    The creator of KDE was troubled that no applications on Linux looked, felt,
+    or worked alike. He proposed the formation of not only a set of
+    applications, but rather a desktop environment, in which users could expect
+    things to look, feel, and work consistently. 
+
+    KDE is an umbrella project for many standalone applications and smaller
+    projects that are based on KDE technology. These include KOffice, KDevelop,
+    Amarok, K3b.
+
+    Members of the GNU project were concerned with KDE’s dependence on the then
+    non-free Qt widget toolkit. It became open source in 1998.
+
+    The GNOME project puts heavy emphasis on simplicity, usability, and making
+    things “just work”. During the v2.0 rewrite, many settings were deemed to
+    be of little or no value to the majority of users and were removed. For
+    instance, the preferences section of the Panel were reduced from a dialog
+    of six tabs to one with two tabs.
+
+.. class:: incremental
+
+     * 1996—KDE
+     * 1997—GNOME
+
+
+------------
+Installation
+------------
+
+Install straight from Windows with Wubi
+
+http://wubi-installer.org/
+http://twit.tv/floss63
+
+
+--------------------------
+Installation: Partitioning
+--------------------------
+
+.. class:: handout
+
+    This will be quick since Aaron is presenting on this next month.
+
+    Purposes:
+
+    * Separation of the operating system files from user files
+    * Having an area for operating system virtual memory swapping/paging
+    * Use of multi booting setups,
+    * Protecting or isolating files, to make it easier to recover a corrupted
+      file system or operating system installation
+
+    A PC hard disk is divided into at most four, and at least one, primary
+    partitions. One of these can also be an extended partition. A primary
+    partition contains one file system.
+
+    A hard disk may contain only one extended partition; which can then be
+    sub-divided into logical drives.
+
+    Swap space (paging). With kernel 2.6 swap files are just as fast as
+    partitions.
+
+    A note about Windows partitions. Windows expects to be on the primary
+    master partition and will not work otherwise.
+
+.. class:: incremental
+
+    * Primary partitions, 4 max
+    * Extended partitions, 1 max, subdivided into logical drives
+    * Resizing partitions (non-destructively)
+
+      * http://gparted.sourceforge.net/
+
+    * Swap partition
+    * Home partition (for easy upgraes)
+    * Windows partition caveat
+
+
+-------------------------
+Installation: File System
+-------------------------
+
+.. class:: handout
+
+    A big effort in 1996 was started, along with the BSDs, to create a uniform
+    file system hierarchy for Unix called the File System Hierarchy Standard
+    (FHS). Most distributions, even those that participated in the formation of
+    the standard, do not completely conform to the standard.
+
+    ``/bin``
+        Essential command binaries that need to be available in single user
+        mode; for all users.
+    ``/boot``
+        Boot loader files, e.g., kernels, initrd; often a separate partition.
+    ``/dev``
+        Essential devices, e.g., ``/dev/null``.
+    ``/etc``
+        System-wide configuration files.
+    ``/home``
+        Users' home directories, containing saved files, personal settings,
+        etc.; often a separate partition.
+    ``/lib``
+        Libraries essential for the binaries in ``/bin/`` and ``/sbin/``.
+    ``/media``
+        Mount points for removable media such as CD-ROMs.
+    ``/mnt``
+        Temporarily mounted filesystems.
+    ``/proc``
+        Virtual filesystem documenting kernel and process status as text files,
+        e.g., uptime, network.
+    ``/root``
+        Home directory for the root user.
+    ``/sbin``
+        Essential system binaries, not for all users.
+    ``/srv``
+        Site-specific data which is served by the system.
+    ``/tmp``
+        Temporary files. Often not preserved between system reboots.
+    ``/usr``
+        *Secondary hierarchy* for user data; contains the majority of user
+        utilities and applications.
+    ``/usr/bin``
+        Non-essential command binaries (not needed in single user mode); for
+        all users.
+    ``/usr/sbin``
+        Non-essential system binaries; not for all users.
+    ``/usr/X11R6``
+        X Window System, Version 11, Release 6.
+    ``/usr/local``
+        *Tertiary hierarchy* for local data, specific to this host.
+    ``/var``
+        Variable files—files whose content is expected to continually change
+        during normal operation of the system—such as logs, spool files, and
+        temporary e-mail files. Sometimes a separate partition.
+    ``/var/lib``
+        State information. Persistent data modified by programs as they run,
+        e.g., databases, packaging system metadata, etc.
+    ``/var/lock``
+        Lock files. Files keeping track of resources currently in use.
+    ``/var/log``
+        Log files. Various logs.
+    ``/var/spool``
+        Spool for tasks waiting to be processed, e.g., print queues and unread
+        mail.
+    ``/var/tmp/``
+        Temporary files to be preserved between reboots.
+
+.. class:: tiny
+
+    ::
+
+        /         /usr/           /opt
+        /bin          bin         /var/
+        /boot         include         lib
+        /dev          lib             lock
+        /etc/         sbin            log
+            X11       share           mail
+        /home         src             run
+        /lib          X11R6           spool
+        /media        local/          tmp
+        /mnt              bin
+        /proc             include
+        /root             lib
+        /sbin             sbin
+        /srv              share
+        /tmp              src
+
+
+----------------------
+Post-Install: Graphics
+----------------------
+
+.. class:: incremental
+
+    * Binary vs. Open Source Drivers
+    * ``glxinfo | grep direct``
+    * ``dmseg | tail``
+    * ``Xorg.0.log``
+
+
+----------------------
+Post-Install: Wireless
+----------------------
+
+.. class:: incremental
+
+    * ``ifconfig -a``
+    * ``iwconfig``
+
+
+---------------
+Terminal Basics
+---------------
+
+.. class:: handout
+
+    In Unix, everything, including your hardware devices, is a file.
+
+    ``cat /dev/input/mice`` or ``hexdump /dev/input/mice``
+
+    Small, specific, programs are chained together to produce complex results.
+
+    ``stdin``
+        Standard Input
+    ``stdout``
+        Standard Ouput
+    ``stderr``
+        Standard Error
+
+.. class:: incremental
+
+    * *Everything* is a file.
+    * 40+ years of plain text.
+    * ``stdin``, ``stdout``, ``stderr``
+
+
+----------------------------
+Terminal Basics: First Steps
+----------------------------
+
+.. class:: handout
+
+    ``find / -name *pdf``
+    ``find /home -user joe``
+    ``find /var/spool -mtime +60``
+    ``find . -perm /u+w,g+w``
+
+.. class:: incremental
+
+    * ``ls``
+    * ``cd``
+    * ``pwd``
+    * ``mkdir``
+    * ``rm``
+    * ``cp``
+    * ``mv``
+    * ``touch``
+    * ``find``
+
+
+------------------------------
+Terminal Basics: Viewing Files
+------------------------------
+
+.. class:: incremental
+
+    * ``less``
+    * ``head``
+    * ``tail``
+    * ``cat``
+    * ``grep``
+
+
+---------------------------------
+Terminal Basics: File Permissions
+---------------------------------
+
+.. class:: incremental
+
+    * ``ls -l``
+    * ``chmod``
+    * ``chown``
+    * ``chgrp``
+    * ``sudo``
+    * ``su``
+
+
+---------------------------
+Terminal Basics: Text Files
+---------------------------
+
+.. class:: handout
+
+    ``cut -d":" -f1 /etc/passwd``
+    ``cut -d":" -f7 /etc/passwd | uniq``
+    ``paste -d", " fileone filetwo``
+
+.. class:: incremental
+
+    * ``sort``
+    * ``uniq``
+    * ``cut``
+    * ``tr``
+    * ``paste``
+    * ``fmt``
+    * ``wc``
+    * ``sed``
+    * ``awk``
+
+
+------------------------------------
+Terminal Basics: Combining Utilities
+------------------------------------
+
+.. class:: incremental
+
+    * ``|``
+    * ``<``
+    * ``>``
+    * ``>>``
+    * ``-``
+
+
+---------------------
+Terminal Basics: Misc
+---------------------
+
+.. class:: incremental
+
+    * ``basename``
+    * ``dirname``
+    * ``uname``
+    * ``nice``
+    * ``uptime``
+    * ``who``
+
+
+-------
+Servers
+-------
+
+Running a headless workstation.
+
+``ssh``!
+
+http://ebox-platform.com/
+http://twit.tv/floss62
+
+
+-------
+Closing
+-------
+
+.. vim:filetype=rst foldmethod=expr foldtext=foldtext()[0\:match(foldtext(),'\:')].'\ '.getline(v\:foldstart+1) foldexpr=getline(v\:lnum)=~'^-\\+$'&&getline(v\:lnum+1)=~'^\\w\\+.*$'&&getline(v\:lnum+2)=~'^-\\+$'?'>1'\:1

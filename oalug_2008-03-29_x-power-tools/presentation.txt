@@ -1,0 +1,491 @@
+===========================
+Ogden Area Linux User Group
+===========================
+Book Review: X Power Tools
+--------------------------
+
+:Presenter: Seth House
+:Date: 2008-03-29
+:Book: X Power Tools (O'Reilly)
+:ISBN: 0-596-10195-3
+
+.. footer:: X Power Tools (O'Reilly, 0-596-10195-3)
+
+
+History
+-------
+
+.. class:: handout
+
+    Version 11 came out in 1987 under the more liberal MIT license, and a
+    vendor-neutral group called the X Consortium was formed to oversee
+    development. Vendors used X11 sample code a starting point, then tuned
+    specific versions for their specific needs and hardware.
+
+    In 1992 a particular implementation, X386, became popular. When it went
+    commercial, a free version was created called XFree86. Most X innovations
+    came from the XFree86 project over the next several years.
+
+    Starting around 1996, development stagnated for nearly four years due to
+    internal politics and rigidity in the organization.
+
+    Control of X passed from group to group. In 1999 it was passed to The Open
+    Group who formed X.org.
+
+    Ultimately a license dispute in 2003 caused many key developers to leave
+    the project and move to back to the successor to the X Consortium, forming
+    the X.org Foundation. Development has been fast-paced since then.
+
+.. class:: incremental
+
+    X was born in 1984 at MIT.
+
+    * 1987 — Version 11
+    * 1992 — X386 became popular, gave rise to XFree86
+    * 1996 — `zzz`
+    * 1999 — X.org formed
+    * 2003 — Mass exodus to X.org
+
+Old X vs. New X
+---------------
+
+Old X (1984-1996)
+-----------------
+
+* Core protocol development
+* Essential extensions
+* Xt-based toolkits
+
+New X (2000-present)
+--------------------
+
+.. class:: handout
+
+    You may have noticed X.org packages in your distro recently got small and
+    numerous. This modularizing of X is a good thing that allows you to
+    selectivly upgrade or change parts of X without having to recompile the
+    whole thing (which is not for the feint of heart).
+
+* RENDER extension (2000)
+* Xft
+* OpenGL
+* COMPOSE
+* non-Xt toolkits (GTK and qt)
+
+The Name (Check the manpage!)
+-----------------------------
+
+.. sidebar:: nübs 
+
+    “X Windows” is generally considered used only by beginners, and is frowned
+    on due to possible confusion with Microsoft Windows.
+
+.. class:: incremental
+
+    * X
+    * X11
+    * X Window System
+    * X Version 11
+    * X Window System, Version 11
+
+    Nowadays “Xorg” or “X dot org” is also acceptable.
+
+Terminology
+-----------
+
+.. sidebar:: Note
+
+    The terminology gets tricky if a user has multiple video cards or monitors
+    using Xinerama
+
+Display
+    Generally, the user interface for one person. Keyboard, pointer, video
+    card, and monitor.
+Device
+    Video card
+Screen
+    Video card and monitor
+
+Display Specification
+---------------------
+
+.. raw:: html
+
+    <code>host:display[.screen]</code>
+
+Set the ``$DISPLAY`` environment variable or pass ``-display`` to a client.
+
+Display Specification
+---------------------
+
+.. raw:: html
+
+    <code><strong>host</strong>:display[.screen]</code>
+
+Host
+    * A DNS hostname or IP address
+    * Blank, or the word ``unix``
+    * (Rarely) DecNET or IPX/SPX designation
+    * Open source operating systems use Unix domain sockets for local
+      connections
+
+Display Specification
+---------------------
+
+.. raw:: html
+
+    <code>host:<strong>display</strong>[.screen]</code>
+
+Display
+    * The display number, starting at 0
+
+Display Specification
+---------------------
+
+.. raw:: html
+
+    <code>host:display[.<strong>screen</strong>]</code>
+
+Screen
+    * Optional screen number within the display, starting at 0
+
+Server Extensions
+-----------------
+
+.. class:: handout
+
+    Composite
+        Off-screen rendering of windows are combined (composited) into the
+        final screen image by hardware under control of a compositing manager.
+        During compositing, images can be distorted, blended, and resized which
+        makes it easy to add drop shadows, transparency, icons, and thumbnails.
+    RENDER
+        Composite images such as Adobe's Flash player or anti-aliased fonts.
+    DPMS
+        Displays Power Management Signalling.
+    GLX
+        OpenGL extension for X11.
+    MIT-SCREEN-SAVER
+        Informs screen savers when to start and stop.
+    RANDR
+        Rotate and resize. Notifies clients when the display is changed, and
+        allows hot-plugging of monitors.
+    SHAPE
+        Enables nonrectangular windows (``xeyes``).
+    XKEYBOARD
+        Enables complex keyboard mapping. The most poorly documented X
+        extension.
+    XINERAMA
+        Single-screen multimonitor support.
+    XVideo
+        Allows video streams to be converted, transformed, and then overlaid on
+        the X display. Done with hardware support and can dramatically improve
+        video performance.
+    XVideo-MotionComposition
+        Utilized hardware support for video decompression—useful for MPEG video
+        playback.
+
+.. class:: small
+
+    .. class:: borderless
+
+    ========================= ==========================
+    * Composite               * RENDER
+    * DAMAGE                  * SECURITY
+    * DPMS                    * SHAPE
+    * GLX                     * SYNC
+    * LBX                     * XINERAMA
+    * MIT-BIG-REQUESTS        * XInputExtension
+    * MIT-SCREEN-SAVER        * XKEYBOARD
+    * MIT-SHM                 * XTEST
+    * RANDR                   * XVideo
+    * RECORD                  * XVideo-MotionComposition
+    ========================= ==========================
+
+Starting a Server Manually
+--------------------------
+
+.. class:: incremental
+
+    ``X :1 vt10 -config CONFIG -layout LAYOUT``
+        * ``:1``
+        * ``vt10``
+        * ``-config CONFIG``
+        * ``-layout LAYOUT``
+
+    ``X :1 -terminate & sleep 2; DISPLAY=:1 xterm``
+
+Using a Display Manager
+-----------------------
+
+``gdm``, ``kdm``, or ``xdm``
+
+.. class:: incremental
+
+    * Usually runlevel 5
+    * Starts a local server
+    * Authenticates
+    * Starts session manager, window manager, and desktop environment
+    * Either started by ``init`` or an init script.
+    * Can start multiple servers (automatically or on-demand)
+
+Config Files
+------------
+
+.. class:: handout
+
+    ``X -configure`` writes to ``xorg.conf.new``.
+
+    The ``xorg.conf-4`` file is a holdover from the XFree86 3.x to 4.x
+    transition.
+
+    The files ``/usr/X11R6/etc/X11/xorg.conf-HOSTNAME`` are assumed to be on a
+    network share, thus the file name is postfixed with a hostname.
+
+Not needed for general configurations. ``X -configure``
+
+.. class:: incremental
+
+    1. File specified on the command line (must exist in the directories below)
+    2. Environment variable ``$XORGCONFIG``
+    3. ``/etc/X11/xorg.conf-4`` then ``/etc/X11/xorg.conf`` then
+       ``/etc/xorg.conf``
+    4. ``/usr/X11R6/etc/X11/xorg.conf-HOSTNAME`` then
+       ``/usr/X11R6/lib/X11/xorg.conf-HOSTNAME``
+
+xorg.conf Sections
+------------------
+
+.. class:: handout
+
+    ServerLayout
+        Defines how screens and input devices are combined to form a display
+        configuration.
+
+        Technically, this section is optional for simple configurations.
+    Screen
+        Combines one video card and one monitor to form a screen. Defines color
+        depth and resolutions.
+    Monitor
+        Characteristics of the monitor (DPMS, power saving timing, scan-rates).
+    Device
+        Video card. Driver-specific settings, check your driver’s manpage.
+    InputDevice
+        One section per mouse, keyboard, etc.
+
+.. class:: incremental
+
+    * ServerLayout
+    * Screen
+    * Monitor
+    * Device
+
+      * ``X :4 -scanpci``
+
+    * InputDevice
+
+Virtual Screen Size (Zooming)
+-----------------------------
+
+.. class:: handout
+
+    Screen
+        When changing resolution, only the displayed resolution changes, not
+        the size of the screen image, forming a kind of virtual desktop. This
+        is called Zooming. The virtual screen size does not need to start with
+        the largest resolution.
+
+        ``Option "DontZoom"`` will disable Ctrl-alt + / -
+
+        By default the virtual screen size is the largest entry in the
+        ``Modes`` entry. You can explicitly define the virtual scren size.
+
+::
+
+    SubSection "Display"
+        Modes "800x600" "1280x1024" "1024x768"
+        Virtual  1280   1024
+        Viewport 0      0
+    EndSubSection
+
+xorg.conf Optional Sections
+---------------------------
+
+* Extensions (e.g. ``Option "Composite" "On"``)
+* Files (e.g. ``FontPath``)
+* ServerFlags (e.g. zap, zoom, VT switching)
+* Module (typically optional extensions)
+* Mode or ModeLine (scan rates and signal options)
+* DRI (3d-acceleration)
+
+  * Group (which group the device belongs to)
+  * Mode (specifies file permissions for the device)
+
+Useful Keyboard Shortcuts
+-------------------------
+
+* Zap — Ctrl-alt Backspace
+* Zooming — Ctrl-alt + / -
+* Mouse keys — Shift-numlock
+
+  * ``5`` or ``/`` — Left click
+  * ``*`` — Middle click
+  * ``-`` — Right click
+  * ``+`` — Double click
+  * ``0`` — Hold button
+  * ``.`` — Release button
+
+Changing Resolution
+-------------------
+
+.. class:: handout
+
+    It’s often more useful to change both the screen resolution and the virtual
+    screen size to eliminate scrolling. The Rotate and Resize (RANDR) extension
+    enables this. You can also easily rotate the display with this tool.
+
+    Gnome and KDE both come with applets to access this functionality.
+
+``xrandr -q``::
+
+    Screen 0: minimum 320 x 200, current 1440 x 900, maximum 1440 x 1024
+    default connected 1440x900+0+0 0mm x 0mm
+      1440x900       60.0*
+      1280x1024      75.0     70.0     60.0
+      1280x960       60.0
+      …
+
+Changing X Settings on the Fly with ``xset``
+--------------------------------------------
+
+.. class:: handout
+
+    ``xset q``
+        Displays mostly settings that can be altered while the server is
+        running such as screen saver and power management timing, keyboard
+        repeat rates (even for individual keys), mouse acceleration, the system
+        bell, and keyboard LED lights (recent versions of X.org do not permit
+        control of numlock and capslock LEDs).
+
+.. class:: incremental
+
+    * ``xset q``
+    * ``xset +dpms``
+    * ``xset -r``
+    * ``xset m``
+    * ``xset b`` `volume pitch duration`
+    * ``xset led 3``
+
+      * ``Options "Xleds"  "1 2 3"``
+
+Useful Tools
+------------
+
+.. class:: handout
+
+    ``Xorg.0.log``
+        Useful tools for diagnosing X start with the basic ``Xorg.0.log`` file
+        (and sometimes ``dmesg``). The X log file is self-documenting and easy
+        to read.
+    ``xpyinfo``
+        To verify that your ``xorg.conf`` file is being processed correctly,
+        consult the output from ``xpyinfo``.
+    ``gtf``
+        Creates ModeLines.
+    ``xmag``
+        Useful for web developers because you can click on any pixel to get the
+        color in 64-bit hexadecimal. (To convert to 24-bit hex just remove the
+        first two digits from each group of four.)
+
+.. class:: incremental
+
+    * ``Xorg.0.log`` (and ``dmesg``)
+
+      * ``xpyinfo``
+
+    * ``xrandr -q``
+    * ``Xnest``
+
+      * ``startx /usr/bin/startkde -- /usr/bin/Xnest :1``
+
+    * ``gtf``
+    * ``xmag``
+
+      * (3e3e, 4444, a9a9) = #3e44a9
+
+The Clipboard
+-------------
+
+.. class:: handout
+
+    Because X is network-based the program placing data on the clipboard and
+    the program receiving the data from the clipboard may not be on the same
+    computer. Pasting speed is limited by network performance. Clients
+    advertise clipboard data to other clients through the server. Data that is
+    placed on the clipboard but never pasted is not transfered over the
+    network. For example, Firefox may advertise that clipboard data is
+    available in both `text/plain` and `text/html` formats. This is why
+    clipboard data becomes unavailable once you’ve closed a client program.
+
+* Clients advertise clipboard data to other clients
+* Multiple formats are advertised if available
+* Pasting speed is limited by network performance
+
+Fonts
+-----
+
+.. class:: handout
+
+    A big difference between Old X and New X is the way fonts are handled. The
+    old font system is often called Core Fonts because fonts were handled in
+    the X core protocols—that is, they were managed by the server, new fonts
+    are handled by the client.
+
+.. class:: incremental
+
+    * Core Fonts vs. RENDER, Xft, and Fontconfig
+    * Install fonts to ``~/.fonts`` or ``/usr/share/fonts`` and run fc-cache.
+    * Configure font rendering with ``/etc/fonts/local.conf``.
+
+Remote Access
+-------------
+
+.. class:: handout
+
+    X has been a “portable, network-transparent window system” from day-one,
+    but unless you have a specific need, just use ssh tunneling. ssh provides
+    an enhanced version of it’s regular tunneling ability specifically for X
+    traffic. You can set up password-less ssh using public keys and ssh-agent.
+    An (very) improperly configured X setup can allow users to view your screen
+    over the network.
+
+``X -nolisten tcp`` is a PITA.
+
+Just use X Tunneling with SSH
+`````````````````````````````
+
+``ssh -X -C user@host xeyes``
+
+Conclusion
+----------
+
+.. class:: small
+
+    The Good
+
+    * X Power Tools is a great resource for starting to really grasp X.
+
+    The Bad
+
+    * The fonts chapter was far too Gnome and KDE focused.
+    * The Session managers, desktop environments, and window managers was very
+      light and didn’t even begin to touch the variety that exists. I still
+      don’t know the difference between a desktop environment and a window
+      manager.
+
+    Other notes
+
+    * There’s a section at the end with tips on configuring X for use as a
+      kiosk system.
+
+.. vim:filetype=rst

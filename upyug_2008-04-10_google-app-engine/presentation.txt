@@ -1,0 +1,303 @@
+======================
+Utah Python User Group
+======================
+Google App Engine
+-----------------
+
+:Presenter: Seth House
+:Date: 2008-04-10
+
+.. include:: <s5defs.txt>
+.. footer:: Google App Engine — http://code.google.com/appengine/
+
+Quick Intro
+-----------
+
+“Google App Engine enables you to build web applications on the same scalable
+systems that power Google applications.”
+
+Features
+--------
+
+* 500 MB Storage
+* 200 Milliion Megacycle CPU / day
+* 10 GB Bandwith / day
+
+~ 5 Million Pageviews / month
+
+Features
+--------
+
+* Single sign-on (for Google accounts)
+* BIGTABLE (scaling!)
+* Python, WSGI, :small:`ZOMG!`
+
+Standard Library
+----------------
+
+* Many native C Python modules are disabled
+
+  * Disk IO
+  * Sockets (urllib)
+  * Threading
+
+* http://code.google.com/appengine/kb/libraries.html
+
+Example Sites
+-------------
+
+* http://appgallery.appspot.com/
+
+Let’s Get Started
+-----------------
+
+.. class:: handout
+
+    The SDK includes a web server application that simulates the App Engine
+    environment, including a local version of the datastore, Google Accounts,
+    and the ability to fetch URLs and send email directly from your computer
+    using the App Engine API.
+
+    The script ``dev_appserver.py`` runs the development server, and
+    ``appcfg.py`` uploads your app to App Engine.
+
+    The web server watches your source files and reloads itself when necessary.
+
+* Python 2.5
+* Install the SDK
+
+  * Installs in your path
+
+.. class:: incremental
+
+    * ``dev_appserver.py``
+    * ``appcfg.py``
+
+Basics
+------
+
+.. class:: handout
+
+    You can use any web framework written in pure Python that speaks CGI or
+    WSGI using a CGI-adapter by copying that framework into your application
+    directory.
+
+    Google's built-in framework is, unfortunately, called ``webapp``.
+
+.. class:: incremental
+
+    CGI Specification
+        Requests stdin, response stdout::
+
+            print 'Content-Type: text/plain'
+            print ''
+            print 'Hello, world!'
+
+.. class:: incremental
+
+    WSGI-Compliant (using a CGI adaptor)
+        Django, CherryPy, Pylons, web.py, webapp__
+
+.. __: http://code.google.com/appengine/docs/webapp/
+
+Global Config File
+------------------
+
+.. class:: incremental
+
+    ``app.yaml``::
+
+        application: helloworld
+        version: 1
+        runtime: python
+        api_version: 1
+
+        handlers:
+        - url: /.*
+            script: helloworld.py
+
+Other Handler Examples
+----------------------
+
+.. class:: handout
+
+    Lines beginning with a hash ``#`` mark are YAML comments.
+
+    Required lines:
+
+    ``application``
+        The application identifier (same name you chose in the Administration
+        Console).
+    ``version``
+        Free version control. App Engine retains a copy of your application for
+        each ``version`` used.
+    ``runtime``
+        For now only ``python`` is supported.
+    ``api_version``
+        For backwards compatibility when Google upgrades App Engine.
+    ``handlers``
+        App Engine can handle URLs by executing application code, or by serving
+        static files uploaded with the code, such as images, CSS or JavaScript.
+
+        URL patterns use posix regex syntax and are evaluated top-down. Any
+        wildcard handlers for non-matches (for custom 404 actions) should go
+        near the bottom.
+
+        There are two kinds of handlers: script handlers, and static file
+        handlers. Each static file is served using the MIME type that
+        corresponds with its filename extension unless overridden by the
+        directory's mime_type setting.
+
+        Any URL handler can have a login setting to restrict visitors to only
+        those users who have signed in, or just those users who are
+        administrators for the application.
+
+        Lastly, The ``skip_files`` element specifies which files in the
+        application directory are not to be uploaded to App Engine.
+
+.. class:: incremental
+
+    ::
+
+        - url: /stylesheets
+          static_dir: stylesheets
+
+    ::
+
+        - url: /(.*\.(gif|png|jpg))
+          static_files: static/\1
+          upload: static/(.*\.(gif|png|jpg))
+          
+    ::
+
+        - url: /admin/.*
+          script: admin.py
+          login: admin
+
+Frameworks — ``webapp``
+-----------------------
+
+.. class:: handout
+
+    A ``webapp`` application has three parts:
+
+    * one or more RequestHandler classes that process requests and build
+      responses
+    * a WSGIApplication instance that routes incoming requests to handlers
+      based on the URL
+    * a main routine that runs the WSGIApplication using a CGI adaptor
+
+.. class:: small_override
+
+    ::
+
+        import wsgiref.handlers
+
+        from google.appengine.ext import webapp
+
+        class MainPage(webapp.RequestHandler):
+        def get(self):
+            self.response.headers['Content-Type'] = 'text/plain'
+            self.response.out.write('Hello, webapp World!')
+
+        def main():
+        application = webapp.WSGIApplication(
+                                            [('/', MainPage)],
+                                            debug=True)
+        wsgiref.handlers.CGIHandler().run(application)
+
+        if __name__ == "__main__":
+        main()
+
+Authenticating Users
+--------------------
+
+.. class:: handout
+
+    Only the email address of a user is available to the application author.
+
+::
+
+    from google.appengine.api import users
+
+    user = users.get_current_user()
+    if user:
+      self.response.headers['Content-Type'] = 'text/plain'
+      self.response.out.write('Hello, ' + user.nickname())
+    else:
+      self.redirect(users.create_login_url(self.request.uri))
+
+Processing Forms
+----------------
+
+``webapp`` expects handler methods to map to HTTP methods::
+
+    def main():
+        application = webapp.WSGIApplication([
+            ('/sign', Guestbook)
+        ])
+
+    class Guestbook(webapp.RequestHandler):
+        def get(self):
+            pass
+
+        def post(self):
+            pass
+
+Processing Forms
+----------------
+
+.. class:: handout
+
+    The ``cgi`` module is from the Python standard library.
+
+For an HTML form element ``<textarea name="content"></textarea>``::
+
+    cgi.escape(self.request.get('content'))
+
+Using Google's Datastore
+------------------------
+
+.. class:: handout
+
+    Show the Guestbook model.
+    ``put()`` saves the model.
+
+    To clear the development database pass ``clear_datastore`` and the
+    application name to ``dev_appserver.py``.
+    ``dev_appserver.py --clear_datastore helloworld/``
+
+Define your models::
+
+    class Greeting(db.Model):
+        author = db.UserProperty()
+        content = db.StringProperty(multiline=True)
+        date = db.DateTimeProperty(auto_now_add=True)
+
+Templates
+---------
+
+.. class:: handout
+
+    ``webapp`` uses Django templating by default.
+
+    An App Engine application has read-only access to all of the files
+    uploaded with the application.
+
+template.render(path, template_values)
+
+See it in Action
+----------------
+
+``./appcfg.py update yourappname``
+
+http://appengine.google.com/yourappname
+
+Links
+-----
+
+Using Django with App Engine
+    http://www.42topics.com/dumps/appengine/doc.html
+    http://code.google.com/appengine/articles/django.html
+
+.. vim:filetype=rst

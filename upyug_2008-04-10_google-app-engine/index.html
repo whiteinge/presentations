@@ -1,0 +1,601 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.5: http://docutils.sourceforge.net/" />
+<meta name="version" content="S5 1.1" />
+<title>Utah Python User Group</title>
+<style type="text/css">
+
+/*
+:Author: David Goodger (goodger@python.org)
+:Id: $Id: html4css1.css 5196 2007-06-03 20:25:28Z wiemann $
+:Copyright: This stylesheet has been placed in the public domain.
+
+Default cascading style sheet for the HTML output of Docutils.
+
+See http://docutils.sf.net/docs/howto/html-stylesheets.html for how to
+customize this style sheet.
+*/
+
+/* used to remove borders from tables and images */
+.borderless, table.borderless td, table.borderless th {
+  border: 0 }
+
+table.borderless td, table.borderless th {
+  /* Override padding for "table.docutils td" with "! important".
+     The right padding separates the table cells. */
+  padding: 0 0.5em 0 0 ! important }
+
+.first {
+  /* Override more specific margin styles with "! important". */
+  margin-top: 0 ! important }
+
+.last, .with-subtitle {
+  margin-bottom: 0 ! important }
+
+.hidden {
+  display: none }
+
+a.toc-backref {
+  text-decoration: none ;
+  color: black }
+
+blockquote.epigraph {
+  margin: 2em 5em ; }
+
+dl.docutils dd {
+  margin-bottom: 0.5em }
+
+/* Uncomment (and remove this text!) to get bold-faced definition list terms
+dl.docutils dt {
+  font-weight: bold }
+*/
+
+div.abstract {
+  margin: 2em 5em }
+
+div.abstract p.topic-title {
+  font-weight: bold ;
+  text-align: center }
+
+div.admonition, div.attention, div.caution, div.danger, div.error,
+div.hint, div.important, div.note, div.tip, div.warning {
+  margin: 2em ;
+  border: medium outset ;
+  padding: 1em }
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title {
+  font-weight: bold ;
+  font-family: sans-serif }
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title {
+  color: red ;
+  font-weight: bold ;
+  font-family: sans-serif }
+
+/* Uncomment (and remove this text!) to get reduced vertical space in
+   compound paragraphs.
+div.compound .compound-first, div.compound .compound-middle {
+  margin-bottom: 0.5em }
+
+div.compound .compound-last, div.compound .compound-middle {
+  margin-top: 0.5em }
+*/
+
+div.dedication {
+  margin: 2em 5em ;
+  text-align: center ;
+  font-style: italic }
+
+div.dedication p.topic-title {
+  font-weight: bold ;
+  font-style: normal }
+
+div.figure {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+div.footer, div.header {
+  clear: both;
+  font-size: smaller }
+
+div.line-block {
+  display: block ;
+  margin-top: 1em ;
+  margin-bottom: 1em }
+
+div.line-block div.line-block {
+  margin-top: 0 ;
+  margin-bottom: 0 ;
+  margin-left: 1.5em }
+
+div.sidebar {
+  margin: 0 0 0.5em 1em ;
+  border: medium outset ;
+  padding: 1em ;
+  background-color: #ffffee ;
+  width: 40% ;
+  float: right ;
+  clear: right }
+
+div.sidebar p.rubric {
+  font-family: sans-serif ;
+  font-size: medium }
+
+div.system-messages {
+  margin: 5em }
+
+div.system-messages h1 {
+  color: red }
+
+div.system-message {
+  border: medium outset ;
+  padding: 1em }
+
+div.system-message p.system-message-title {
+  color: red ;
+  font-weight: bold }
+
+div.topic {
+  margin: 2em }
+
+h1.section-subtitle, h2.section-subtitle, h3.section-subtitle,
+h4.section-subtitle, h5.section-subtitle, h6.section-subtitle {
+  margin-top: 0.4em }
+
+h1.title {
+  text-align: center }
+
+h2.subtitle {
+  text-align: center }
+
+hr.docutils {
+  width: 75% }
+
+img.align-left {
+  clear: left }
+
+img.align-right {
+  clear: right }
+
+ol.simple, ul.simple {
+  margin-bottom: 1em }
+
+ol.arabic {
+  list-style: decimal }
+
+ol.loweralpha {
+  list-style: lower-alpha }
+
+ol.upperalpha {
+  list-style: upper-alpha }
+
+ol.lowerroman {
+  list-style: lower-roman }
+
+ol.upperroman {
+  list-style: upper-roman }
+
+p.attribution {
+  text-align: right ;
+  margin-left: 50% }
+
+p.caption {
+  font-style: italic }
+
+p.credits {
+  font-style: italic ;
+  font-size: smaller }
+
+p.label {
+  white-space: nowrap }
+
+p.rubric {
+  font-weight: bold ;
+  font-size: larger ;
+  color: maroon ;
+  text-align: center }
+
+p.sidebar-title {
+  font-family: sans-serif ;
+  font-weight: bold ;
+  font-size: larger }
+
+p.sidebar-subtitle {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+p.topic-title {
+  font-weight: bold }
+
+pre.address {
+  margin-bottom: 0 ;
+  margin-top: 0 ;
+  font-family: serif ;
+  font-size: 100% }
+
+pre.literal-block, pre.doctest-block {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+span.classifier {
+  font-family: sans-serif ;
+  font-style: oblique }
+
+span.classifier-delimiter {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+span.interpreted {
+  font-family: sans-serif }
+
+span.option {
+  white-space: nowrap }
+
+span.pre {
+  white-space: pre }
+
+span.problematic {
+  color: red }
+
+span.section-subtitle {
+  /* font-size relative to parent (h1..h6 element) */
+  font-size: 80% }
+
+table.citation {
+  border-left: solid 1px gray;
+  margin-left: 1px }
+
+table.docinfo {
+  margin: 2em 4em }
+
+table.docutils {
+  margin-top: 0.5em ;
+  margin-bottom: 0.5em }
+
+table.footnote {
+  border-left: solid 1px black;
+  margin-left: 1px }
+
+table.docutils td, table.docutils th,
+table.docinfo td, table.docinfo th {
+  padding-left: 0.5em ;
+  padding-right: 0.5em ;
+  vertical-align: top }
+
+table.docutils th.field-name, table.docinfo th.docinfo-name {
+  font-weight: bold ;
+  text-align: left ;
+  white-space: nowrap ;
+  padding-left: 0 }
+
+h1 tt.docutils, h2 tt.docutils, h3 tt.docutils,
+h4 tt.docutils, h5 tt.docutils, h6 tt.docutils {
+  font-size: 100% }
+
+ul.auto-toc {
+  list-style-type: none }
+
+</style>
+<!-- configuration parameters -->
+<meta name="defaultView" content="slideshow" />
+<meta name="controlVis" content="hidden" />
+<!-- style sheet links -->
+<script src="ui/small-black/slides.js" type="text/javascript"></script>
+<link rel="stylesheet" href="ui/small-black/slides.css"
+      type="text/css" media="projection" id="slideProj" />
+<link rel="stylesheet" href="ui/small-black/outline.css"
+      type="text/css" media="screen" id="outlineStyle" />
+<link rel="stylesheet" href="ui/small-black/print.css"
+      type="text/css" media="print" id="slidePrint" />
+<link rel="stylesheet" href="ui/small-black/opera.css"
+      type="text/css" media="projection" id="operaFix" />
+
+<style type="text/css">
+#currentSlide {display: none;}
+</style>
+</head>
+<body>
+<div class="layout">
+<div id="controls"></div>
+<div id="currentSlide"></div>
+<div id="header">
+
+</div>
+<div id="footer">
+<h1>Utah Python User Group</h1>
+<h2>Google App Engine — <a class="reference external" href="http://code.google.com/appengine/">http://code.google.com/appengine/</a></h2>
+</div>
+</div>
+<div class="presentation">
+<div class="slide" id="slide0">
+<h1 class="title">Utah Python User Group</h1>
+
+
+</div>
+<div class="slide" id="google-app-engine">
+<h1>Google App Engine</h1>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Presenter:</th><td class="field-body">Seth House</td>
+</tr>
+<tr class="field"><th class="field-name">Date:</th><td class="field-body">2008-04-10</td>
+</tr>
+</tbody>
+</table>
+<!-- Definitions of interpreted text roles (classes) for S5/HTML data. -->
+<!-- This data file has been placed in the public domain. -->
+<!-- Colours
+======= -->
+<!-- Text Sizes
+========== -->
+<!-- Display in Slides (Presentation Mode) Only
+========================================== -->
+<!-- Display in Outline Mode Only
+============================ -->
+<!-- Display in Print Only
+===================== -->
+<!-- Display in Handout Mode Only
+============================ -->
+<!-- Incremental Display
+=================== -->
+</div>
+<div class="slide" id="quick-intro">
+<h1>Quick Intro</h1>
+<p>“Google App Engine enables you to build web applications on the same scalable
+systems that power Google applications.”</p>
+</div>
+<div class="slide" id="features">
+<h1>Features</h1>
+<ul class="simple">
+<li>500 MB Storage</li>
+<li>200 Milliion Megacycle CPU / day</li>
+<li>10 GB Bandwith / day</li>
+</ul>
+<p>~ 5 Million Pageviews / month</p>
+</div>
+<div class="slide" id="id1">
+<h1>Features</h1>
+<ul class="simple">
+<li>Single sign-on (for Google accounts)</li>
+<li>BIGTABLE (scaling!)</li>
+<li>Python, WSGI, <span class="small">ZOMG!</span></li>
+</ul>
+</div>
+<div class="slide" id="standard-library">
+<h1>Standard Library</h1>
+<ul class="simple">
+<li>Many native C Python modules are disabled<ul>
+<li>Disk IO</li>
+<li>Sockets (urllib)</li>
+<li>Threading</li>
+</ul>
+</li>
+<li><a class="reference external" href="http://code.google.com/appengine/kb/libraries.html">http://code.google.com/appengine/kb/libraries.html</a></li>
+</ul>
+</div>
+<div class="slide" id="example-sites">
+<h1>Example Sites</h1>
+<ul class="simple">
+<li><a class="reference external" href="http://appgallery.appspot.com/">http://appgallery.appspot.com/</a></li>
+</ul>
+</div>
+<div class="slide" id="let-s-get-started">
+<h1>Let’s Get Started</h1>
+<p class="handout">The SDK includes a web server application that simulates the App Engine
+environment, including a local version of the datastore, Google Accounts,
+and the ability to fetch URLs and send email directly from your computer
+using the App Engine API.</p>
+<p class="handout">The script <tt class="docutils literal"><span class="pre">dev_appserver.py</span></tt> runs the development server, and
+<tt class="docutils literal"><span class="pre">appcfg.py</span></tt> uploads your app to App Engine.</p>
+<p class="handout">The web server watches your source files and reloads itself when necessary.</p>
+<ul class="simple">
+<li>Python 2.5</li>
+<li>Install the SDK<ul>
+<li>Installs in your path</li>
+</ul>
+</li>
+</ul>
+<ul class="incremental simple">
+<li><tt class="docutils literal"><span class="pre">dev_appserver.py</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">appcfg.py</span></tt></li>
+</ul>
+</div>
+<div class="slide" id="basics">
+<h1>Basics</h1>
+<p class="handout">You can use any web framework written in pure Python that speaks CGI or
+WSGI using a CGI-adapter by copying that framework into your application
+directory.</p>
+<p class="handout">Google's built-in framework is, unfortunately, called <tt class="docutils literal"><span class="pre">webapp</span></tt>.</p>
+<dl class="incremental docutils">
+<dt>CGI Specification</dt>
+<dd><p class="first">Requests stdin, response stdout:</p>
+<pre class="last literal-block">
+print 'Content-Type: text/plain'
+print ''
+print 'Hello, world!'
+</pre>
+</dd>
+</dl>
+<dl class="incremental docutils">
+<dt>WSGI-Compliant (using a CGI adaptor)</dt>
+<dd>Django, CherryPy, Pylons, web.py, <a class="reference external" href="http://code.google.com/appengine/docs/webapp/">webapp</a></dd>
+</dl>
+</div>
+<div class="slide" id="global-config-file">
+<h1>Global Config File</h1>
+<p class="incremental"><tt class="docutils literal"><span class="pre">app.yaml</span></tt>:</p>
+<pre class="incremental literal-block">
+application: helloworld
+version: 1
+runtime: python
+api_version: 1
+
+handlers:
+- url: /.*
+    script: helloworld.py
+</pre>
+</div>
+<div class="slide" id="other-handler-examples">
+<h1>Other Handler Examples</h1>
+<p class="handout">Lines beginning with a hash <tt class="docutils literal"><span class="pre">#</span></tt> mark are YAML comments.</p>
+<p class="handout">Required lines:</p>
+<dl class="handout docutils">
+<dt><tt class="docutils literal"><span class="pre">application</span></tt></dt>
+<dd>The application identifier (same name you chose in the Administration
+Console).</dd>
+<dt><tt class="docutils literal"><span class="pre">version</span></tt></dt>
+<dd>Free version control. App Engine retains a copy of your application for
+each <tt class="docutils literal"><span class="pre">version</span></tt> used.</dd>
+<dt><tt class="docutils literal"><span class="pre">runtime</span></tt></dt>
+<dd>For now only <tt class="docutils literal"><span class="pre">python</span></tt> is supported.</dd>
+<dt><tt class="docutils literal"><span class="pre">api_version</span></tt></dt>
+<dd>For backwards compatibility when Google upgrades App Engine.</dd>
+<dt><tt class="docutils literal"><span class="pre">handlers</span></tt></dt>
+<dd><p class="first">App Engine can handle URLs by executing application code, or by serving
+static files uploaded with the code, such as images, CSS or JavaScript.</p>
+<p>URL patterns use posix regex syntax and are evaluated top-down. Any
+wildcard handlers for non-matches (for custom 404 actions) should go
+near the bottom.</p>
+<p>There are two kinds of handlers: script handlers, and static file
+handlers. Each static file is served using the MIME type that
+corresponds with its filename extension unless overridden by the
+directory's mime_type setting.</p>
+<p>Any URL handler can have a login setting to restrict visitors to only
+those users who have signed in, or just those users who are
+administrators for the application.</p>
+<p class="last">Lastly, The <tt class="docutils literal"><span class="pre">skip_files</span></tt> element specifies which files in the
+application directory are not to be uploaded to App Engine.</p>
+</dd>
+</dl>
+<pre class="incremental literal-block">
+- url: /stylesheets
+  static_dir: stylesheets
+</pre>
+<pre class="incremental literal-block">
+- url: /(.*\.(gif|png|jpg))
+  static_files: static/\1
+  upload: static/(.*\.(gif|png|jpg))
+</pre>
+<pre class="incremental literal-block">
+- url: /admin/.*
+  script: admin.py
+  login: admin
+</pre>
+</div>
+<div class="slide" id="frameworks-webapp">
+<h1>Frameworks — <tt class="docutils literal"><span class="pre">webapp</span></tt></h1>
+<p class="handout">A <tt class="docutils literal"><span class="pre">webapp</span></tt> application has three parts:</p>
+<ul class="handout simple">
+<li>one or more RequestHandler classes that process requests and build
+responses</li>
+<li>a WSGIApplication instance that routes incoming requests to handlers
+based on the URL</li>
+<li>a main routine that runs the WSGIApplication using a CGI adaptor</li>
+</ul>
+<pre class="small-override literal-block">
+import wsgiref.handlers
+
+from google.appengine.ext import webapp
+
+class MainPage(webapp.RequestHandler):
+def get(self):
+    self.response.headers['Content-Type'] = 'text/plain'
+    self.response.out.write('Hello, webapp World!')
+
+def main():
+application = webapp.WSGIApplication(
+                                    [('/', MainPage)],
+                                    debug=True)
+wsgiref.handlers.CGIHandler().run(application)
+
+if __name__ == &quot;__main__&quot;:
+main()
+</pre>
+</div>
+<div class="slide" id="authenticating-users">
+<h1>Authenticating Users</h1>
+<p class="handout">Only the email address of a user is available to the application author.</p>
+<pre class="literal-block">
+from google.appengine.api import users
+
+user = users.get_current_user()
+if user:
+  self.response.headers['Content-Type'] = 'text/plain'
+  self.response.out.write('Hello, ' + user.nickname())
+else:
+  self.redirect(users.create_login_url(self.request.uri))
+</pre>
+</div>
+<div class="slide" id="processing-forms">
+<h1>Processing Forms</h1>
+<p><tt class="docutils literal"><span class="pre">webapp</span></tt> expects handler methods to map to HTTP methods:</p>
+<pre class="literal-block">
+def main():
+    application = webapp.WSGIApplication([
+        ('/sign', Guestbook)
+    ])
+
+class Guestbook(webapp.RequestHandler):
+    def get(self):
+        pass
+
+    def post(self):
+        pass
+</pre>
+</div>
+<div class="slide" id="id3">
+<h1>Processing Forms</h1>
+<p class="handout">The <tt class="docutils literal"><span class="pre">cgi</span></tt> module is from the Python standard library.</p>
+<p>For an HTML form element <tt class="docutils literal"><span class="pre">&lt;textarea</span> <span class="pre">name=&quot;content&quot;&gt;&lt;/textarea&gt;</span></tt>:</p>
+<pre class="literal-block">
+cgi.escape(self.request.get('content'))
+</pre>
+</div>
+<div class="slide" id="using-google-s-datastore">
+<h1>Using Google's Datastore</h1>
+<p class="handout">Show the Guestbook model.
+<tt class="docutils literal"><span class="pre">put()</span></tt> saves the model.</p>
+<p class="handout">To clear the development database pass <tt class="docutils literal"><span class="pre">clear_datastore</span></tt> and the
+application name to <tt class="docutils literal"><span class="pre">dev_appserver.py</span></tt>.
+<tt class="docutils literal"><span class="pre">dev_appserver.py</span> <span class="pre">--clear_datastore</span> <span class="pre">helloworld/</span></tt></p>
+<p>Define your models:</p>
+<pre class="literal-block">
+class Greeting(db.Model):
+    author = db.UserProperty()
+    content = db.StringProperty(multiline=True)
+    date = db.DateTimeProperty(auto_now_add=True)
+</pre>
+</div>
+<div class="slide" id="templates">
+<h1>Templates</h1>
+<p class="handout"><tt class="docutils literal"><span class="pre">webapp</span></tt> uses Django templating by default.</p>
+<p class="handout">An App Engine application has read-only access to all of the files
+uploaded with the application.</p>
+<p>template.render(path, template_values)</p>
+</div>
+<div class="slide" id="see-it-in-action">
+<h1>See it in Action</h1>
+<p><tt class="docutils literal"><span class="pre">./appcfg.py</span> <span class="pre">update</span> <span class="pre">yourappname</span></tt></p>
+<p><a class="reference external" href="http://appengine.google.com/yourappname">http://appengine.google.com/yourappname</a></p>
+</div>
+<div class="slide" id="links">
+<h1>Links</h1>
+<dl class="docutils">
+<dt>Using Django with App Engine</dt>
+<dd><a class="reference external" href="http://www.42topics.com/dumps/appengine/doc.html">http://www.42topics.com/dumps/appengine/doc.html</a>
+<a class="reference external" href="http://code.google.com/appengine/articles/django.html">http://code.google.com/appengine/articles/django.html</a></dd>
+</dl>
+<!-- vim:filetype=rst -->
+</div>
+</div>
+</body>
+</html>

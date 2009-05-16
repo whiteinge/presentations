@@ -1,0 +1,220 @@
+===========================
+Ogden Area Linux User Group
+===========================
+Compiling a Custom Kernel
+-------------------------
+
+:Presenter: Seth House
+:Date: 2009-03-31
+
+
+What is the Linux kernel?
+=========================
+
+.. FIXME
+
+.. class:: handout
+
+    The kernel is Linux.
+
+        In computing, the kernel is the central component of most computer
+        operating systems. Its responsibilities include managing the system's
+        resources (the communication between hardware and software
+        components). As a basic component of an operating system, a kernel
+        provides the lowest-level abstraction layer for the resources
+        (especially memory, processors and I/O devices) that application
+        software must control to perform its function.
+
+        — http://en.wikipedia.org/wiki/Kernel_(computer_science)
+
+
+Why Compile it Yourself?
+========================
+
+.. class:: handout
+
+    Chances are you don't need to compile your own kernel.
+
+    Compiling some drivers (e.g. ATI or Nvidia graphics drivers, VirtualBox or
+    VMware kernel modules) require kernel headers to be installed. If you only
+    need the headers, you don’t need to compile your own kernel. If your kernel
+    headers aren’t installed, consult your distro’s documentation.
+
+        Kernel headers are C header files which provide some definitions of the
+        low-level kernel ABI, to be shared between the kernel and userspace
+        programs. Most userspace programs should not include kernel headers;
+        they are only intended to be used directly by system libraries and
+        low-level tools and daemons.
+
+        The ``make headers_install`` command, when executed in the kernel's
+        source tree, exports the kernel's header files in a form suitable for
+        use by userspace programs.
+
+        When exported, most kernel headers reside in the ``/usr/include/asm``
+        and ``/usr/include/linux directories``.
+
+        — http://en.wikipedia.org/wiki/Kernel_header#Kernel_headers
+
+.. sidebar:: kernel headers
+
+    Kernel headers are sometimes needed to compile certain drivers.
+
+.. class:: incremental
+
+    * You want to know how to do it.
+    * You are doing kernel development.
+    * You don’t want to wait for new drivers/features/fixes to make it to your
+      favorite Linux distribution.
+    * You want to apply a patch, maybe to modify some driver.
+    * You are blind and want TTS to begin right as Linux boots. (Speakup_)
+    * You’re trying to wring every last micro-second from your bootup time.
+
+.. _Speakup: http://www.linux-speakup.org/
+
+.. footer:: http://www.faqs.org/docs/Linux-HOWTO/Kernel-HOWTO.html
+
+
+Where Do You Get It?
+====================
+
+.. class:: handout
+
+    Get it from kernel.org.
+
+        The old scheme (after 1.0 and prior to version 2.6):
+
+            * The A number denotes the kernel version. It is rarely changed,
+              and only when major changes in the code and the concept of the
+              kernel occur. It has been changed twice in the history of the
+              kernel: In 1994 (version 1.0) and in 1996 (version 2.0).
+            * The B number denotes the major revision of the kernel
+
+              * The kernel used the traditional even-odd system version
+                numbering system.
+
+            * The C number indicates the minor revision of the kernel. This
+              number was changed when security patches, bug fixes, new features
+              or drivers were implemented in the kernel.
+
+        After the release of 2.6.0 (Dec 2003[34]) it was realized that a much
+        shorter release cycle would be beneficial. Since then:
+
+            * A and B are largely irrelevant
+            * C is the version of the kernel
+
+        — http://en.wikipedia.org/wiki/Kernel_header#Version_numbering
+
+http://kernel.org/
+
+.. class:: incremental
+
+    1.  Untar the source in ``/usr/src/``.
+    2.  Symlink the new directory to ``/usr/src/linux``.
+
+
+Quick Overview
+==============
+
+.. class:: handout
+
+    ``mrproper`` refers to the Procter & Gamble product, Mr. Proper, which is
+    the European (at least Finnish/German/Czech) branding for Mr. Clean [1]_.
+
+        “…‘make clean’ is simple soap wash, ‘make mrproper’ cleans also tougher
+        stains by using stronger solvents…”
+
+        — http://lkml.indiana.edu/hypermail/linux/kernel/0101.3/0295.html
+
+    .. [1] http://en.wikipedia.org/wiki/Mr._Clean#Mr._Clean_in_popular_culture
+
+.. class:: incremental
+
+    1.  ``make mrproper``
+    2.  ``make all``
+    3.  ``make modules_install``
+    4.  ``cp ./arch/i386/boot/bzimage /boot/vmlinuz-2.6.27.7``
+    5.  ``cp ./.config /boot/config-2.6.27.7``
+    6.  ``cp ./System.map /boot/System.map-2.6.27.7``
+    7.  Make symlinks to the files in ``/boot`` as needed.
+    8.  Configure grub or LILO.
+    9.  Reboot to test.
+    10. ``make clean`` (optional, to free up disk space)
+
+
+Create the Config File
+======================
+
+.. class:: handout
+
+    Your best bet is to start with a copy of your distro’s kernel config file.
+    This step is optional, but it will save you a lot of time and give you a
+    kernel that is most like one that your distro ships.
+
+    The file usually lives in ``/boot/config`` (it may be a symlink). Or if you
+    already have other kernel sources installed look for a hidden file in the
+    base directory (e.g. ``/usr/src/linux-2.6.26.6/.config``). Or you may have
+    to hunt it down in your distro’s packages.
+
+    If you’re using a config file for an older kernel version you’ll want to
+    start by running ``make oldconfig``. It will ask you a bunch of questions
+    about things that have changed between kernel versions; generally the
+    default answer is fine.
+
+    Using the graphical config utility is easiest for users unfamiliar with the
+    process. The new ``xconfig`` option uses the QT libraries, the older
+    ``gconfig`` uses the GTK libraries.
+
+.. class:: sidebar
+
+    Copy the config *after* running ``make mrproper`` or it will be deleted.
+
+.. class:: incremental
+
+    1.  ``cp /boot/config /usr/src/linux/.config``
+    2.  ``make oldconfig``
+    3.  Tweak any configuration options
+
+        * ``make config``
+        * ``make menuconfig``
+        * ``make xconfig``
+        * ``make gconfig``
+
+
+How Can You Uninstall an Old Version?
+=====================================
+
+1.  ``rm -r /lib/modules/2.6.27.7``
+2.  ``rm /boot/vmlinuz-2.6.27.7``
+3.  ``rm /boot/config-2.6.27.7``
+4.  ``rm /boot/System.map-2.6.27.7``
+
+
+Patching an Existing Source Tree
+================================
+
+.. class:: handout
+
+    Sometimes you already have a kernel source tree on your system and would
+    rather download a smaller patch than a whole new source tar-ball.
+
+.. class:: incremental
+
+    1.  ``cd /usr/src/linux-2.6.26``
+    2.  ``gzip -dc patch-2.6.27.gz | patch -p0``
+
+Some Nomenclature
+=================
+
+vmlinuz
+    The compressed built kernel that has been made bootable.
+vmlinux
+    The vmlinux is the uncompressed built kernel.
+bzImage
+    The compressed kernel image created with command ``make bzImage`` during
+    kernel compile. 
+System.map
+    A “phone directory” list of function in a particular build of a kernel. If
+    you use the wrong (or no) System.map, debugging crashes is harder (kernel
+    oopses), but has no other effects.
+
+.. vim:filetype=rst

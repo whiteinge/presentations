@@ -1,0 +1,12 @@
+===========================
+Ogden Area Linux User Group
+===========================
+Getting the Most from Your Shell
+--------------------------------
+
+:Presenter: Seth House
+:Date: 2008-09-30
+
+.. footer:: Unix Power Tools (O'Reilly, 0-596-00330-7)
+
+.. vim:filetype=rst

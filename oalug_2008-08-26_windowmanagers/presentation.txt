@@ -1,0 +1,148 @@
+===========================
+Ogden Area Linux User Group
+===========================
+Window Managers
+---------------
+
+:Presenter: Seth House
+:Date: 2008-08-26
+
+.. footer:: Window Managers
+
+
+So What’s a Window Manager?
+---------------------------
+
+.. class:: handout
+
+    An X window manager does not directly interact with video hardware, mice,
+    or keyboards—that is the job of a Windowing System.
+
+    A basic window manager handles re-parenting (window decorations, or flash),
+    and window tiling and stacking (& mouse movement interactions).
+
+* Parenting (window decorations)
+* Window tiling / stacking
+
+
+But there’s a lot of gray area
+------------------------------
+
+.. class:: handout
+
+    The line between a window manager and desktop environment is not always
+    clear. A desktop environment usually consists of a window manager as well
+    as a file manager.
+
+* Customizable appearance
+* Textual menus
+* Docks, program launchers
+* Multiple desktops & pagers / virtual desktops
+* Compiz
+
+
+Fluxbox
+-------
+
+.. class:: handout
+
+    Very popular. Xcompmgr can add transparency effects. Enhancements can also
+    be provided by using iDesk or fbdesk, or the ROX Desktop. The slit.
+
+    Set background with xsetroot or esetroot, etc.
+
+.. class:: incremental
+
+    * Based on Blackbox
+    * Ultralightweight
+    * UI has a taskbar and a menu
+    * Window decoration has tabs
+    * Configured with text files
+
+http://fluxbox.org (MIT)
+
+
+Openbox
+-------
+
+.. class:: handout
+
+    ObConf. Highly configurable. All mouse and keyboard bindings can be
+    configured. For example, if a user wants a window to go to desktop 3 when
+    the close button is clicked with the middle mouse button, the user can do
+    this trivially.
+
+    Openbox’s menu system has a method for using dynamic menus. This is done by
+    accepting the output of a script and using that output as the source for a
+    menu.
+
+    Each time the user points his or her mouse at the sub-menu, the script is
+    re-run and the menu is regenerated. For instance, two developers wrote a
+    script in Python that lists a user’s new Gmail messages in a sub-menu.
+
+    How do I put my desktops into a grid layout instead of a single row?
+
+    Your pager is responsible for doing this, and communicates with Openbox to
+    make sure they agree on it. Any pager which complies with the EWMH
+    specification should be able to do this. Examples are the gnome-panel pager
+    and rox-pager.
+
+.. class:: incremental
+
+    * Originally based on Blackbox
+
+      * Later completely rewritten in C
+
+    * Configured with ~/.config/openbox/{menu.xml,rc.xml}
+    * Highly configurable
+    * Dynamic menus
+
+http://icculus.org/openbox (GPL)
+
+
+IceWM
+-----
+
+.. class:: handout
+
+    Comes with themes that allow it to imitate the UI of Windows 95, OS/2,
+    Motif, and others.
+
+    A well-known user of IceWM as their default desktop is the Easy mode of the
+    Asus Eee PC.
+
+.. class:: incremental
+
+    * Configured with text files
+    * Optional, built-in taskbar with menu, tasks display, network and CPU
+      meters, mail check and configurable clock
+    * Native support for GNOME and KDE menus
+
+http://www.icewm.org/ (GPL)
+
+
+fvwm
+----
+
+.. class:: handout
+
+    The F Virtual Window Manager. The F currently has no meaning, but it was
+    originally for Feeble.
+
+    Robert Nation (of rxvt fame) began hacking twm to find out why it used so
+    much memory, and to add support for virtual desktops.
+
+    Many of the popular window managers in use today are related to FVWM:
+    Afterstep, Xfce, Enlightenment, Metisse and others.
+
+.. class:: incremental
+
+    * Originally derived from twm in 1993
+    * Lightweight & feature-full
+    * Native Mouse Gestures
+    * Dynamic menus; utilities to browse the filesystem, fetch headlines from
+      the internet from menus included.
+
+http://fvwm.org/ (GPL)
+
+.. vim:filetype=rst

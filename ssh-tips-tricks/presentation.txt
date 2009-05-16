@@ -1,0 +1,30 @@
+Edit a Remote File
+==================
+
+.. note::
+
+    This requires Vim with the netrw plugin.
+
+``vim scp://host//path/to/file``
+
+
+Play Sound Through a Remote Speaker
+===================================
+
+.. note::
+
+    The sound quality is very bad.
+
+``dd if=/dev/dsp | ssh -c arcfour -C username@host dd of=/dev/dsp``
+
+stdin and stdout
+================
+
+``wget -O - http://ftp.mozilla.org/.../thunderbird-3.0b2-i686.tar.bz2 | ssh remote_machine 'tar xjvf -'``
+
+diffing remote files
+====================
+
+``ssh user@123.4.5.6 "cat /tmp/remotefile" | diff - /tmp/localfile``
+
+``vimdiff scp://user@123.4.5.6//tmp/remotefile /tmp/localfile``

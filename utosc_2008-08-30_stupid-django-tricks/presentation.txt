@@ -1,0 +1,389 @@
+================================
+Utah Open Source Conference 2008
+================================
+A Django Miscellany
+-------------------
+
+:Presenter:     Seth House
+:Date:          2008-08-30
+
+.. include:: <s5defs.txt>
+.. default-role:: incremental
+
+.. class:: handout
+
+    * django-admin.py & the dbshell
+
+      * dumpdata, loaddata, and --exclude
+
+    * Debugging with pdb
+
+      * django.db.connection.queries to see sql (DEBUG=True)
+
+    * making custom manager methods chainable & why managers are useful
+    * Wrapping generic views (and never using ``render_to_response`` ever again)
+
+      * get_object_or_404
+
+    * Overriding Admin templates
+
+      * short-circuiting urlconfs
+      * sectioning urlconfs
+      * custom javascript & layouts
+      * hooking into the admin documentation system
+      * custom admin views (``staff_member_required``)
+
+        * dump to csv
+
+    * quick and easy template tags
+    * defaulting your template tags with add_to_builtins
+    * making newforms not suck
+
+      * field ordering
+      * passing in additional data
+      * granular newforms output ?
+      * django localflavor ?
+      * widgets vs. fields ?
+      * modelchoicefield (custom labels)
+      * rendering with template tags
+
+    * use gettext for future internationalization (just in case!)
+
+      * rosetta_
+      * ugettext vs gettext vs {% blocktrans %}
+
+    * writing your own sql (is it needed with django-aggregation on the
+      horizon?)
+    * basic caching
+    * Ajax ?
+    * custom middleware, or how django processes a request ?
+    * how to use the django paginator ?
+    * how to create a search view ?
+    * getting the most out of lazy queryset evaluation ? (lazy evaluation &
+      select_related) bool() optimizations
+    * generic foreign keys, or fun with contenttypes
+    * django.contrib.gis ?
+
+
+“Why Am I Here?”
+----------------
+
+.. class:: handout
+
+    This presentation is an unstructured collection of tips that I have found
+    very helpful over the last two years that I’ve been coding Django
+    full-time. A lot of you probably already know some, or most (hopefully not
+    all), of these tips. I will go through these very quickly so no one is
+    bored for too long. My slides are heavily annotated for later reference. We
+    can spend the last few minutes for questions.
+
+
+Setting your PYTHONPATH
+-----------------------
+
+.. class:: incremental
+
+    * The ``manage.py`` is just a wrapper
+    * Use ``django-admin.py`` instead
+
+    ``export DJANGO_SETTINGS_MODULE=settings_yourproj.py``
+
+
+Setting your PYTHONPATH
+-----------------------
+
+.. class:: small
+
+    ::
+
+        djsetup()
+        {
+            if [ x"$1" != x ]; then
+                export PYTHONPATH=$PWD
+                export DJANGO_SETTINGS_MODULE=$(basename $1 .py)
+            else
+                cd ..
+                export PYTHONPATH=$PWD
+                export DJANGO_SETTINGS_MODULE=\
+                        $(basename $OLDPWD).settings
+                cd $OLDPWD
+            fi
+        }
+
+
+Design for Reusable Apps
+------------------------
+
+.. class:: handout
+
+    You've probably heard that you should write your apps to be reusble. That
+    projects are a helper for beginners and are not needed.
+
+.. class:: app-list
+
+    * bluechannel
+    * cab
+    * coltrane-blog
+    * critic
+    * dcms
+    * deseb
+    * diamanda
+    * dj-cmdbuild
+    * django-ads
+    * django-ae-utils
+    * django-ajax-validation
+    * django-announcements
+    * django-atompub
+    * django-audioplayer
+    * django-authopenid
+    * django-avatar
+    * django-basic-blog
+    * django-basic-library
+    * django-basic-people
+    * django-basic-places
+    * django-basic-profiles
+    * django-chunks
+    * django-clevercss
+    * django-command-extensions
+    * django-comment-utils
+    * django-compress
+    * django-contact-form
+    * django-cron
+    * django-databasetemplateloader
+    * django-db-log
+    * django-diario
+    * django-discussion
+    * django-docs
+    * django-dynamic-media-serve
+    * django-email-confirmation
+    * django-evolution
+    * django-evserver
+    * django-favorites
+    * django-fckconnector
+    * django-feedutil
+    * django-fleshin
+    * django-forum
+    * django-friendly
+    * django-friends
+    * django-galaxy
+    * django-gencal
+    * django-genericadmin
+    * django-geo
+    * django-google-analytics
+    * django-googleanalytics
+    * django-googlemap
+    * django-graphs
+    * django-jits
+    * django-liveblogging
+    * django-localdates
+    * django-localeurl
+    * django-logging
+    * django-mailadmin
+    * django-mailer
+    * django-mailfriend
+    * django-maintenancemode
+    * django-messages
+    * django-messaging
+    * django-microformats
+    * django-mmo
+    * django-mobileadmin
+    * django-mptt
+    * django-mssql
+    * django-multilingual
+    * django-navbar
+    * django-notification
+    * django-object-view-tracking
+    * django-oembed
+    * django-openid
+    * django-orm-cache
+    * django-page-cms
+    * django-pagination
+    * django-pennypress
+    * django-photologue
+    * django-picasa
+    * django-pingback
+    * django-pm
+    * django-pressroom
+    * django-profile
+    * django-profile-images
+    * django-profiles
+    * django-psn
+    * django-pyodbc
+    * django-queue-service
+    * django-ratings
+    * django-rcsfield
+    * django-registration
+    * django-representations
+    * django-rest-interface
+    * django-reusableapps
+    * django-robots
+    * django-rosetta
+    * django-search
+    * django-signedcookies
+    * django-simpleaggregation
+    * django-simplestats
+    * django-socialblog
+    * django-sphinx
+    * django-sqlalchemy
+    * django-survey
+    * django-syncr
+    * django-tagging
+    * django-template-utils
+    * django-threadedcomments
+    * django-threadedforum
+    * django-timezones
+    * django-tracking
+    * django-treemenus
+    * django-tube
+    * django-undo
+    * django-uploadutils
+    * django-voting
+    * django-wiki
+    * django-wikiapp
+    * django-yui-layout-templates
+    * djangobot
+    * djangobrasil
+    * djangokit
+    * djapian
+    * feedjack
+    * flother
+    * gelman
+    * i18ndynamic
+    * jellyroll
+    * movie-vote
+    * nyxcite
+    * python-openid-graph
+    * pywebman
+    * romdatabase
+    * satchmo
+    * sleepy-django
+    * snapboard
+    * sorl-thumbnail
+    * sphene
+    * tranquil
+    * transdb
+    * typogrify
+
+.. class:: tiny right
+
+    Source: http://djangoplugables.com/
+
+
+Design for Reusable Apps
+------------------------
+
+.. class:: handout
+
+    A possible exeption to the guideline for developing only reusable apps  is
+    when you need to 'fork' a bunch of 3rd-party apps in order to keep them at
+    differing static versions across multiple projects on the same system. But
+    for that you should be using something like virtualenv_ instead.
+
+    Recommended reading: `Developing Without Projects`_ and `Living Without
+    Projects`_.
+
+.. class:: incremental
+
+    * virtualenv_
+
+.. _virtualenv: http://pypi.python.org/pypi/virtualenv
+.. _`Developing Without Projects`: http://www.pointy-stick.com/blog/2007/11/09/django-tip-developing-without-projects/
+.. _`Living Without Projects`: http://www.b-list.org/weblog/2007/nov/09/projects/
+
+
+Avoiding Tons of ``import`` statements
+--------------------------------------
+
+.. class:: handout
+
+    Oftentimes the ``import`` list a the top of views can grow to be very
+    large. Many of those lines are often imports from other apps.
+
+        “…is there any reason why Django generally seems to prefer the early
+        binding form "from X import Y"?”
+
+        “it’s part of the Google Python style guides that all imports must
+        import a module, not a class or function from that module.”
+
+        — Guido
+
+.. class:: small
+
+    ::
+
+        from some_proj.apps.accounts.models import *
+        from some_proj.apps.accounts.forms import *
+        from some_proj.apps.credit.models import *
+        from some_proj.apps.credit.forms import *
+        from some_proj.apps.games.models import *
+        from some_proj.apps.games.forms import *
+        from some_proj.extra.JsonResponse import *
+
+Avoiding Tons of ``import`` statements
+--------------------------------------
+
+``yourapp/__init__.py``::
+
+    import managers
+    import models
+    import admin
+    import forms
+
+Avoiding Tons of ``import`` statements
+--------------------------------------
+
+``yourapp/views.py``::
+
+    import yourapp as _yp
+
+    def someview(request):
+        form = _yp.forms.SomeForm()
+
+Avoiding Tons of ``import`` statements
+--------------------------------------
+
+::
+
+    class SomeModel(models.Model):
+        user = models.ForeignKey('auth.User')
+        other = models.ForeignKey('someapp.OtherModel')
+
+Avoiding Tons of ``import`` statements
+--------------------------------------
+
+::
+
+    urlpatterns = patterns('someapp.views',
+        (r'^somepath/$', 'someview'),
+    )
+    urlpatterns += patterns('otherapp.views',
+        (r'^otherpath/$', 'otherview'),
+    )
+
+
+Using the shell for introspection
+---------------------------------
+
+.. class:: handout
+
+    * user.get_full_name
+    * somemodel._meta.app_label
+    * somemodel._meta.verbose_name
+    * somemodel._meta.fields
+    * somemodel._meta.installed
+
+* ``django-admin.py shell``
+* ``django-admin.py dbshell``
+* ``$HOME/.inputrc``
+* ``$HOME/.pythonrc.py``
+
+  * ``export PYTHONSTARTUP=$HOME/.pythonrc.py``
+
+http://eseth.org/filez/prefs/inputrc
+http://eseth.org/filez/prefs/pythonrc.py
+
+
+.. _rosetta: http://code.google.com/p/django-rosetta/
+.. _`Django Master Class`: http://toys.jacobian.org/presentations/2007/oscon/tutorial/
+
+.. vim:filetype=rst

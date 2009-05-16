@@ -1,0 +1,662 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.4: http://docutils.sourceforge.net/" />
+<meta name="version" content="S5 1.1" />
+<title>Ogden Area Linux User Group</title>
+<style type="text/css">
+
+/*
+:Author: David Goodger
+:Contact: goodger@users.sourceforge.net
+:Date: $Date: 2005-12-18 01:56:14 +0100 (Sun, 18 Dec 2005) $
+:Revision: $Revision: 4224 $
+:Copyright: This stylesheet has been placed in the public domain.
+
+Default cascading style sheet for the HTML output of Docutils.
+
+See http://docutils.sf.net/docs/howto/html-stylesheets.html for how to
+customize this style sheet.
+*/
+
+/* used to remove borders from tables and images */
+.borderless, table.borderless td, table.borderless th {
+  border: 0 }
+
+table.borderless td, table.borderless th {
+  /* Override padding for "table.docutils td" with "! important".
+     The right padding separates the table cells. */
+  padding: 0 0.5em 0 0 ! important }
+
+.first {
+  /* Override more specific margin styles with "! important". */
+  margin-top: 0 ! important }
+
+.last, .with-subtitle {
+  margin-bottom: 0 ! important }
+
+.hidden {
+  display: none }
+
+a.toc-backref {
+  text-decoration: none ;
+  color: black }
+
+blockquote.epigraph {
+  margin: 2em 5em ; }
+
+dl.docutils dd {
+  margin-bottom: 0.5em }
+
+/* Uncomment (and remove this text!) to get bold-faced definition list terms
+dl.docutils dt {
+  font-weight: bold }
+*/
+
+div.abstract {
+  margin: 2em 5em }
+
+div.abstract p.topic-title {
+  font-weight: bold ;
+  text-align: center }
+
+div.admonition, div.attention, div.caution, div.danger, div.error,
+div.hint, div.important, div.note, div.tip, div.warning {
+  margin: 2em ;
+  border: medium outset ;
+  padding: 1em }
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title {
+  font-weight: bold ;
+  font-family: sans-serif }
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title {
+  color: red ;
+  font-weight: bold ;
+  font-family: sans-serif }
+
+/* Uncomment (and remove this text!) to get reduced vertical space in
+   compound paragraphs.
+div.compound .compound-first, div.compound .compound-middle {
+  margin-bottom: 0.5em }
+
+div.compound .compound-last, div.compound .compound-middle {
+  margin-top: 0.5em }
+*/
+
+div.dedication {
+  margin: 2em 5em ;
+  text-align: center ;
+  font-style: italic }
+
+div.dedication p.topic-title {
+  font-weight: bold ;
+  font-style: normal }
+
+div.figure {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+div.footer, div.header {
+  clear: both;
+  font-size: smaller }
+
+div.line-block {
+  display: block ;
+  margin-top: 1em ;
+  margin-bottom: 1em }
+
+div.line-block div.line-block {
+  margin-top: 0 ;
+  margin-bottom: 0 ;
+  margin-left: 1.5em }
+
+div.sidebar {
+  margin-left: 1em ;
+  border: medium outset ;
+  padding: 1em ;
+  background-color: #ffffee ;
+  width: 40% ;
+  float: right ;
+  clear: right }
+
+div.sidebar p.rubric {
+  font-family: sans-serif ;
+  font-size: medium }
+
+div.system-messages {
+  margin: 5em }
+
+div.system-messages h1 {
+  color: red }
+
+div.system-message {
+  border: medium outset ;
+  padding: 1em }
+
+div.system-message p.system-message-title {
+  color: red ;
+  font-weight: bold }
+
+div.topic {
+  margin: 2em }
+
+h1.section-subtitle, h2.section-subtitle, h3.section-subtitle,
+h4.section-subtitle, h5.section-subtitle, h6.section-subtitle {
+  margin-top: 0.4em }
+
+h1.title {
+  text-align: center }
+
+h2.subtitle {
+  text-align: center }
+
+hr.docutils {
+  width: 75% }
+
+img.align-left {
+  clear: left }
+
+img.align-right {
+  clear: right }
+
+ol.simple, ul.simple {
+  margin-bottom: 1em }
+
+ol.arabic {
+  list-style: decimal }
+
+ol.loweralpha {
+  list-style: lower-alpha }
+
+ol.upperalpha {
+  list-style: upper-alpha }
+
+ol.lowerroman {
+  list-style: lower-roman }
+
+ol.upperroman {
+  list-style: upper-roman }
+
+p.attribution {
+  text-align: right ;
+  margin-left: 50% }
+
+p.caption {
+  font-style: italic }
+
+p.credits {
+  font-style: italic ;
+  font-size: smaller }
+
+p.label {
+  white-space: nowrap }
+
+p.rubric {
+  font-weight: bold ;
+  font-size: larger ;
+  color: maroon ;
+  text-align: center }
+
+p.sidebar-title {
+  font-family: sans-serif ;
+  font-weight: bold ;
+  font-size: larger }
+
+p.sidebar-subtitle {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+p.topic-title {
+  font-weight: bold }
+
+pre.address {
+  margin-bottom: 0 ;
+  margin-top: 0 ;
+  font-family: serif ;
+  font-size: 100% }
+
+pre.literal-block, pre.doctest-block {
+  margin-left: 2em ;
+  margin-right: 2em ;
+  background-color: #eeeeee }
+
+span.classifier {
+  font-family: sans-serif ;
+  font-style: oblique }
+
+span.classifier-delimiter {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+span.interpreted {
+  font-family: sans-serif }
+
+span.option {
+  white-space: nowrap }
+
+span.pre {
+  white-space: pre }
+
+span.problematic {
+  color: red }
+
+span.section-subtitle {
+  /* font-size relative to parent (h1..h6 element) */
+  font-size: 80% }
+
+table.citation {
+  border-left: solid 1px gray;
+  margin-left: 1px }
+
+table.docinfo {
+  margin: 2em 4em }
+
+table.docutils {
+  margin-top: 0.5em ;
+  margin-bottom: 0.5em }
+
+table.footnote {
+  border-left: solid 1px black;
+  margin-left: 1px }
+
+table.docutils td, table.docutils th,
+table.docinfo td, table.docinfo th {
+  padding-left: 0.5em ;
+  padding-right: 0.5em ;
+  vertical-align: top }
+
+table.docutils th.field-name, table.docinfo th.docinfo-name {
+  font-weight: bold ;
+  text-align: left ;
+  white-space: nowrap ;
+  padding-left: 0 }
+
+h1 tt.docutils, h2 tt.docutils, h3 tt.docutils,
+h4 tt.docutils, h5 tt.docutils, h6 tt.docutils {
+  font-size: 100% }
+
+tt.docutils {
+  background-color: #eeeeee }
+
+ul.auto-toc {
+  list-style-type: none }
+
+</style>
+<!-- configuration parameters -->
+<meta name="defaultView" content="slideshow" />
+<meta name="controlVis" content="hidden" />
+<!-- style sheet links -->
+<script src="ui/small-black/slides.js" type="text/javascript"></script>
+<link rel="stylesheet" href="ui/small-black/slides.css"
+      type="text/css" media="projection" id="slideProj" />
+<link rel="stylesheet" href="ui/small-black/outline.css"
+      type="text/css" media="screen" id="outlineStyle" />
+<link rel="stylesheet" href="ui/small-black/print.css"
+      type="text/css" media="print" id="slidePrint" />
+<link rel="stylesheet" href="ui/small-black/opera.css"
+      type="text/css" media="projection" id="operaFix" />
+
+<style type="text/css">
+#currentSlide {display: none;}
+</style>
+</head>
+<body>
+<div class="layout">
+<div id="controls"></div>
+<div id="currentSlide"></div>
+<div id="header">
+
+</div>
+<div id="footer">
+<h1>Ogden Area Linux User Group</h1>
+<h2>Wine <a class="reference" href="http://www.winehq.org/">http://www.winehq.org/</a></h2>
+</div>
+</div>
+<div class="presentation">
+<div class="slide" id="slide0">
+<h1 class="title">Ogden Area Linux User Group</h1>
+
+</div>
+<div class="slide" id="wine">
+<h1>Wine</h1>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Presenter:</th><td class="field-body">Seth House</td>
+</tr>
+<tr class="field"><th class="field-name">Date:</th><td class="field-body">2008-06-28</td>
+</tr>
+</tbody>
+</table>
+<!-- Definitions of interpreted text roles (classes) for S5/HTML data. -->
+<!-- This data file has been placed in the public domain. -->
+<!-- Colours
+======= -->
+<!-- Text Sizes
+========== -->
+<!-- Display in Slides (Presentation Mode) Only
+========================================== -->
+<!-- Display in Outline Mode Only
+============================ -->
+<!-- Display in Print Only
+===================== -->
+<!-- Incremental Display
+=================== -->
+</div>
+<div class="slide" id="id1">
+<h1>Wine</h1>
+<p class="handout">Wine is a recursive acronym that stands for Wine is Not an Emulator. Wine
+is an Open Source implementation of the Windows API on top of X, OpenGL,
+and Unix.</p>
+<blockquote class="handout">
+<p>“Think of Wine as a compatibility layer for running Windows programs.
+Wine does not require Microsoft Windows, as it is a completely free
+alternative implementation of the Windows API consisting of 100%
+non-Microsoft code.”</p>
+<p class="attribution">&mdash;<a class="reference" href="http://winehq.org">http://winehq.org</a></p>
+</blockquote>
+<p class="handout">Even the fastest emulators are slow and must 'fake' running emulated
+programs natively. Wine natively runs Windows programs at native speeds.
+Also, it should be noted that speed is currently not a goal for the Wine
+project.</p>
+<p class="incremental">Wine Is Not an Emulator</p>
+<blockquote class="incremental">
+<p>“Windows applications that do not make system calls will run just as
+fast as on Windows.”</p>
+<p class="attribution">&mdash;<a class="reference" href="http://www.winehq.org/site/myths">http://www.winehq.org/site/myths</a></p>
+</blockquote>
+</div>
+<div class="slide" id="so-what-is-wine">
+<h1>So What is Wine?</h1>
+<p class="handout">“Wine provides both a development toolkit for porting Windows source
+code to Unix as well as a program loader, allowing many unmodified
+Windows programs to run on x86-based Unixes.”</p>
+<p class="handout">— <a class="reference" href="http://winehq.org">http://winehq.org</a></p>
+<ul class="incremental simple">
+<li>Wine</li>
+<li>Winelib</li>
+</ul>
+</div>
+<div class="slide" id="a-not-so-short-history">
+<h1>A Not-So-Short History</h1>
+<p class="handout">In 1992 Sun Microsystems aquired a company with a product that allowed
+users of Solaris x86 and Solaris 2.2 for SPARC to run Windows applications
+out of the box. Wabi was unique in that it allowed Windows windowing calls
+to be translated directly to X Windows calls.</p>
+<p class="handout">At the time, the chances of Wabi being ported to Linux were slim to none.
+So in 1993 a mailing list was formed to discuss a similar project for
+Linux. Several of the early developers included some of the first Linux
+kernel hackers.</p>
+<p class="handout">In 1994 Microsoft began releasing 32-bit code and adding new functionality
+to their operating systems. It was no longer enough to just load code and
+run it, a more sophisticated integration was needed with the underlying
+operating systems (primarily Linux.) Mechanisms needed to be added that
+supported network connections and registry files.</p>
+<p class="handout">Doug Ridgway set up the WineHQ web site in 1997. The site was taken over by
+Corel for a few years, and then CodeWeavers took it over from them in
+March, 2002.</p>
+<p class="handout">In 1998 a strategic decision was made by Corel to wholeheartedly support
+Linux. Corel’s suite of office programs demanded a high level of Wine
+sophistication. For the first time Wine was being supported by commercial
+development. CodeWeavers was contracted by Corel to improve parts of Wine
+in 1999.</p>
+<p class="handout">Early 2001 Corel spun off its Linux division and CodeWeavers began
+developing their own products and putting a lot of polish on Wine. Their
+own version of Wine included graphical management tools and an easy setup.
+Their first product, CrossOver Plugin, allowed Linux users to run Netscape
+plugins designed for Windows. Newer versions of the product have added
+support for even more plugins. They released CrossOver Office in March,
+2002 to provide support for office applications like Excel and Lotus Notes.</p>
+<p class="handout">TransGaming formed in August of 2001. Gavriel State, who had been with
+Corel, left and formed his own company. Limited DirectX support had been in
+Wine since 1997 and Gavriel sought to make it more robust. WineX 1.0 was
+released in October of 2001 with support for six games. Some of the early
+TransGaming work also sought to include support for copy protection
+measures.</p>
+<p class="handout">The Linux distribution Lindows also formed in 2001. It’s goal was to create
+a simple to use Linux desktop and to let users run Windows programs. They
+quickly abandoned the idea in favor of native applications, but before that
+happened they sponsored Wineconf - a three day event in March, 2002 that
+brought together developers from around the world.</p>
+<p class="handout">Licensing debates plagued the project for several years. In the beginning
+it was under a BSD-style license, but in 1999 Richard Stallman pointed out
+that was incompatible with the GPL which potentially causes problems with
+any open source project wishing to use Wine code. A vote was called for and
+in January of 2000 the project switched to the X11 license. In March of
+2002 a poll was conducted among both the free and commercial developers of
+Wine—there was concern that the code may be appropriated by a commercial
+entity—so they chose the Lesser General Public License since that meant
+changes to Wine required that you release the source code with your changes
+but simply linking with Wine does not require you to release the source to
+your application. Wine development picked up speed after this change.</p>
+<p class="handout">Another developer’s conference was held in January, 2004 in St. Paul
+Minnesota sponsored by CodeWeavers.</p>
+<p class="handout">— <a class="reference" href="http://www.winehq.org/site/history">http://www.winehq.org/site/history</a></p>
+<p class="handout">Microsoft has not made public statements about Wine. However, the Microsoft
+Update software will block updates to Microsoft application software
+running in Wine-based environments. On February 16, 2005, Ivan Leo Puoti
+discovered that Microsoft had started checking the Windows registry for the
+Wine configuration key and would block the Windows Update for any
+component. The Windows Genuine Advantage (WGA) system also checks for
+existence of Wine registry keys.</p>
+<ul class="incremental tiny">
+<li><p class="first">September 1992</p>
+<p>Sun Microsystems demonstrates Wabi</p>
+</li>
+<li><p class="first">June 1993</p>
+<p>A list for a Linux tool like Wabi was set up</p>
+</li>
+<li><p class="first">May 1995</p>
+<p>Beginnings of Win32 support</p>
+</li>
+<li><p class="first">January 1996</p>
+<p>Word and Excel reported to run</p>
+</li>
+<li><p class="first">November 1997</p>
+<p>Creation of winehq.com web site</p>
+</li>
+</ul>
+</div>
+<div class="slide" id="more-of-a-not-so-short-history">
+<h1>More of a Not-So-Short History</h1>
+<ul class="incremental tiny">
+<li><p class="first">1998</p>
+<p>Corel jumps on the Linux bandwagon</p>
+</li>
+<li><p class="first">2001</p>
+<p>CodeWeavers begins developing for Wine independently</p>
+<p>Transgaming started by an ex-Corel employee</p>
+<p>Lindows was formed that was simple to use and let users run Windows
+programs</p>
+</li>
+<li><p class="first">2004</p>
+<p>Another developers conference, sponsored by CodeWeavers</p>
+</li>
+<li><p class="first">June 17, 2008</p>
+<p>Wine 1.0 was released</p>
+</li>
+</ul>
+</div>
+<div class="slide" id="some-features">
+<h1>Some Features</h1>
+<ul class="small simple">
+<li>Loads Windows 9x/NT/2000/XP, Windows 3.x and DOS programs and libraries</li>
+<li>“bug-for-bug” compatibility with Windows</li>
+<li>DirectX support</li>
+<li>OpenGL support</li>
+<li>Sound device interaction (ALSA, OSS, ARTS, JACK, libaudio)</li>
+<li>Networking</li>
+<li>Permits mixing of ELF (.so) and PE (.dll/.exe) binaries</li>
+</ul>
+<p>The whole list</p>
+<blockquote>
+<a class="reference" href="http://www.winehq.org/site/wine_features">http://www.winehq.org/site/wine_features</a></blockquote>
+</div>
+<div class="slide" id="versions">
+<h1>Versions</h1>
+<p class="handout">CodeWeavers employs the lead Wine developer, Alexandre Julliard, and has a
+long history of contributing back to the project.</p>
+<p class="handout">CrossOver (formerly CrossOver Office) now has Linux and Mac (x86) versions,
+and recently launched a Gaming version which has a faster release cycle and
+less emphasis on stability. CrossOver has Standard and Professional
+versions. The professional version provides enhanced deployability and
+manageability features for corporate users. The Standard version allows a
+single user of a single machine. The Professional version allows multiple
+users.</p>
+<p class="handout">Transgaming focuses on gaming. Cedega (formerly WineX) is a fork of the
+last X11-licensed version of Wine and is proprietary. Transgaming has a bad
+reputation for not contributing back to the Wine project, although they
+initially promised to contribute their DirectX improvements. Cedega
+includes licensed support for several types of CD-based copy protection.</p>
+<blockquote class="handout">
+<p>“TransGaming currently gives back very little code to Wine. Cedega is
+not ‘Wine with more gaming support’ — because Wine has had years of
+development since Cedega was made, many games actually run better under
+Wine than under Cedega. Currently, Wine has more advanced Direct3D
+support than Cedega, but Cedega still has more advanced copy protection
+support due tTransGaming’s licensing of (closed source) code from a
+handful of copy protection companies. Unlike CrossOver, most
+improvements to Wine don’t get into Cedega due to the license
+differences between Cedega and Wine.”</p>
+<p class="attribution">&mdash;<a class="reference" href="http://wiki.winehq.org/FAQ#head-72731b215bbd1ce36e3b84ac7ce114925ce16460">http://wiki.winehq.org/FAQ#head-72731b215bbd1ce36e3b84ac7ce114925ce16460</a></p>
+</blockquote>
+<ul class="handout simple">
+<li>CrossOver Standard $39.95</li>
+<li>CrossOver Professional $69.95</li>
+<li>CrossOver Games $39.95</li>
+<li>Cedega 6 mo. $25</li>
+<li>Cedega 12 mo. $45</li>
+</ul>
+<ul class="incremental simple">
+<li>Wine</li>
+<li>CodeWeavers<ul>
+<li>CrossOver Linux</li>
+<li>CrossOver Mac</li>
+<li>CrossOver Games</li>
+</ul>
+</li>
+<li>Transgaming<ul>
+<li>Cedega</li>
+<li>Cider</li>
+</ul>
+</li>
+<li>ReactOS</li>
+</ul>
+</div>
+<div class="slide" id="how-to-get-started">
+<h1>How to Get Started</h1>
+<p><tt class="docutils literal"><span class="pre">wine</span> <span class="pre">~/.wine/drive_c/windows/notepad.exe</span></tt></p>
+<p><tt class="docutils literal"><span class="pre">wine</span> <span class="pre">&quot;C:\windows\notepad.exe&quot;</span></tt></p>
+</div>
+<div class="slide" id="a-note-about-wineprefix">
+<h1>A Note about <tt class="docutils literal"><span class="pre">WINEPREFIX</span></tt></h1>
+<p class="handout">(CrossOver has a similar convention called “bottles”.) This allows you to
+segregate Windows programs from one another that require different
+configurations or need to be kept in isolation so as not to threaten other
+Windows programs. Note that this does make other prefixed directories
+invisible to one another.</p>
+<p class="handout">Previous to Wine 1.0 you had to run <tt class="docutils literal"><span class="pre">wineprefixcreate</span></tt>, now it handles it
+automatically.</p>
+<p><tt class="docutils literal"><span class="pre">WINEPREFIX=$HOME/games/warcraftiii</span> <span class="pre">wine</span> <span class="pre">notepad.exe</span></tt></p>
+</div>
+<div class="slide" id="configuration">
+<h1>Configuration</h1>
+<p class="handout">It is sometimes necessary to create fake DLL files to trick many programs
+that check for file existence to determine whether a particular feature
+(such as Winsock and its TCP/IP networking) is available.</p>
+<p class="handout">In case Wine complains about a missing DLL, you should check whether this
+file is a publicly available DLL or a custom DLL belonging to your program
+(by searching for its name on the internet).</p>
+<p class="handout">You can copy your .ttf fonts into the <tt class="docutils literal"><span class="pre">c:\windows\fonts</span></tt> directory.</p>
+<ul class="incremental simple">
+<li><tt class="docutils literal"><span class="pre">winecfg</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">regedit</span></tt><ul>
+<li><tt class="docutils literal"><span class="pre">system.reg</span></tt> contains <tt class="docutils literal"><span class="pre">HKEY_LOCAL_MACHINE</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">user.reg</span></tt> contains <tt class="docutils literal"><span class="pre">HKEY_CURRENT_USER</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">userdef.reg</span></tt> contains <tt class="docutils literal"><span class="pre">HKEY_USERS\.Default</span></tt></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="slide" id="running-wine">
+<h1>Running Wine</h1>
+<p class="handout">Wine will pass on your shell environment to the Windows program which is
+useful if you want to set any environment variables. The exceptions to this
+are the <tt class="docutils literal"><span class="pre">PATH</span></tt>, <tt class="docutils literal"><span class="pre">SYSTEM</span></tt>, and <tt class="docutils literal"><span class="pre">TEMP</span></tt> variables.</p>
+<ul class="incremental simple">
+<li><tt class="docutils literal"><span class="pre">uninstaller</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">wine</span> <span class="pre">eject</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">wineboot</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">wine</span> <span class="pre">control</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">wineconsole</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">winefile</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">WINEDEBUG=-all</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">AUDIODEV=/dev/dsp2</span></tt> for OSS</li>
+</ul>
+</div>
+<div class="slide" id="getting-out-of-trouble">
+<h1>Getting Out of Trouble</h1>
+<ul class="incremental simple">
+<li><tt class="docutils literal"><span class="pre">wineserver</span> <span class="pre">-k</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">killall</span> <span class="pre">-9</span> <span class="pre">program.exe</span></tt></li>
+</ul>
+</div>
+<div class="slide" id="solving-problems">
+<h1>Solving Problems</h1>
+<ul class="incremental simple">
+<li>AppDB: <a class="reference" href="http://appdb.winehq.org/">http://appdb.winehq.org/</a></li>
+<li>Use different Windows version settings</li>
+<li>Use different startup paths<ul>
+<li><tt class="docutils literal"><span class="pre">wine</span> <span class="pre">prg.exe</span></tt>  and <tt class="docutils literal"><span class="pre">wine</span> <span class="pre">x:\\full\\path\\to\\prg.exe</span></tt></li>
+</ul>
+</li>
+<li>Use different GUI modes</li>
+<li>Fiddle with DLL configuration<ul>
+<li><tt class="docutils literal"><span class="pre">WINEDEBUG=+loaddll</span></tt></li>
+<li><a class="reference" href="http://www.dll-files.com/">http://www.dll-files.com/</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="slide" id="searching-for-solutions">
+<h1>Searching for Solutions</h1>
+<ul class="incremental simple">
+<li>Google</li>
+<li>Wine FAQ: <a class="reference" href="http://wiki.winehq.org/FAQ">http://wiki.winehq.org/FAQ</a></li>
+<li>Wine Wiki: <a class="reference" href="http://wiki.winehq.org/">http://wiki.winehq.org/</a></li>
+<li>Frank’s Corner: <a class="reference" href="http://frankscorner.org/">http://frankscorner.org/</a></li>
+</ul>
+</div>
+<div class="slide" id="helper-tools">
+<h1>Helper Tools</h1>
+<dl class="handout docutils">
+<dt>Wine-Doors</dt>
+<dd>An application-management tool for the GNOME desktop.</dd>
+<dt>WineTricks</dt>
+<dd>Script to install some basic components (typically Microsoft DLLs and
+fonts)</dd>
+<dt>PlayOnLinux</dt>
+<dd>An application to ease the installation of Windows games using Wine. It
+uses an online database of scripts to apply to different games that
+need special configurations and if the game is not in the database, a
+manual installation can be performed.</dd>
+</dl>
+<ul class="incremental simple">
+<li><a class="reference" href="http://www.wine-doors.org">Wine-Doors</a></li>
+<li><a class="reference" href="http://wiki.winehq.org/winetricks">WineTricks</a></li>
+<li><a class="reference" href="http://www.tatanka.com.br">IEs4Linux</a></li>
+<li><a class="reference" href="http://www.playonlinux.com/en/">PlayOnLinux</a></li>
+</ul>
+<!-- vim:filetype=rst -->
+</div>
+</div>
+</body>
+</html>

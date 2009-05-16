@@ -1,0 +1,859 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.4: http://docutils.sourceforge.net/" />
+<meta name="version" content="S5 1.1" />
+<title>Ogden Area Linux User Group</title>
+<style type="text/css">
+
+/*
+:Author: David Goodger
+:Contact: goodger@users.sourceforge.net
+:Date: $Date: 2005-12-18 01:56:14 +0100 (Sun, 18 Dec 2005) $
+:Revision: $Revision: 4224 $
+:Copyright: This stylesheet has been placed in the public domain.
+
+Default cascading style sheet for the HTML output of Docutils.
+
+See http://docutils.sf.net/docs/howto/html-stylesheets.html for how to
+customize this style sheet.
+*/
+
+/* used to remove borders from tables and images */
+.borderless, table.borderless td, table.borderless th {
+  border: 0 }
+
+table.borderless td, table.borderless th {
+  /* Override padding for "table.docutils td" with "! important".
+     The right padding separates the table cells. */
+  padding: 0 0.5em 0 0 ! important }
+
+.first {
+  /* Override more specific margin styles with "! important". */
+  margin-top: 0 ! important }
+
+.last, .with-subtitle {
+  margin-bottom: 0 ! important }
+
+.hidden {
+  display: none }
+
+a.toc-backref {
+  text-decoration: none ;
+  color: black }
+
+blockquote.epigraph {
+  margin: 2em 5em ; }
+
+dl.docutils dd {
+  margin-bottom: 0.5em }
+
+/* Uncomment (and remove this text!) to get bold-faced definition list terms
+dl.docutils dt {
+  font-weight: bold }
+*/
+
+div.abstract {
+  margin: 2em 5em }
+
+div.abstract p.topic-title {
+  font-weight: bold ;
+  text-align: center }
+
+div.admonition, div.attention, div.caution, div.danger, div.error,
+div.hint, div.important, div.note, div.tip, div.warning {
+  margin: 2em ;
+  border: medium outset ;
+  padding: 1em }
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title {
+  font-weight: bold ;
+  font-family: sans-serif }
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title {
+  color: red ;
+  font-weight: bold ;
+  font-family: sans-serif }
+
+/* Uncomment (and remove this text!) to get reduced vertical space in
+   compound paragraphs.
+div.compound .compound-first, div.compound .compound-middle {
+  margin-bottom: 0.5em }
+
+div.compound .compound-last, div.compound .compound-middle {
+  margin-top: 0.5em }
+*/
+
+div.dedication {
+  margin: 2em 5em ;
+  text-align: center ;
+  font-style: italic }
+
+div.dedication p.topic-title {
+  font-weight: bold ;
+  font-style: normal }
+
+div.figure {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+div.footer, div.header {
+  clear: both;
+  font-size: smaller }
+
+div.line-block {
+  display: block ;
+  margin-top: 1em ;
+  margin-bottom: 1em }
+
+div.line-block div.line-block {
+  margin-top: 0 ;
+  margin-bottom: 0 ;
+  margin-left: 1.5em }
+
+div.sidebar {
+  margin-left: 1em ;
+  border: medium outset ;
+  padding: 1em ;
+  background-color: #ffffee ;
+  width: 40% ;
+  float: right ;
+  clear: right }
+
+div.sidebar p.rubric {
+  font-family: sans-serif ;
+  font-size: medium }
+
+div.system-messages {
+  margin: 5em }
+
+div.system-messages h1 {
+  color: red }
+
+div.system-message {
+  border: medium outset ;
+  padding: 1em }
+
+div.system-message p.system-message-title {
+  color: red ;
+  font-weight: bold }
+
+div.topic {
+  margin: 2em }
+
+h1.section-subtitle, h2.section-subtitle, h3.section-subtitle,
+h4.section-subtitle, h5.section-subtitle, h6.section-subtitle {
+  margin-top: 0.4em }
+
+h1.title {
+  text-align: center }
+
+h2.subtitle {
+  text-align: center }
+
+hr.docutils {
+  width: 75% }
+
+img.align-left {
+  clear: left }
+
+img.align-right {
+  clear: right }
+
+ol.simple, ul.simple {
+  margin-bottom: 1em }
+
+ol.arabic {
+  list-style: decimal }
+
+ol.loweralpha {
+  list-style: lower-alpha }
+
+ol.upperalpha {
+  list-style: upper-alpha }
+
+ol.lowerroman {
+  list-style: lower-roman }
+
+ol.upperroman {
+  list-style: upper-roman }
+
+p.attribution {
+  text-align: right ;
+  margin-left: 50% }
+
+p.caption {
+  font-style: italic }
+
+p.credits {
+  font-style: italic ;
+  font-size: smaller }
+
+p.label {
+  white-space: nowrap }
+
+p.rubric {
+  font-weight: bold ;
+  font-size: larger ;
+  color: maroon ;
+  text-align: center }
+
+p.sidebar-title {
+  font-family: sans-serif ;
+  font-weight: bold ;
+  font-size: larger }
+
+p.sidebar-subtitle {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+p.topic-title {
+  font-weight: bold }
+
+pre.address {
+  margin-bottom: 0 ;
+  margin-top: 0 ;
+  font-family: serif ;
+  font-size: 100% }
+
+pre.literal-block, pre.doctest-block {
+  margin-left: 2em ;
+  margin-right: 2em ;
+  background-color: #eeeeee }
+
+span.classifier {
+  font-family: sans-serif ;
+  font-style: oblique }
+
+span.classifier-delimiter {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+span.interpreted {
+  font-family: sans-serif }
+
+span.option {
+  white-space: nowrap }
+
+span.pre {
+  white-space: pre }
+
+span.problematic {
+  color: red }
+
+span.section-subtitle {
+  /* font-size relative to parent (h1..h6 element) */
+  font-size: 80% }
+
+table.citation {
+  border-left: solid 1px gray;
+  margin-left: 1px }
+
+table.docinfo {
+  margin: 2em 4em }
+
+table.docutils {
+  margin-top: 0.5em ;
+  margin-bottom: 0.5em }
+
+table.footnote {
+  border-left: solid 1px black;
+  margin-left: 1px }
+
+table.docutils td, table.docutils th,
+table.docinfo td, table.docinfo th {
+  padding-left: 0.5em ;
+  padding-right: 0.5em ;
+  vertical-align: top }
+
+table.docutils th.field-name, table.docinfo th.docinfo-name {
+  font-weight: bold ;
+  text-align: left ;
+  white-space: nowrap ;
+  padding-left: 0 }
+
+h1 tt.docutils, h2 tt.docutils, h3 tt.docutils,
+h4 tt.docutils, h5 tt.docutils, h6 tt.docutils {
+  font-size: 100% }
+
+tt.docutils {
+  background-color: #eeeeee }
+
+ul.auto-toc {
+  list-style-type: none }
+
+</style>
+<!-- configuration parameters -->
+<meta name="defaultView" content="slideshow" />
+<meta name="controlVis" content="hidden" />
+<!-- style sheet links -->
+<script src="ui/small-black/slides.js" type="text/javascript"></script>
+<link rel="stylesheet" href="ui/small-black/slides.css"
+      type="text/css" media="projection" id="slideProj" />
+<link rel="stylesheet" href="ui/small-black/outline.css"
+      type="text/css" media="screen" id="outlineStyle" />
+<link rel="stylesheet" href="ui/small-black/print.css"
+      type="text/css" media="print" id="slidePrint" />
+<link rel="stylesheet" href="ui/small-black/opera.css"
+      type="text/css" media="projection" id="operaFix" />
+
+<style type="text/css">
+#currentSlide {display: none;}
+</style>
+</head>
+<body>
+<div class="layout">
+<div id="controls"></div>
+<div id="currentSlide"></div>
+<div id="header">
+
+</div>
+<div id="footer">
+<h1>Ogden Area Linux User Group</h1>
+<h2>X Power Tools (O'Reilly, 0-596-10195-3)</h2>
+</div>
+</div>
+<div class="presentation">
+<div class="slide" id="slide0">
+<h1 class="title">Ogden Area Linux User Group</h1>
+
+</div>
+<div class="slide" id="book-review-x-power-tools">
+<h1>Book Review: X Power Tools</h1>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Presenter:</th><td class="field-body">Seth House</td>
+</tr>
+<tr class="field"><th class="field-name">Date:</th><td class="field-body">2008-03-29</td>
+</tr>
+<tr class="field"><th class="field-name">Book:</th><td class="field-body">X Power Tools (O'Reilly)</td>
+</tr>
+<tr class="field"><th class="field-name">ISBN:</th><td class="field-body">0-596-10195-3</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="slide" id="history">
+<h1>History</h1>
+<p class="handout">Version 11 came out in 1987 under the more liberal MIT license, and a
+vendor-neutral group called the X Consortium was formed to oversee
+development. Vendors used X11 sample code a starting point, then tuned
+specific versions for their specific needs and hardware.</p>
+<p class="handout">In 1992 a particular implementation, X386, became popular. When it went
+commercial, a free version was created called XFree86. Most X innovations
+came from the XFree86 project over the next several years.</p>
+<p class="handout">Starting around 1996, development stagnated for nearly four years due to
+internal politics and rigidity in the organization.</p>
+<p class="handout">Control of X passed from group to group. In 1999 it was passed to The Open
+Group who formed X.org.</p>
+<p class="handout">Ultimately a license dispute in 2003 caused many key developers to leave
+the project and move to back to the successor to the X Consortium, forming
+the X.org Foundation. Development has been fast-paced since then.</p>
+<p class="incremental">X was born in 1984 at MIT.</p>
+<ul class="incremental simple">
+<li>1987 — Version 11</li>
+<li>1992 — X386 became popular, gave rise to XFree86</li>
+<li>1996 — <cite>zzz</cite></li>
+<li>1999 — X.org formed</li>
+<li>2003 — Mass exodus to X.org</li>
+</ul>
+</div>
+<div class="slide" id="old-x-vs-new-x">
+<h1>Old X vs. New X</h1>
+</div>
+<div class="slide" id="old-x-1984-1996">
+<h1>Old X (1984-1996)</h1>
+<ul class="simple">
+<li>Core protocol development</li>
+<li>Essential extensions</li>
+<li>Xt-based toolkits</li>
+</ul>
+</div>
+<div class="slide" id="new-x-2000-present">
+<h1>New X (2000-present)</h1>
+<p class="handout">You may have noticed X.org packages in your distro recently got small and
+numerous. This modularizing of X is a good thing that allows you to
+selectivly upgrade or change parts of X without having to recompile the
+whole thing (which is not for the feint of heart).</p>
+<ul class="simple">
+<li>RENDER extension (2000)</li>
+<li>Xft</li>
+<li>OpenGL</li>
+<li>COMPOSE</li>
+<li>non-Xt toolkits (GTK and qt)</li>
+</ul>
+</div>
+<div class="slide" id="the-name-check-the-manpage">
+<h1>The Name (Check the manpage!)</h1>
+<div class="sidebar">
+<p class="first sidebar-title">nübs</p>
+<p class="last">“X Windows” is generally considered used only by beginners, and is frowned
+on due to possible confusion with Microsoft Windows.</p>
+</div>
+<ul class="incremental simple">
+<li>X</li>
+<li>X11</li>
+<li>X Window System</li>
+<li>X Version 11</li>
+<li>X Window System, Version 11</li>
+</ul>
+<p class="incremental">Nowadays “Xorg” or “X dot org” is also acceptable.</p>
+</div>
+<div class="slide" id="terminology">
+<h1>Terminology</h1>
+<div class="sidebar">
+<p class="first sidebar-title">Note</p>
+<p class="last">The terminology gets tricky if a user has multiple video cards or monitors
+using Xinerama</p>
+</div>
+<dl class="docutils">
+<dt>Display</dt>
+<dd>Generally, the user interface for one person. Keyboard, pointer, video
+card, and monitor.</dd>
+<dt>Device</dt>
+<dd>Video card</dd>
+<dt>Screen</dt>
+<dd>Video card and monitor</dd>
+</dl>
+</div>
+<div class="slide" id="display-specification">
+<h1>Display Specification</h1>
+<code>host:display[.screen]</code><p>Set the <tt class="docutils literal"><span class="pre">$DISPLAY</span></tt> environment variable or pass <tt class="docutils literal"><span class="pre">-display</span></tt> to a client.</p>
+</div>
+<div class="slide" id="id1">
+<h1>Display Specification</h1>
+<code><strong>host</strong>:display[.screen]</code><dl class="docutils">
+<dt>Host</dt>
+<dd><ul class="first last simple">
+<li>A DNS hostname or IP address</li>
+<li>Blank, or the word <tt class="docutils literal"><span class="pre">unix</span></tt></li>
+<li>(Rarely) DecNET or IPX/SPX designation</li>
+<li>Open source operating systems use Unix domain sockets for local
+connections</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="slide" id="id2">
+<h1>Display Specification</h1>
+<code>host:<strong>display</strong>[.screen]</code><dl class="docutils">
+<dt>Display</dt>
+<dd><ul class="first last simple">
+<li>The display number, starting at 0</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="slide" id="id3">
+<h1>Display Specification</h1>
+<code>host:display[.<strong>screen</strong>]</code><dl class="docutils">
+<dt>Screen</dt>
+<dd><ul class="first last simple">
+<li>Optional screen number within the display, starting at 0</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="slide" id="server-extensions">
+<h1>Server Extensions</h1>
+<dl class="handout docutils">
+<dt>Composite</dt>
+<dd>Off-screen rendering of windows are combined (composited) into the
+final screen image by hardware under control of a compositing manager.
+During compositing, images can be distorted, blended, and resized which
+makes it easy to add drop shadows, transparency, icons, and thumbnails.</dd>
+<dt>RENDER</dt>
+<dd>Composite images such as Adobe's Flash player or anti-aliased fonts.</dd>
+<dt>DPMS</dt>
+<dd>Displays Power Management Signalling.</dd>
+<dt>GLX</dt>
+<dd>OpenGL extension for X11.</dd>
+<dt>MIT-SCREEN-SAVER</dt>
+<dd>Informs screen savers when to start and stop.</dd>
+<dt>RANDR</dt>
+<dd>Rotate and resize. Notifies clients when the display is changed, and
+allows hot-plugging of monitors.</dd>
+<dt>SHAPE</dt>
+<dd>Enables nonrectangular windows (<tt class="docutils literal"><span class="pre">xeyes</span></tt>).</dd>
+<dt>XKEYBOARD</dt>
+<dd>Enables complex keyboard mapping. The most poorly documented X
+extension.</dd>
+<dt>XINERAMA</dt>
+<dd>Single-screen multimonitor support.</dd>
+<dt>XVideo</dt>
+<dd>Allows video streams to be converted, transformed, and then overlaid on
+the X display. Done with hardware support and can dramatically improve
+video performance.</dd>
+<dt>XVideo-MotionComposition</dt>
+<dd>Utilized hardware support for video decompression—useful for MPEG video
+playback.</dd>
+</dl>
+<table border="1" class="small borderless docutils">
+<colgroup>
+<col width="49%" />
+<col width="51%" />
+</colgroup>
+<tbody valign="top">
+<tr><td><ul class="first last simple">
+<li>Composite</li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li>RENDER</li>
+</ul>
+</td>
+</tr>
+<tr><td><ul class="first last simple">
+<li>DAMAGE</li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li>SECURITY</li>
+</ul>
+</td>
+</tr>
+<tr><td><ul class="first last simple">
+<li>DPMS</li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li>SHAPE</li>
+</ul>
+</td>
+</tr>
+<tr><td><ul class="first last simple">
+<li>GLX</li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li>SYNC</li>
+</ul>
+</td>
+</tr>
+<tr><td><ul class="first last simple">
+<li>LBX</li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li>XINERAMA</li>
+</ul>
+</td>
+</tr>
+<tr><td><ul class="first last simple">
+<li>MIT-BIG-REQUESTS</li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li>XInputExtension</li>
+</ul>
+</td>
+</tr>
+<tr><td><ul class="first last simple">
+<li>MIT-SCREEN-SAVER</li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li>XKEYBOARD</li>
+</ul>
+</td>
+</tr>
+<tr><td><ul class="first last simple">
+<li>MIT-SHM</li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li>XTEST</li>
+</ul>
+</td>
+</tr>
+<tr><td><ul class="first last simple">
+<li>RANDR</li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li>XVideo</li>
+</ul>
+</td>
+</tr>
+<tr><td><ul class="first last simple">
+<li>RECORD</li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li>XVideo-MotionComposition</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="slide" id="starting-a-server-manually">
+<h1>Starting a Server Manually</h1>
+<dl class="incremental docutils">
+<dt><tt class="docutils literal"><span class="pre">X</span> <span class="pre">:1</span> <span class="pre">vt10</span> <span class="pre">-config</span> <span class="pre">CONFIG</span> <span class="pre">-layout</span> <span class="pre">LAYOUT</span></tt></dt>
+<dd><ul class="first last simple">
+<li><tt class="docutils literal"><span class="pre">:1</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">vt10</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">-config</span> <span class="pre">CONFIG</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">-layout</span> <span class="pre">LAYOUT</span></tt></li>
+</ul>
+</dd>
+</dl>
+<p class="incremental"><tt class="docutils literal"><span class="pre">X</span> <span class="pre">:1</span> <span class="pre">-terminate</span> <span class="pre">&amp;</span> <span class="pre">sleep</span> <span class="pre">2;</span> <span class="pre">DISPLAY=:1</span> <span class="pre">xterm</span></tt></p>
+</div>
+<div class="slide" id="using-a-display-manager">
+<h1>Using a Display Manager</h1>
+<p><tt class="docutils literal"><span class="pre">gdm</span></tt>, <tt class="docutils literal"><span class="pre">kdm</span></tt>, or <tt class="docutils literal"><span class="pre">xdm</span></tt></p>
+<ul class="incremental simple">
+<li>Usually runlevel 5</li>
+<li>Starts a local server</li>
+<li>Authenticates</li>
+<li>Starts session manager, window manager, and desktop environment</li>
+<li>Either started by <tt class="docutils literal"><span class="pre">init</span></tt> or an init script.</li>
+<li>Can start multiple servers (automatically or on-demand)</li>
+</ul>
+</div>
+<div class="slide" id="config-files">
+<h1>Config Files</h1>
+<p class="handout"><tt class="docutils literal"><span class="pre">X</span> <span class="pre">-configure</span></tt> writes to <tt class="docutils literal"><span class="pre">xorg.conf.new</span></tt>.</p>
+<p class="handout">The <tt class="docutils literal"><span class="pre">xorg.conf-4</span></tt> file is a holdover from the XFree86 3.x to 4.x
+transition.</p>
+<p class="handout">The files <tt class="docutils literal"><span class="pre">/usr/X11R6/etc/X11/xorg.conf-HOSTNAME</span></tt> are assumed to be on a
+network share, thus the file name is postfixed with a hostname.</p>
+<p>Not needed for general configurations. <tt class="docutils literal"><span class="pre">X</span> <span class="pre">-configure</span></tt></p>
+<ol class="incremental arabic simple">
+<li>File specified on the command line (must exist in the directories below)</li>
+<li>Environment variable <tt class="docutils literal"><span class="pre">$XORGCONFIG</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">/etc/X11/xorg.conf-4</span></tt> then <tt class="docutils literal"><span class="pre">/etc/X11/xorg.conf</span></tt> then
+<tt class="docutils literal"><span class="pre">/etc/xorg.conf</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">/usr/X11R6/etc/X11/xorg.conf-HOSTNAME</span></tt> then
+<tt class="docutils literal"><span class="pre">/usr/X11R6/lib/X11/xorg.conf-HOSTNAME</span></tt></li>
+</ol>
+</div>
+<div class="slide" id="xorg-conf-sections">
+<h1>xorg.conf Sections</h1>
+<dl class="handout docutils">
+<dt>ServerLayout</dt>
+<dd><p class="first">Defines how screens and input devices are combined to form a display
+configuration.</p>
+<p class="last">Technically, this section is optional for simple configurations.</p>
+</dd>
+<dt>Screen</dt>
+<dd>Combines one video card and one monitor to form a screen. Defines color
+depth and resolutions.</dd>
+<dt>Monitor</dt>
+<dd>Characteristics of the monitor (DPMS, power saving timing, scan-rates).</dd>
+<dt>Device</dt>
+<dd>Video card. Driver-specific settings, check your driver’s manpage.</dd>
+<dt>InputDevice</dt>
+<dd>One section per mouse, keyboard, etc.</dd>
+</dl>
+<ul class="incremental simple">
+<li>ServerLayout</li>
+<li>Screen</li>
+<li>Monitor</li>
+<li>Device<ul>
+<li><tt class="docutils literal"><span class="pre">X</span> <span class="pre">:4</span> <span class="pre">-scanpci</span></tt></li>
+</ul>
+</li>
+<li>InputDevice</li>
+</ul>
+</div>
+<div class="slide" id="virtual-screen-size-zooming">
+<h1>Virtual Screen Size (Zooming)</h1>
+<dl class="handout docutils">
+<dt>Screen</dt>
+<dd><p class="first">When changing resolution, only the displayed resolution changes, not
+the size of the screen image, forming a kind of virtual desktop. This
+is called Zooming. The virtual screen size does not need to start with
+the largest resolution.</p>
+<p><tt class="docutils literal"><span class="pre">Option</span> <span class="pre">&quot;DontZoom&quot;</span></tt> will disable Ctrl-alt + / -</p>
+<p class="last">By default the virtual screen size is the largest entry in the
+<tt class="docutils literal"><span class="pre">Modes</span></tt> entry. You can explicitly define the virtual scren size.</p>
+</dd>
+</dl>
+<pre class="literal-block">
+SubSection &quot;Display&quot;
+    Modes &quot;800x600&quot; &quot;1280x1024&quot; &quot;1024x768&quot;
+    Virtual  1280   1024
+    Viewport 0      0
+EndSubSection
+</pre>
+</div>
+<div class="slide" id="xorg-conf-optional-sections">
+<h1>xorg.conf Optional Sections</h1>
+<ul class="simple">
+<li>Extensions (e.g. <tt class="docutils literal"><span class="pre">Option</span> <span class="pre">&quot;Composite&quot;</span> <span class="pre">&quot;On&quot;</span></tt>)</li>
+<li>Files (e.g. <tt class="docutils literal"><span class="pre">FontPath</span></tt>)</li>
+<li>ServerFlags (e.g. zap, zoom, VT switching)</li>
+<li>Module (typically optional extensions)</li>
+<li>Mode or ModeLine (scan rates and signal options)</li>
+<li>DRI (3d-acceleration)<ul>
+<li>Group (which group the device belongs to)</li>
+<li>Mode (specifies file permissions for the device)</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="slide" id="useful-keyboard-shortcuts">
+<h1>Useful Keyboard Shortcuts</h1>
+<ul class="simple">
+<li>Zap — Ctrl-alt Backspace</li>
+<li>Zooming — Ctrl-alt + / -</li>
+<li>Mouse keys — Shift-numlock<ul>
+<li><tt class="docutils literal"><span class="pre">5</span></tt> or <tt class="docutils literal"><span class="pre">/</span></tt> — Left click</li>
+<li><tt class="docutils literal"><span class="pre">*</span></tt> — Middle click</li>
+<li><tt class="docutils literal"><span class="pre">-</span></tt> — Right click</li>
+<li><tt class="docutils literal"><span class="pre">+</span></tt> — Double click</li>
+<li><tt class="docutils literal"><span class="pre">0</span></tt> — Hold button</li>
+<li><tt class="docutils literal"><span class="pre">.</span></tt> — Release button</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="slide" id="changing-resolution">
+<h1>Changing Resolution</h1>
+<p class="handout">It’s often more useful to change both the screen resolution and the virtual
+screen size to eliminate scrolling. The Rotate and Resize (RANDR) extension
+enables this. You can also easily rotate the display with this tool.</p>
+<p class="handout">Gnome and KDE both come with applets to access this functionality.</p>
+<p><tt class="docutils literal"><span class="pre">xrandr</span> <span class="pre">-q</span></tt>:</p>
+<pre class="literal-block">
+Screen 0: minimum 320 x 200, current 1440 x 900, maximum 1440 x 1024
+default connected 1440x900+0+0 0mm x 0mm
+  1440x900       60.0*
+  1280x1024      75.0     70.0     60.0
+  1280x960       60.0
+  …
+</pre>
+</div>
+<div class="slide" id="changing-x-settings-on-the-fly-with-xset">
+<h1>Changing X Settings on the Fly with <tt class="docutils literal"><span class="pre">xset</span></tt></h1>
+<dl class="handout docutils">
+<dt><tt class="docutils literal"><span class="pre">xset</span> <span class="pre">q</span></tt></dt>
+<dd>Displays mostly settings that can be altered while the server is
+running such as screen saver and power management timing, keyboard
+repeat rates (even for individual keys), mouse acceleration, the system
+bell, and keyboard LED lights (recent versions of X.org do not permit
+control of numlock and capslock LEDs).</dd>
+</dl>
+<ul class="incremental simple">
+<li><tt class="docutils literal"><span class="pre">xset</span> <span class="pre">q</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">xset</span> <span class="pre">+dpms</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">xset</span> <span class="pre">-r</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">xset</span> <span class="pre">m</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">xset</span> <span class="pre">b</span></tt> <cite>volume pitch duration</cite></li>
+<li><tt class="docutils literal"><span class="pre">xset</span> <span class="pre">led</span> <span class="pre">3</span></tt><ul>
+<li><tt class="docutils literal"><span class="pre">Options</span> <span class="pre">&quot;Xleds&quot;</span>&nbsp; <span class="pre">&quot;1</span> <span class="pre">2</span> <span class="pre">3&quot;</span></tt></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="slide" id="useful-tools">
+<h1>Useful Tools</h1>
+<dl class="handout docutils">
+<dt><tt class="docutils literal"><span class="pre">Xorg.0.log</span></tt></dt>
+<dd>Useful tools for diagnosing X start with the basic <tt class="docutils literal"><span class="pre">Xorg.0.log</span></tt> file
+(and sometimes <tt class="docutils literal"><span class="pre">dmesg</span></tt>). The X log file is self-documenting and easy
+to read.</dd>
+<dt><tt class="docutils literal"><span class="pre">xpyinfo</span></tt></dt>
+<dd>To verify that your <tt class="docutils literal"><span class="pre">xorg.conf</span></tt> file is being processed correctly,
+consult the output from <tt class="docutils literal"><span class="pre">xpyinfo</span></tt>.</dd>
+<dt><tt class="docutils literal"><span class="pre">gtf</span></tt></dt>
+<dd>Creates ModeLines.</dd>
+<dt><tt class="docutils literal"><span class="pre">xmag</span></tt></dt>
+<dd>Useful for web developers because you can click on any pixel to get the
+color in 64-bit hexadecimal. (To convert to 24-bit hex just remove the
+first two digits from each group of four.)</dd>
+</dl>
+<ul class="incremental simple">
+<li><tt class="docutils literal"><span class="pre">Xorg.0.log</span></tt> (and <tt class="docutils literal"><span class="pre">dmesg</span></tt>)<ul>
+<li><tt class="docutils literal"><span class="pre">xpyinfo</span></tt></li>
+</ul>
+</li>
+<li><tt class="docutils literal"><span class="pre">xrandr</span> <span class="pre">-q</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">Xnest</span></tt><ul>
+<li><tt class="docutils literal"><span class="pre">startx</span> <span class="pre">/usr/bin/startkde</span> <span class="pre">--</span> <span class="pre">/usr/bin/Xnest</span> <span class="pre">:1</span></tt></li>
+</ul>
+</li>
+<li><tt class="docutils literal"><span class="pre">gtf</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">xmag</span></tt><ul>
+<li>(3e3e, 4444, a9a9) = #3e44a9</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="slide" id="the-clipboard">
+<h1>The Clipboard</h1>
+<p class="handout">Because X is network-based the program placing data on the clipboard and
+the program receiving the data from the clipboard may not be on the same
+computer. Pasting speed is limited by network performance. Clients
+advertise clipboard data to other clients through the server. Data that is
+placed on the clipboard but never pasted is not transfered over the
+network. For example, Firefox may advertise that clipboard data is
+available in both <cite>text/plain</cite> and <cite>text/html</cite> formats. This is why
+clipboard data becomes unavailable once you’ve closed a client program.</p>
+<ul class="simple">
+<li>Clients advertise clipboard data to other clients</li>
+<li>Multiple formats are advertised if available</li>
+<li>Pasting speed is limited by network performance</li>
+</ul>
+</div>
+<div class="slide" id="fonts">
+<h1>Fonts</h1>
+<p class="handout">A big difference between Old X and New X is the way fonts are handled. The
+old font system is often called Core Fonts because fonts were handled in
+the X core protocols—that is, they were managed by the server, new fonts
+are handled by the client.</p>
+<ul class="incremental simple">
+<li>Core Fonts vs. RENDER, Xft, and Fontconfig</li>
+<li>Install fonts to <tt class="docutils literal"><span class="pre">~/.fonts</span></tt> or <tt class="docutils literal"><span class="pre">/usr/share/fonts</span></tt> and run fc-cache.</li>
+<li>Configure font rendering with <tt class="docutils literal"><span class="pre">/etc/fonts/local.conf</span></tt>.</li>
+</ul>
+</div>
+<div class="slide" id="remote-access">
+<h1>Remote Access</h1>
+<p class="handout">X has been a “portable, network-transparent window system” from day-one,
+but unless you have a specific need, just use ssh tunneling. ssh provides
+an enhanced version of it’s regular tunneling ability specifically for X
+traffic. You can set up password-less ssh using public keys and ssh-agent.
+An (very) improperly configured X setup can allow users to view your screen
+over the network.</p>
+<p><tt class="docutils literal"><span class="pre">X</span> <span class="pre">-nolisten</span> <span class="pre">tcp</span></tt> is a PITA.</p>
+<div class="section" id="just-use-x-tunneling-with-ssh">
+<h2>Just use X Tunneling with SSH</h2>
+<p><tt class="docutils literal"><span class="pre">ssh</span> <span class="pre">-X</span> <span class="pre">-C</span> <span class="pre">user&#64;host</span> <span class="pre">xeyes</span></tt></p>
+</div>
+</div>
+<div class="slide" id="conclusion">
+<h1>Conclusion</h1>
+<p class="small">The Good</p>
+<ul class="small simple">
+<li>X Power Tools is a great resource for starting to really grasp X.</li>
+</ul>
+<p class="small">The Bad</p>
+<ul class="small simple">
+<li>The fonts chapter was far too Gnome and KDE focused.</li>
+<li>The Session managers, desktop environments, and window managers was very
+light and didn’t even begin to touch the variety that exists. I still
+don’t know the difference between a desktop environment and a window
+manager.</li>
+</ul>
+<p class="small">Other notes</p>
+<ul class="small simple">
+<li>There’s a section at the end with tips on configuring X for use as a
+kiosk system.</li>
+</ul>
+<!-- vim:filetype=rst -->
+</div>
+</div>
+</body>
+</html>
