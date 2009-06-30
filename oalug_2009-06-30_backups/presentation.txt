@@ -87,7 +87,7 @@ How to Back Up Your Files
     going to talk about plain ‘ol ``rsync`` because it ships with every Unix
     everywhere. 
 
-`Amanda`, `Bacula`_, `rdiff-backup`_, `TimeVault`_
+`Amanda`_, `Bacula`_, `rdiff-backup`_, `TimeVault`_
 
 .. class:: incremental
 
