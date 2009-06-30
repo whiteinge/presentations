@@ -1,0 +1,189 @@
+===========================
+Ogden Area Linux User Group
+===========================
+Backups
+-------
+
+:Presenter: Seth House
+:Date: 2009-06-30
+
+.. include:: <s5defs.txt>
+.. footer:: ``rsync -a -delete --link-dest=$BACKUPDIR/`/bin/ls -t $BACKUPDIR | head -1` $HOME/ $BACKUPDIR/`date '+%FT%R'```
+
+Overview
+========
+
+.. class:: handout
+
+    Backup strategies depend highly on the specific needs of the system and the
+    user. There is no one-size-fits-all solution. Many talks on backups try to
+    cover many situations; I’m only going to discuss one. This advice should
+    suffice for *most* personal desktop usage.
+
+    Again, it is up to you to think through your usage and how your computer is
+    set up in order to decide what works for you.
+
+    Jamie W. Zawinski, famous for work on Mozilla, Netscape Navigator, and
+    currently maintains the XScreenSaver project.
+
+“The universe tends toward maximum irony. Don’t push it.” 
+— jwz
+
+
+Where to Back Up Your Files
+===========================
+
+.. class:: handout
+
+    The backup method I’ll be talking about is as follows. Buy two external
+    hard drives. I know, there’s plenty of other things I’d rather spend $120
+    on too — do it anyway. Copy your files to one of the drives every single
+    day. Don’t forget — for the love of Pete, automate it. Keep that drive in
+    your home. Copy your files to the other drive once a month. Take it to the
+    office if you trust your desk space, or have a Backup Buddy and leave it at
+    your friend’s house. (I’ll talk about encrypting your drives at some later
+    date.)
+
+.. class:: incremental
+
+    * Good: Keep a copy of your files on a separate partition.
+    * Better: Keep a copy of your files on a separate disk.
+    * Best:
+
+      * Buy two external hard drives.
+      * Copy your files to one every day; keep it in your home.
+      * Copy your files to the other once a month; keep it somewhere not in
+        your home.
+
+
+What Files to Back Up
+=====================
+
+.. class:: handout
+
+    Generally, there is no reason to back up your entire disk. Decide what you
+    want to backup by making notes as you build and configure your system. If
+    you make a change to your system that was time consuming or hard to figure
+    out, you’ll want to backup those changes. If your whole installation is
+    stock, you probably just want to backup your ``home`` folder.
+
+.. class:: incremental
+
+    * ``/etc``
+    * ``/var``
+
+      * ``/var/spool/mail``
+      * ``/var/logs``
+
+    * ``/boot/config`` or ``/usr/src/linux/.config``
+    * ``$HOME``
+
+How to Back Up Your Files
+=========================
+
+.. class:: handout
+
+    There are a plethora of backup utilities, some free some commercial. We’re
+    going to talk about plain ‘ol ``rsync`` because it ships with every Unix
+    everywhere. 
+
+`Amanda`, `Bacula`_, `rdiff-backup`_, `TimeVault`_
+
+.. class:: incremental
+
+    ``rsync``
+
+.. _Amanda: http://amanda.zmanda.com/
+.. _Bacula: http://www.bacula.org/en/
+.. _rsnapshot: http://rsnapshot.org/
+.. _rdiff-backup: http://www.nongnu.org/rdiff-backup/
+.. _TimeVault: http://wiki.ubuntu.com/TimeVault
+
+
+Behold! The Power of ``rsync``
+==============================
+
+.. class:: handout
+
+    We can replicate all the functionality of Apple’s Time Machine in a one line
+    command. (Hyperbole much?)
+
+    How does this work? Well, we create an initial full backup of all your
+    files. Then we run a cronjob every two hours and rsync compares your
+    current files with the most recent backup, making hard links to everything
+    that is the same, and making full copies of everything that is different.
+
+    Hard links have the following properties, given the file ``a`` with link
+    ``b``: the contents of the file are only stored once, so you don’t use
+    twice the space; if you change ``a``, you're changing ``b``, and
+    vice-versa; if you change the permissions or ownership of ``a``, you're
+    changing those of ``b`` as well, and vice-versa; if you overwrite ``a`` by
+    copying a third file on top of it, you will also overwrite ``b``.
+
+    This command works because rsync always unlinks before overwriting. This is
+    referred to as creating `rsync Snapshots`_.
+
+        We usually think of a file's name as being the file itself, but really
+        the name is a hard link. A given file can have more than one hard link
+        to itself--for example, a directory has at least two hard links: the
+        directory name and . (for when you're inside it). It also has one hard
+        link from each of its sub-directories (the .. file inside each one). If
+        you have the stat utility installed on your machine, you can find out
+        how many hard links a file has […].
+
+        — Mike Rubel, http://www.mikerubel.org/computers/rsync_snapshots/#Incremental
+
+    What happens if you rm one of the links? The answer is that rm is a bit of
+    a misnomer; it doesn't really remove a file, it just removes that one link
+    to it. A file's contents aren't truly removed until the number of links to
+    it reaches zero.
+
+    Want a GUI? http://code.google.com/p/flyback/
+
+    To restore the backed-up files, just copy them! Simple.
+
+.. _rsync Snapshots: http://www.mikerubel.org/computers/rsync_snapshots/
+
+.. class:: incremental
+
+    `Apple’s Time Machine`_ in one line:
+
+.. _Apple’s Time Machine: http://en.wikipedia.org/wiki/Time_Machine_(Apple_software)#How_It_Works
+
+.. class:: incremental tiny
+
+    ::
+
+        0 */2 * * * BACKUPDIR=/var/timemachine/$USER;\
+                    rsync -a -delete\
+                    --link-dest=$BACKUPDIR/`/bin/ls -t $BACKUPDIR | head -1`\
+                    $HOME/ $BACKUPDIR/`date '+%FT%R'`
+
+.. ** vim syntax highlighting fix
+
+.. class:: incremental
+
+    You have to manually create the initial backup with:
+
+.. class:: incremental tiny
+
+    ::
+
+        rsync -a $HOME/ /var/timemachine/$USER/`date '+%FT%R'`
+
+
+Useful ``rsync`` Flags
+======================
+
+``-x``
+    Avoid crossing filesystem boundries.
+``--exclude``
+    Do not sync any files or directories that match a pattern or path.
+``--dry-run``
+    Don’t make any actual changes to the filesystem.
+``-P``
+    Resume partially transfered files and show a progress meter.
+
+
+
+.. vim:filetype=rst
