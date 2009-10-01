@@ -1,0 +1,110 @@
+===========================
+Ogden Area Linux User Group
+===========================
+LaTeX
+-----
+
+:Presenter: Seth House
+:Date: 2009-10-28
+
+.. include:: <s5defs.txt>
+
+
+* book by Helmut Kopka?
+
+
+Pronunciation
+=============
+
+    “The characters T, E, X in the name come from capital Greek letters tau,
+    epsilon, and chi, as the name of TeX derives from the Greek [word for]
+    skill, art, technique”
+
+    —http://en.wikipedia.org/wiki/LaTeX#Pronouncing_and_writing_.22LaTeX.22
+
+
+Implementations & Versions
+==========================
+
+* tex vs latex vs …
+
+FWIW, the normal learning experience goes something like this:
+
+    1. Discover LaTeX. Learn basics from friend/on-line tutorial/one of several
+       decent books. Be happy with the results so far. Wonder whether you'll
+       ever use a "word processor" again.
+    2. Want something more customised. Discover that manual customisation is a
+       nightmare. Become familiar with packages. Realise that there is a
+       package for (almost) everything. Discover that the reason for Usenet's
+       continued existence is comp.text.tex, where numerous helpful and very
+       clever people can tell you how to do almost anything. Be happy with the
+       results so far.
+    3. Decide you hate the Computer Modern font, for reasons you can't quite
+       put your finger on unless you're a trained typographer. Discover
+       packages that replace it, but find that their mathematical typesetting
+       is usually pretty horrible in comparison. Realise that CM is a
+       brilliantly designed utilitarian font, even though aesthetically it's a
+       bit light for many people's taste. Discover that alternatives such as
+       XeLaTeX exist with pretty much all of the good stuff from LaTeX plus the
+       ability to do decent typography using modern OpenType fonts, Unicode and
+       the like. Don't miss Computer Modern much any more. Be happy with the
+       results so far.
+    4. (Optional) Delve into the depths of TeX and LaTeX, learn to write
+       packages and document classes of your own, and become one of those gurus
+       on comp.text.tex.
+    5. (Mandatory) Several years later, when reviewing CVs coming into your
+       employer that are made with Word, find yourself bizarrely obsessed with
+       the way they don't do paragraph justification properly and "fi" isn't
+       converted to a ligature. When you see a CV set in Computer modern,
+       realise that the sender surely chooses their tools carefully (after all,
+       they chose the same tool you did) and subconsciously give them extra
+       credit. Start to question whether your priorities in life are entirely
+       sensible. But realise that LaTeX is still a cut above word processors
+       for making serious documents, and be happy with the results to date.
+
+    — http://www.reddit.com/r/programming/comments/7py77/ask_reddit_what_latex_resume_template_do_you_use/c072gsj
+
+* XeLaTeX vs ConTeXt vs Texlive?
+
+  * Mathematical typesetting not quite there on XeLaTeX? (Or just non-CM fonts?)
+
+
+Basics
+======
+
+* .sty vs .cls vs .tex
+* documentclass{}
+* usepackage{}
+
+.. sidebar:: CTAN
+
+    * CTAN
+
+
+Useful Packages
+===============
+
+* bibtex
+* sciposter (for posters)?
+* beamer!
+
+    I love beamer! I learned it to make a physics presentation, in an
+    environment where pretty much nobody knew latex. It made it almost remedial
+    to walk through derivations just the way I wanted to, with beamer layers. I
+    could just write the slide once, and then introduce layers to make parts of
+    the equation appear or take on text attributes with layers. So I could make
+    a portion turn red, have another equation appear, absorb it into the
+    original equation by substituting the red expression with a blue
+    expression, then end with it all in black.
+
+    — http://www.reddit.com/r/programming/comments/7py77/ask_reddit_what_latex_resume_template_do_you_use/c07yujh
+
+
+Helpers
+=======
+
+* http://www.lyx.org/
+* docutils
+
+
+.. vim:filetype=rst
