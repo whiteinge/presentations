@@ -1,0 +1,26 @@
+* GNU screen
+* vanilla X11
+
+  * not designed for high-latency?
+    http://www.reddit.com/r/programming/comments/9re8s/25_years_of_the_x_window_system_retrospective/c0e3h5g
+    http://en.wikipedia.org/wiki/X11#Client-server_separation
+
+* ssh (tunneling X, port-forwarding, SOCKS proxy)
+* xpra_
+* xmove
+* NX
+
+  * `Rootless NX`_
+  * neatx_
+
+* VNC
+
+  * tightvnc (important?)
+  * virtualgl (will NX, xpra, or plain X do hardware acceleration?)
+
+
+.. _xpra: http://partiwm.org/browser/README.xpra
+.. _Rootless NX: http://code.google.com/p/neatx/
+.. _neatx: http://code.google.com/p/neatx/
+
+.. vim:filetype=rst

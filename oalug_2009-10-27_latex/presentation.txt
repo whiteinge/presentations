@@ -10,8 +10,6 @@ LaTeX
 .. include:: <s5defs.txt>
 
 
-* book by Helmut Kopka?
-
 
 Pronunciation
 =============
@@ -62,7 +60,7 @@ FWIW, the normal learning experience goes something like this:
        sensible. But realise that LaTeX is still a cut above word processors
        for making serious documents, and be happy with the results to date.
 
-    — http://www.reddit.com/r/programming/comments/7py77/ask_reddit_what_latex_resume_template_do_you_use/c072gsj
+    —http://www.reddit.com/r/programming/comments/7py77/ask_reddit_what_latex_resume_template_do_you_use/c072gsj
 
 * XeLaTeX vs ConTeXt vs Texlive?
 
@@ -97,7 +95,7 @@ Useful Packages
     original equation by substituting the red expression with a blue
     expression, then end with it all in black.
 
-    — http://www.reddit.com/r/programming/comments/7py77/ask_reddit_what_latex_resume_template_do_you_use/c07yujh
+    —http://www.reddit.com/r/programming/comments/7py77/ask_reddit_what_latex_resume_template_do_you_use/c07yujh
 
 
 Helpers
@@ -105,6 +103,12 @@ Helpers
 
 * http://www.lyx.org/
 * docutils
+
+
+Books
+=====
+
+???
 
 
 .. vim:filetype=rst
