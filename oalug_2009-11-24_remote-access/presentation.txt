@@ -15,12 +15,12 @@
 
 * VNC
 
-  * tightvnc (important?)
+  * tightvnc (important?)(fast, apparently?)
   * virtualgl (will NX, xpra, or plain X do hardware acceleration?)
 
 
 .. _xpra: http://partiwm.org/browser/README.xpra
-.. _Rootless NX: http://code.google.com/p/neatx/
+.. _Rootless NX: http://article.gmane.org/gmane.comp.window-managers.parti.general/271
 .. _neatx: http://code.google.com/p/neatx/
 
 .. vim:filetype=rst

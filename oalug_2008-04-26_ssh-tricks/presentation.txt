@@ -1,3 +1,45 @@
+List of shit ssh can do
+=======================
+
+* remote terminal
+* run one-off remote commands
+
+  * (can you run full-screen curses commands like top?)
+
+    * pass a flag to use a fake TTY?
+
+* remote GUI
+* tunneling
+* transfer files (scp, rsync)
+* mount remote file systems (fuse)
+* steal the rest of this list from the UTOS ssh presentation!
+
+  * try to give credit for stealing shit
+
+Multiple Connections
+====================
+
+* control master
+
+altering an existing connection
+===============================
+
+* adding a tunnel on the fly?
+* builtin ssh command line:
+  * ~c
+  * ~#
+  * check the manpage for ESCAPE CHARACTERS
+
+reverse tunnels
+===============
+
+* add a tunnel from the remote to the local?
+
+key-based authentication
+========================
+
+File permissions matter when using key-based auth (but not password?)
+
 Edit a Remote File
 ==================
 
@@ -20,7 +62,8 @@ Play Sound Through a Remote Speaker
 stdin and stdout
 ================
 
-``wget -O - http://ftp.mozilla.org/.../thunderbird-3.0b2-i686.tar.bz2 | ssh remote_machine 'tar xjvf -'``
+``wget -O - http://ftp.mozilla.org/.../thunderbird-3.0b2-i686.tar.bz2 \
+        | ssh remote_machine 'tar xjvf -'``
 
 diffing remote files
 ====================
@@ -28,3 +71,11 @@ diffing remote files
 ``ssh user@123.4.5.6 "cat /tmp/remotefile" | diff - /tmp/localfile``
 
 ``vimdiff scp://user@123.4.5.6//tmp/remotefile /tmp/localfile``
+
+opening a tunnel may open be open to anyone!
+============================================
+
+When you open a socket on your machine, if not explicity bound to localhost, it
+may be open to anyone else on your network! (if you're not running a firewall.)
+
+    * Does ssh bind to localhost only be default?
