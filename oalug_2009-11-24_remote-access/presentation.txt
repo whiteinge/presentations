@@ -1,26 +1,189 @@
+===========================
+Ogden Area Linux User Group
+===========================
+Everything You Wanted to Know About Remote Access
+=================================================
+
+:Author:    Seth House <seth@eseth.com>
+:Date:      2009-11-10
+
+
+X11
+===
+
+“X requires moderate network bandwidth and low-latency to deliver an effective
+user interface.”
+— X Power Tools by O’Reilly
+
+**No encryption!**
+
+::
+
+    $ xhost +
+    $ DISPLAY=192.168.0.100:0
+
+XDMCP
+-----
+
+Remote login via `XDM`, `KDM`, `GDM`.
+
+Access Control
+--------------
+
+Host-based
+    * ``xhost +192.168.0.100``
+    * ``xhost +``
+    * ``xhost -``
+    * ``X -ac``
+
+Shared-secret (magic cookies)
+    * ``xauth add 192.168.0.100:0 . 63facd382bfae923jaas0as44b``
+    * ``xauth remove 192.168.0.100:0``
+    * ``xauth list``
+
+X SECURITY Extension
+    * X server generates temporary magic cookies
+
+Low-Bandwidth X (LBX)
+---------------------
+
+* Adds (weak) compression and (light) caching
+* No appreciable difference for most applications
+
+
+SSH
+===
+
+Tunneling X
+-----------
+
+``ssh -X -C``
+``X11Forwarding yes``
+
+* Generates an untrusted magic cookie using the SECURITY extension
+* Cookie is never passed unencrypted over the network
+* If the remote ``.Xauthority`` file is compromised the cookie will not work
+  for other connections
+* All X traffic through the tunnel is encrypted
+* General compression of the entire connection works **at least** as well as
+  LBX. (Compression **before** encryption is much more effective.)
+
+SOCKS Proxy
+-----------
+
+* ``ssh -D 8009``
+* Is it working?
+* DNS queries
+
+Port Forwarding
+---------------
+
+``ssh -L 2255:remotehost:25``
+
+A Quick Note
+------------
+
 * GNU screen
-* vanilla X11
-
-  * not designed for high-latency?
-    http://www.reddit.com/r/programming/comments/9re8s/25_years_of_the_x_window_system_retrospective/c0e3h5g
-    http://en.wikipedia.org/wiki/X11#Client-server_separation
-
-* ssh (tunneling X, port-forwarding, SOCKS proxy)
-* xpra_
-* xmove
-* NX
-
-  * `Rootless NX`_
-  * neatx_
-
-* VNC
-
-  * tightvnc (important?)(fast, apparently?)
-  * virtualgl (will NX, xpra, or plain X do hardware acceleration?)
+* tmux
 
 
-.. _xpra: http://partiwm.org/browser/README.xpra
-.. _Rootless NX: http://article.gmane.org/gmane.comp.window-managers.parti.general/271
-.. _neatx: http://code.google.com/p/neatx/
+VNC
+===
+
+* RFB (Remote Framebuffer)
+* Low-bandwidth
+* Cross-platform
+* Built-in to Gnome, KDE, and OS X
+* Tons and tons and tons of implementations (75 on SourceForge)
+* RealVNC and TightVNC are most common
+* Server is Xvnc which polls the X server for changes
+* Option to view-only
+
+Demo
+----
+
+* ``vncpasswd ~/myvncpasswd``
+* ``Xvnc -httpd /usr/share/vnc/classes -rfbauth ~/myvncpasswd -geometry 800x600 -depth 16 :5``
+* ``vncviewer 192.168.0.100:5``
+* ``firefox http://192.168.0.100:5805/``
+
+Secure VNC with SSH
+-------------------
+
+* ``vncviewer -via user@192.168.0.100 localhost:5``
+
+
+OpenVPN
+=======
+
+* SSL
+* Cross-platform
+* Embedded in router firmware (`dd-wrt`_)
+
+http://2009.utosc.com/static/slides/UTOSC_2009-OpenVPN___.odp
+
+.. _`dd-wrt`: http://www.dd-wrt.com/
+
+
+NX
+==
+
+“In NX when we speak about low-bandwidth, we speak about 9.6 KBps modems with
+latency in order of 500 ms.”
+— NoMachine
+
+Terminal server (VNC or RDP)
+    ~ 5 users / server
+NX
+    ~ 60 users / server
+    Can take advantage of shared libraries
+
+Implementations
+---------------
+
+Servers
+    * `FreeNX`_
+    * NoMachine’s `Free Edition`_ (two concurrent users)
+    * `NeatX`_
+Clients
+    * `nxclient`_
+    * …several stalled OSS projects
+
+.. _`FreeNX`: http://freenx.berlios.de/
+.. _`Free Edition`: http://www.nomachine.com/select-package.php?os=linux&id=1
+.. _`NeatX`: http://code.google.com/p/neatx/
+.. _`nxclient`: http://www.nomachine.com/download-client-linux.php
+
+Installation
+------------
+
+* Create a ``nx`` user account
+* Copy key files from server to client
+* Start the nx server
+* Connect to the ``nx`` user account via ssh with ``nxclient``
+* Login with your regular user account
+
+Rootless Installation
+---------------------
+
+**Caveat:** once you reactivate a suspended session, you have sixty seconds to
+reconnect to that session or it will die and take all your running processes
+along with it.
+
+http://thread.gmane.org/gmane.comp.window-managers.parti.general/271
+
+
+`xpra`_
+=======
+
+Fewer than 1k lines of Python
+
+* ``xpra start :13``
+* ``xpra attach ssh:192.168.0.100``
+
+.. _`xpra`: http://code.google.com/p/partiwm/
+
+
+* virtualgl (will NX, xpra, or plain X do hardware acceleration?)
 
 .. vim:filetype=rst
