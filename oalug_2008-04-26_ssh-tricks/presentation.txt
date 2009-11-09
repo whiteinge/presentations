@@ -16,17 +16,33 @@ List of shit ssh can do
 
   * try to give credit for stealing shit
 
+
 Multiple Connections
 ====================
 
 * control master
+
+
+Multiple-Hop Tunneling
+======================
+
+Requires netcat on the intermediate host::
+
+    ssh -oproxycommand="ssh -qaxT firewall nc %h %p" -L 5432:localhost:5432 dbserver
+
+Can't background::
+
+    ssh -t -L 5432:127.0.0.1:9991 firewall.example.com \
+        ssh -t dbserver \
+        ssh -t -R 9991:127.0.0.1:5432 firewall
+
 
 altering an existing connection
 ===============================
 
 * adding a tunnel on the fly?
 * builtin ssh command line:
-  * ~c
+  * ~C
   * ~#
   * check the manpage for ESCAPE CHARACTERS
 
