@@ -79,7 +79,7 @@ Packaging
     easy_install "SomePackage==2.0"
     easy_install "SomePackage>2.0"
     easy_install --upgrade SomePackage
-    easy_install http://example.com/downloads/ExamplePackage-2.0-py2.4.egg
+    easy_install http://example.com/ExamplePackage-2.0-py2.4.egg
 
 `Distribute`_
 -------------
@@ -126,18 +126,41 @@ Deployment
 `pip`_
 ------
 
-::
+.. r2b_note::
 
-    pip install -E someproject -r /path/to/requirements.txt
+    * Packages don’t have to be installed as egg archives, they can be
+      installed flat (while keeping the egg metadata).
+    * Uninstallation of packages.
+    * Native support for other VCSes (Git, Mercurial and Bazaar).
+    * Define fixed sets of requirements.
+    * Freeze current setup as repeatable requirements.
+
+* ``pip install somemodule``
+* ``pip uninstall somemodule``
+* ``pip install -E someproject -r /path/to/requirements.txt``
+* ``pip freeze > requirements.txt``
+* ``pip bundle MyBundle.pybundle -r /path/to/requirements.txt``
+* ``pip install -E someproject MyBundle.pybundle``
 
 `Fabric`_
 ---------
 
-::
+.. r2b_note::
 
-    fab --list
-    fab --detail somecommand
-    fab somecommand othercommand
+    Execution model:
+
+    * A list of tasks is created. Currently this list is simply the arguments
+      given to fab, preserving the order given.
+    * For each task, a task-specific host list is generated from various
+      sources (see How host lists are constructed below for details.)
+    * The task list is walked through in order, and each task is run once per
+      host in its host list.
+    * Tasks with no hosts in their host list are considered local-only, and
+      will always run once and only once.
+
+* ``fab --list``
+* ``fab --detail somecommand``
+* ``fab somecommand othercommand``
 
 `buildout`_
 -----------
