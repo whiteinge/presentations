@@ -95,7 +95,8 @@ Packaging
 
 ::
 
-    % curl -O http://python-distribute.org/distribute_setup.py
+    % curl -O \
+        http://python-distribute.org/distribute_setup.py
     % python ./distribute_setup.py
     ...
     % easy_install --version
@@ -158,6 +159,9 @@ Deployment
     * Tasks with no hosts in their host list are considered local-only, and
       will always run once and only once.
 
+    * run sudo put get local prompt confirm
+    * append comment contains exists sed upload_template
+
 * ``fab --list``
 * ``fab --detail somecommand``
 * ``fab somecommand othercommand``
@@ -173,6 +177,12 @@ Deployment
 
 `toppcloud`_
 ------------
+
+::
+
+    pip install -E topp -r \
+        http://bitbucket.org/ianb/toppcloud\
+            /raw/tip/requirements.txt
 
 http://blog.ianbicking.org/2010/01/29/new-way-to-deploy-web-apps/
 
