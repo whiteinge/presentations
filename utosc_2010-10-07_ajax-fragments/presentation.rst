@@ -5,7 +5,7 @@ Ajax Fragments, Django, jQuery, and You!
 ----------------------------------------
 
 :Author: Seth House <seth@eseth.com>
-:Date: 2010-03-30
+:Date: 2010-10-07
 
 .. include:: <s5defs.txt>
 .. footer:: Ajax Fragments
