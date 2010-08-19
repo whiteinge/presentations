@@ -10,33 +10,46 @@ Ajax Fragments, Django, jQuery, and You!
 .. include:: <s5defs.txt>
 .. footer:: Ajax Fragments
 
-Outline
-=======
-
-* Fragment IDs
-
-* Performance
-
-* Progressive Enhancement
-
-  ::
-
-    <a href="confirm.php" rel="dialog">
 
 Introduction
 ============
 
 .. class:: handout
 
-    We’re building on the techniques outlined in Facebook employee, Makinde
-    Adeagbo’s, slides from JSConf 2010 entitled `Primer`_ which expound on the
-    technique called Ajax Fragments.
+    We’re building on some techniques outlined in Facebook employee, Makinde
+    Adeagbo’s, slides from JSConf 2010 entitled `Primer`_ which explain how
+    Facebook uses a technique called Ajax Fragments.
+
+    We’ll talk about keeping history and bookmarkability with Ajax using
+    `Sammy`_ or `jquery.hashlisten`_.
+
+    We’ll talk about performance concerns using techniques detailed in
+    O'Reilly’s `Even Faster Web Sites`_.
+
+    We’ll talk about JavaScript code organization using pub/sub and inheritance
+    techniques detailed in Rebecca Murphey’s `Building Large jQuery
+    Applications`_ and `jQuery Fundamentals`_.
+
+    We’ll talk about Django techniques for easily handling both Ajax and
+    regular requests using largely the same code with `Piston`_ (or
+    JsonResponse for existing codebases).
 
     Then we’ll talk progressive enhancement using ajax fragments since search
     bots don’t yet index ajax. Although Google is working on a proposal for
     doing so.
 
+    I’ll show a proof-of-concept Django project that utilizes all these
+    techniques and best-practices. The code is available on GitHub.
+
 .. _`primer`: http://www.slideshare.net/makinde/javascript-primer
+.. _`Sammy`: http://code.quirkey.com/sammy/
+.. _`jquery.hashlisten`: http://github.com/sinefunc/jquery.hashlisten
+.. _`Even Faster Web Sites`: http://oreilly.com/catalog/9780596522315
+.. _`Building Large jQuery Applications`: http://www.slideshare.net/rmurphey/building-large-jquery-applications
+.. _`jQuery Fundamentals`: http://jqfundamentals.com/book/book.html
+.. _`Piston`: http://bitbucket.org/jespern/django-piston/wiki/Home
+
+.. ............................................................................
 
 Ajax Fragments
 ==============
@@ -85,10 +98,14 @@ Ajax Fragments
 
     — http://ajaxian.com/archives/facebook-javascript-jsconf
 
+.. ............................................................................
+
 Does the Googlebot Index Ajax?
 ==============================
 
 …
+
+.. ............................................................................
 
 Performance
 ===========
@@ -232,6 +249,38 @@ Performance
 
 Put JavaScript at the bottom of the page. **(Sometimes!)**
 
+.. ............................................................................
+
+jQuery Code Organization
+========================
+
+…
+
+.. ............................................................................
+
+Encapsulating Behavior with pub/sub
+===================================
+
+.. class:: handout
+
+    “[I]magine a standard three-pane email client. … When you click on a
+    message you just received, several things happen:
+
+    The mailbox unread count gets decremented
+    The message’s unread indicator goes away
+    The message row text goes from bold to plain
+    The message content appears in the viewer pane”
+
+    …
+
+    “In general, it's a good idea to have a "view" layer which simply deals
+    with displaying the data and sending events about user actions on that data
+    (ie. clicks, etc.) to a "controller" layer, which then decides what to do.”
+
+…
+
+.. ............................................................................
+
 Proof of Concept
 ================
 
@@ -244,6 +293,8 @@ Widgets
     * Endless scrolling
 
 http://eseth.org/2010/ajax-fragments-django-jquery/
+
+.. ............................................................................
 
 Conclusion
 ==========
