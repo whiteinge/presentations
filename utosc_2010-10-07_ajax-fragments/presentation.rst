@@ -30,6 +30,8 @@ Introduction
     techniques detailed in Rebecca Murphey’s `Building Large jQuery
     Applications`_ and `jQuery Fundamentals`_.
 
+    We’ll talk about how to organize your CSS using `OOP CSS`_.
+
     We’ll talk about Django techniques for easily handling both Ajax and
     regular requests using largely the same code with `Piston`_ (or
     JsonResponse for existing codebases).
@@ -47,6 +49,7 @@ Introduction
 .. _`Even Faster Web Sites`: http://oreilly.com/catalog/9780596522315
 .. _`Building Large jQuery Applications`: http://www.slideshare.net/rmurphey/building-large-jquery-applications
 .. _`jQuery Fundamentals`: http://jqfundamentals.com/book/book.html
+.. _`OOP CSS`: http://www.slideshare.net/stubbornella/object-oriented-css
 .. _`Piston`: http://bitbucket.org/jespern/django-piston/wiki/Home
 
 .. ............................................................................
@@ -249,12 +252,22 @@ Performance
 
 Put JavaScript at the bottom of the page. **(Sometimes!)**
 
+Load only necessary JS up-front and lazy-load the rest. This is a challenege.
+
+* Use “stub” functions to avoid undefined errors for not-yet-downloaded
+  dependencies.
+* Put both the code to be executed as well as the event-handler attachments in
+  the same lazy-loaded code so that clicking (or other interactions) simply
+  cannot cause undefined errors.
+
 .. ............................................................................
 
 jQuery Code Organization
 ========================
 
-…
+* Use classes to organize your code
+* Write methods that do exactly one thing
+* Use ``$.proxy()`` to define ``this``
 
 .. ............................................................................
 
@@ -278,6 +291,16 @@ Encapsulating Behavior with pub/sub
     (ie. clicks, etc.) to a "controller" layer, which then decides what to do.”
 
 …
+
+.. ............................................................................
+
+CSS Code Organization
+=====================
+
+Two main principles:
+
+1.  Separate structure and skin
+2.  Separate container and content
 
 .. ............................................................................
 
