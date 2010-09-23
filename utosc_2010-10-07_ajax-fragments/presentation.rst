@@ -16,6 +16,47 @@ Introduction
 
 .. class:: handout
 
+    We’re going to talk about methods of making reusable Ajax widgets that you
+    can sprinkle all over your site. This talk was originally inspired by
+    Facebook's presentation at the JSConf 2010 but we will talk about both the
+    front-end and the back-end to acheive something similar.
+
+    This talk is really three separate presentations crammed together and we do
+    not have enough time to cover everything in detail.
+
+    <get a head-count of front-end guys and back-end guys>
+
+    My slides are crammed with explanations and links; please read through them
+    for further learning.
+
+    Here’s a quick overview of what we will be talking about:
+
+    1.  You
+
+        Reusable Ajax widgets require quite a lot of organization. This isn’t
+        going to be easy to pull off if you’re writing new CSS for each new
+        page that goes up on your site. This isn’t going to be easy if you’re
+        working out of a single 1500-line JavaScript file or inlining your
+        JavaScript in your HTML.
+
+        We will talk about how to organize your CSS and JavaScript.
+
+    2.  jQuery
+
+        We'll talk about the Sammy jQuery plugin and how to do Ajax in jQuery.
+
+    3.  Django
+
+        We'll talk about the Piston app in Django and how to easily return
+        Json.
+
+    4.  Ajax Fragments
+
+        Finally, we'll put it all together and look at a proof-of-concept
+        Django project. The code is up on GitHub.
+
+    ...........................................................................
+
     We’re building on some techniques outlined in Facebook employee, Makinde
     Adeagbo’s, slides from JSConf 2010 entitled `Primer`_ which explain how
     Facebook uses a technique called Ajax Fragments.
@@ -339,10 +380,62 @@ Encapsulating Behavior with pub/sub
 CSS Code Organization
 =====================
 
-Two main principles:
+.. class:: handout
 
-1.  Separate structure and skin
-2.  Separate container and content
+    `OOCSS`_ employs heavy reuse of CSS making your .css files smaller. In some
+    cases it can also help the browser to repaint less often.
+
+    Two main principles:
+
+    1.  Separate structure and skin
+    2.  Separate container and content
+
+    Standard module format; originally from `YUI`_.
+
+        A module, or “object”, consists of four things:
+
+        1.  HTML, which can be one or more nodes of the DOM,
+        2.  CSS declarations about the style of those nodes all of which begin
+            with the class name of the wrapper node
+        3.  Components like background images and sprites required for display,
+            and
+        4.  JavaScript behaviors, listeners, or methods associated with the
+            object.
+
+        — http://wiki.github.com/stubbornella/oocss/faq
+
+    Guidelines:
+
+    * Module must contain 1 or more body regions.
+    * Module may contain 1 header region and may contain 1 footer region.
+      They can be extended via skin classes.
+    * Keep the inside transparent.
+    * Don't use ``id``.
+
+      * Do put ``id`` in the code to use for link targets and in JavaScript
+        calls — just don’t reference ``id`` in your CSS (unless you’re creating
+        a singleton on purpose).
+
+    * Extend existing objects by adding additional classes to the modules::
+
+        <div class="leftCol myColumn"> ... </div>
+
+      Don’t override the existing module classes::
+
+        .leftCol{… custom css here …}
+
+`OOCSS`_ standard module format::
+
+    <div class="mod">
+        <div class="inner">
+            <div class="hd">…</div>
+            <div class="bd">…</div>
+            <div class="ft">…</div>
+        </div>
+    </div>
+
+.. _`OOCSS`: http://oocss.org/
+.. _`YUI`: http://developer.yahoo.com/yui/
 
 .. ............................................................................
 
