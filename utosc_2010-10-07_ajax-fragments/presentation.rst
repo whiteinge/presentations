@@ -59,47 +59,50 @@ Ajax Fragments
 
 .. class:: handout
 
-    “the team exploited the observation that most controls work the same way:
+    xxx
 
-    * User clicks
-    * Sends ASync request
-    * Insert/Replace some content
+        [T]he team exploited the observation that most controls work the same
+        way:
 
-    So the team set up elements like this::
+        * User clicks
+        * Sends ASync request
+        * Insert/Replace some content
 
-        <a href="/ring.php rel="dialog">...</a>
+        So the team set up elements like this::
 
-    …and then hijacked them with a standard listener routine, one that would
-    work for most of the controls. (Most, not all; 80/20 principle is in effect
-    here.) This way, they could have one small listener routine to handle most
-    of the controls on the page.”
+            <a href="/ring.php rel="dialog">...</a>
 
-    …
+        …and then hijacked them with a standard listener routine, one that would
+        work for most of the controls. (Most, not all; 80/20 principle is in effect
+        here.) This way, they could have one small listener routine to handle most
+        of the controls on the page.
 
-    “And they are using a convention: ``ajaxify=1`` on an element indicates
-    it's … Ajaxified.
-
-    At this point, the team had now Ajaxified a bunch of features, but people
-    were still skeptical about more complicated features. For example, would
-    setting status be too hard with the same techniques. So after some
-    research, Makinde came back with an epiphany: the humble form. Whereas the
-    previous async requests were effectively information-less - just a simple
-    directive and maybe an ID - the requests would now include content too. And
-    of course, most of these things look nothing like forms due to styling. But
-    underneath, they're still forms, e.g. the entire comments block is a single
-    form.”
-
-    <form action="/submit/" method="post" ajaxify="1">
         …
-    </form>
 
-    .. figure:: ./facebook-ajaxify-form.png
+        And they are using a convention: ``ajaxify=1`` on an element indicates
+        it's … Ajaxified.
 
-    “Nowadays, most of Facebook runs without complete page refreshes, by
-    dynamically flipping the content and the fragment ID. (What Facebook calls
-    page transitions.)”
+        At this point, the team had now Ajaxified a bunch of features, but people
+        were still skeptical about more complicated features. For example, would
+        setting status be too hard with the same techniques. So after some
+        research, Makinde came back with an epiphany: the humble form. Whereas the
+        previous async requests were effectively information-less - just a simple
+        directive and maybe an ID - the requests would now include content too. And
+        of course, most of these things look nothing like forms due to styling. But
+        underneath, they're still forms, e.g. the entire comments block is a single
+        form.
 
-    — http://ajaxian.com/archives/facebook-javascript-jsconf
+        <form action="/submit/" method="post" ajaxify="1">
+            …
+        </form>
+
+        .. figure:: ./facebook-ajaxify-form.png
+
+        Nowadays, most of Facebook runs without complete page refreshes, by
+        dynamically flipping the content and the fragment ID. (What Facebook calls
+        page transitions.)
+
+        — http://ajaxian.com/archives/facebook-javascript-jsconf
 
 .. ............................................................................
 
@@ -115,124 +118,163 @@ Performance
 
 .. class:: handout
 
-    “The first initiative was to include the Javascript at the bottom of the
-    page. Great, it's faster, but at what cost? A big one: Users try to click
-    on controls, and nothing happens. Back to the drawing board, and the team
-    refined the setup so that the actionable stuff was initialised on the top
-    of the page. But how to minimise all this code at the top of the page?”
+    Interface latency; what is “fast enough”?
 
-    — http://ajaxian.com/archives/facebook-javascript-jsconf
+        [I]f your JavaScript code takes longer than 0.1 seconds to execute,
+        your page won't have that slick, snappy feel; if it takes longer than 1
+        second, the application feels sluggish; longer than 10 seconds, and the
+        user will be extremele frustrated.
 
-    “Most important performance metric: TTI (Time to interact) latency From the
-    time user clicks on a link to he/she is able to interact with the page.
-    Front end latency accounts for more than 70% of total TTI latency:
+        — Even Faster Web Sites, O’Reilly
 
-    Front end latency: > 70%
-    Include network latency and browser render time (CSS, JavaScript, images)
+    Splitting your JavaScript into what is required for the first page and
+    everything else. Avoiding “undefined” symbols and race conditions can be
+    difficult.
 
-    Back end latency: < 30%
-    Include page generation time (PHP, DB, Memcache, etc)”
+        In the condition where the delayed code is associated with a UI
+        element, the problem can be avoided by changing the element's
+        appearance. In this case, the menu could contain a “Loading…” spinner.
 
-    …
+        …
 
-    “Two software abstractions at Facebook Dramatically improve Facebook’s TTI
-    latency:
+        Another option is to attach handlers to UI elements in the lazy-loaded
+        code. In this example, the menu would be rendered initially as static
+        text. Clicking it would not execute any JavaScript. The lazy-loaded
+        code would both contain the menu functionality and would attach that
+        behavior to the menu using ``attachEvent`` in [IE] and
+        ``addEventListener`` in all other browsers.
 
-    Quickling: transparentlyajaxifiesthe whole web site
-    PageCache: caches user-visited pages in browser”
+        …
 
-    …
+        In situations where the delayed code is not associated with a UI
+        element, the solution to this problem is to used stub functions.
 
-    “How Quickling works?
-    1. User clicks a link or back/forward button
-    2. Quickling sends an ajax to server
-    3. Response arrives
-    4. Quickling blanks the content area
-    5. Download javascript/CSS
-    6. Show new content”
+        — Even Faster Web Sites, O’Reilly
 
-    …
+    xxx
 
-    “Architecture components:
-    Link Controller
-    HistoryManager
-    Bootloader
-    Busy Indicator”
+        The first initiative was to include the Javascript at the bottom of the
+        page. Great, it's faster, but at what cost? A big one: Users try to
+        click on controls, and nothing happens. Back to the drawing board, and
+        the team refined the setup so that the actionable stuff was initialised
+        on the top of the page. But how to minimise all this code at the top of
+        the page?
 
-    …
+        — http://ajaxian.com/archives/facebook-javascript-jsconf
 
-    “LinkController:
-    Intercept user clicks on links After DOM content is ready, dynamically
-    attach a handler to all link clicks (could also use event delegation)::
+    Quickling
 
-    $('a').click(function() {
-        // 'payload' is a JSON encoded response from the server
-        $.get(this.href, function(payload) {
+        Most important performance metric: TTI (Time to interact) latency From
+        the time user clicks on a link to he/she is able to interact with the
+        page. Front end latency accounts for more than 70% of total TTI
+        latency:
 
-            // Dynamically load 'js', 'css' resources for this page.
-            bootload(payload.bootload, function() {
+        Front end latency: > 70%
+        Include network latency and browser render time (CSS, JavaScript,
+        images)
 
-                // Swap in the new page's content
-                $('#content').html(payload.html)
+        Back end latency: < 30%
+        Include page generation time (PHP, DB, Memcache, etc)
 
-                // Execute the onloadRegister'edjs code 
-                execute(payload.onload)
-            });
-        }
-    });
-    ”
+        …
 
-    …
+        Two software abstractions at Facebook Dramatically improve Facebook’s
+        TTI latency:
 
-    “Bootloader:
-    Load static resources via ‘script’, ‘link’ tag injection Before entering a
-    new page: Dynamically download CSS/Javascript for the next page
+        Quickling: transparentlyajaxifiesthe whole web site
+        PageCache: caches user-visited pages in browser
 
-    Javascript::
+        …
 
-        varscript = document.createElement(&apos;script&apos;);
-        script.src = source;
-        script.type = &apos;text/javascript&apos;;
-        document.getElementsByTagName(&apos;head&apos;)[0].appendChild(script);
+        How Quickling works?
+        1. User clicks a link or back/forward button
+        2. Quickling sends an ajax to server
+        3. Response arrives
+        4. Quickling blanks the content area
+        5. Download javascript/CSS
+        6. Show new content
 
-    CSS::
+        …
 
-        varlink = document.createElement(&apos;link&apos;);
-        link.rel = &quot;stylesheet&quot;;
-        link.type = &quot;text/css&quot;;
-        link.media = &quot;all&quot; ; 
-        link.href = source;
-        document.getElementsByTagName(&apos;head&apos;)[0].appendChild(link);
+        Architecture components:
+        Link Controller
+        HistoryManager
+        Bootloader
+        Busy Indicator
 
-    Bootloader (cont.)
+        …
 
-    Load static resources via ‘script’, ‘link’ tag injection Reliable callbacks
-    to ensure page content shown after depended resources arrive:
+        LinkController:
+        Intercept user clicks on links After DOM content is ready, dynamically
+        attach a handler to all link clicks (could also use event delegation)::
 
-    JavaScript resources::
+        $('a').click(function() {
+            // 'payload' is a JSON encoded response from the server
+            $.get(this.href, function(payload) {
 
-        ‘bootloader.done(resource_name)’ injected at the end of all JS packages.
+                // Dynamically load 'js', 'css' resources for this page.
+                bootload(payload.bootload, function() {
 
-    CSS resources::
+                    // Swap in the new page's content
+                    $('#content').html(payload.html)
 
-        ‘#bootloader_${resource_name} {height: 42px}’ injected in all CSS packages.
+                    // Execute the onloadRegister'edjs code 
+                    execute(payload.onload)
+                });
+            }
+        });
 
-    Bootloader polls the corresponding invisible div height to determine if the
-    CSS package arrives.”
+        …
 
-    …
+        Bootloader:
+        Load static resources via ‘script’, ‘link’ tag injection Before entering a
+        new page: Dynamically download CSS/Javascript for the next page
 
-    “Problems:
+        Javascript::
 
-    CSS rules accumulated over time
-    Render time is roughly proportional to the # of CSS rules
-    Automatically unload CSS rules before leaving a page
+            varscript = document.createElement(&apos;script&apos;);
+            script.src = source;
+            script.type = &apos;text/javascript&apos;;
+            document.getElementsByTagName(&apos;head&apos;)[0].appendChild(script);
 
-    Memory consumption
-    Browser memory consumption increase overtime
-    Periodically force full page load to allow browsers to reclaim memory”
+        CSS::
 
-    — http://www.slideshare.net/ajaxexperience2009/chanhao-jiang-and-david-wei-presentation-quickling-pagecache
+            varlink = document.createElement(&apos;link&apos;);
+            link.rel = &quot;stylesheet&quot;;
+            link.type = &quot;text/css&quot;;
+            link.media = &quot;all&quot; ; 
+            link.href = source;
+            document.getElementsByTagName(&apos;head&apos;)[0].appendChild(link);
+
+        Bootloader (cont.)
+
+        Load static resources via ‘script’, ‘link’ tag injection Reliable callbacks
+        to ensure page content shown after depended resources arrive:
+
+        JavaScript resources::
+
+            ‘bootloader.done(resource_name)’ injected at the end of all JS packages.
+
+        CSS resources::
+
+            ‘#bootloader_${resource_name} {height: 42px}’ injected in all CSS packages.
+
+        Bootloader polls the corresponding invisible div height to determine if the
+        CSS package arrives.
+
+        …
+
+        Problems:
+
+        CSS rules accumulated over time
+        Render time is roughly proportional to the # of CSS rules
+        Automatically unload CSS rules before leaving a page
+
+        Memory consumption
+        Browser memory consumption increase overtime
+        Periodically force full page load to allow browsers to reclaim memory
+
+        — http://www.slideshare.net/ajaxexperience2009/chanhao-jiang-and-david-wei-presentation-quickling-pagecache
 
 ::
 
@@ -309,6 +351,7 @@ Proof of Concept
 
 Widgets
 
+    * Ajax "Please wait" throbber.
     * Modal
     * Tabs
     * Image carousel (dynamically load next/prev)
