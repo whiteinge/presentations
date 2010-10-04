@@ -8,7 +8,7 @@ Ajax Fragments, Django, jQuery, and You!
 :Date: 2010-10-07
 
 .. include:: <s5defs.txt>
-.. footer:: Ajax Fragments
+.. footer:: Ajax Fragments, Django, jQuery, and You!
 
 
 Introduction
@@ -17,8 +17,8 @@ Introduction
 .. class:: handout
 
     We’re going to talk about methods of making reusable Ajax widgets that you
-    can sprinkle all over your site. This talk was originally inspired by
-    Facebook's presentation at the JSConf 2010 but we will talk about both the
+    can sprinkle all over your site. This talk was originally inspired by the
+    Facebook presentation at JSConf 2010 but we will talk about both the
     front-end and the back-end to acheive something similar.
 
     This talk is really three separate presentations crammed together and we do
@@ -27,7 +27,7 @@ Introduction
     <get a head-count of front-end guys and back-end guys>
 
     My slides are crammed with explanations and links; please read through them
-    for further learning.
+    if I speed through something you're interested in.
 
     Here’s a quick overview of what we will be talking about:
 
@@ -55,7 +55,14 @@ Introduction
         Finally, we'll put it all together and look at a proof-of-concept
         Django project. The code is up on GitHub.
 
-    ...........................................................................
+.. class:: incremental
+
+    * You
+    * jQuery
+    * Django
+    * Ajax Fragments
+
+.. class:: handout
 
     We’re building on some techniques outlined in Facebook employee, Makinde
     Adeagbo’s, slides from JSConf 2010 entitled `Primer`_ which explain how
@@ -95,6 +102,99 @@ Introduction
 
 .. ............................................................................
 
+Object Oriented CSS
+===================
+
+.. class:: handout
+
+    `OOCSS`_ employs heavy reuse of CSS making your .css files smaller. In some
+    cases it can even help the browser to repaint less often.
+
+    Two main principles:
+
+    1.  Separate structure and skin
+
+        Within the CSS, have one class that takes care of all of the little
+        presentational elems, browser differences, basically all the
+        complicated bits. Then build on that class with multiple skin classes,
+        which then only need to contain simple things like border colors,
+        background images, basic positioning, sprites, etc. The skins become
+        super predictable.
+
+        For example you cross product status with product type. E.g. sale,
+        normal, and featured backgrounds with motorcycle, helmet, and clothing
+        contours.
+
+    2.  Separate container and content
+
+        Modify content using CSS class extension rather than context.
+
+        At best we manage to separate by module, or sandbox individual
+        components. Unfortunately, each of the modules has container and
+        content completely tied together. This makes the CSS grow over time and
+        the site not scale or perform well.
+
+    “Standard module format”; originally from `YUI`_.
+
+        A module, or “object”, consists of four things:
+
+        1.  HTML, which can be one or more nodes of the DOM,
+        2.  CSS declarations about the style of those nodes all of which begin
+            with the class name of the wrapper node
+        3.  Components like background images and sprites required for display,
+            and
+        4.  JavaScript behaviors, listeners, or methods associated with the
+            object.
+
+        — http://wiki.github.com/stubbornella/oocss/faq
+
+    Guidelines:
+
+    * Module must contain 1 or more body regions.
+    * Module may contain 1 header region and may contain 1 footer region.
+      They can be extended via skin classes.
+    * Keep the inside transparent.
+    * Don't use ``id``.
+
+      * Do put ``id`` in the code to use for link targets and in JavaScript
+        calls — just don’t reference ``id`` in your CSS (unless you’re creating
+        a singleton on purpose).
+
+    * Extend existing objects by adding additional classes to the modules::
+
+        <div class="leftCol myColumn"> ... </div>
+
+      Don’t override the existing module classes::
+
+        .leftCol{… custom css here …}
+
+      Don’t think of this as overwriting my classes, but rather extending the
+      objects provided by the framework. I give you columns, headings, and
+      other objects. You can extend those objects by adding another class that
+      only specifies the differences between my base object and your
+      implementation of the same. Mixins may be a good analogy here.
+
+    * Mod is transparent on the inside, corners overlay content. Used with any
+      content. Allows infinite height and width as borders are generated via
+      skin objects that define borders on mod and inner.
+
+.. container:: incremental
+
+    `OOCSS`_ Standard Module Format::
+
+        <div class="mod">
+            <div class="inner">
+                <div class="hd">…</div> <!-- 0-1 -->
+                <div class="bd">…</div> <!-- 1-N -->
+                <div class="ft">…</div> <!-- 0-1 -->
+            </div>
+        </div>
+
+.. _`OOCSS`: http://oocss.org/
+.. _`YUI`: http://developer.yahoo.com/yui/
+
+.. ............................................................................
+
 Ajax Fragments
 ==============
 
@@ -118,7 +218,7 @@ Ajax Fragments
         here.) This way, they could have one small listener routine to handle most
         of the controls on the page.
 
-        …
+        […]xxx
 
         And they are using a convention: ``ajaxify=1`` on an element indicates
         it's … Ajaxified.
@@ -131,11 +231,11 @@ Ajax Fragments
         directive and maybe an ID - the requests would now include content too. And
         of course, most of these things look nothing like forms due to styling. But
         underneath, they're still forms, e.g. the entire comments block is a single
-        form.
+        form::
 
-        <form action="/submit/" method="post" ajaxify="1">
-            …
-        </form>
+            <form action="/submit/" method="post" ajaxify="1">
+                …
+            </form>
 
         .. figure:: ./facebook-ajaxify-form.png
 
@@ -150,7 +250,20 @@ Ajax Fragments
 Does the Googlebot Index Ajax?
 ==============================
 
-…
+.. class:: handout
+
+    No, but you can signal the Googlebot that you have a crawlable non-Ajax
+    page in place.
+
+.. _`Making AJAX Applications Crawlable`: http://code.google.com/intl/cy/web/ajaxcrawling/
+
+URLs such as::
+
+    www.example.com/ajax.html#!key=value
+
+Signal the Googlebot to try::
+
+    www.example.com/ajax.html?_escaped_fragment_=key=value
 
 .. ............................................................................
 
@@ -176,7 +289,7 @@ Performance
         element, the problem can be avoided by changing the element's
         appearance. In this case, the menu could contain a “Loading…” spinner.
 
-        …
+        […]xxx
 
         Another option is to attach handlers to UI elements in the lazy-loaded
         code. In this example, the menu would be rendered initially as static
@@ -185,7 +298,7 @@ Performance
         behavior to the menu using ``attachEvent`` in [IE] and
         ``addEventListener`` in all other browsers.
 
-        …
+        […]xxx
 
         In situations where the delayed code is not associated with a UI
         element, the solution to this problem is to used stub functions.
@@ -217,7 +330,7 @@ Performance
         Back end latency: < 30%
         Include page generation time (PHP, DB, Memcache, etc)
 
-        …
+        […]xxx
 
         Two software abstractions at Facebook Dramatically improve Facebook’s
         TTI latency:
@@ -225,7 +338,7 @@ Performance
         Quickling: transparentlyajaxifiesthe whole web site
         PageCache: caches user-visited pages in browser
 
-        …
+        […]xxx
 
         How Quickling works?
         1. User clicks a link or back/forward button
@@ -235,7 +348,7 @@ Performance
         5. Download javascript/CSS
         6. Show new content
 
-        …
+        […]xxx
 
         Architecture components:
         Link Controller
@@ -243,29 +356,29 @@ Performance
         Bootloader
         Busy Indicator
 
-        …
+        […]xxx
 
         LinkController:
         Intercept user clicks on links After DOM content is ready, dynamically
         attach a handler to all link clicks (could also use event delegation)::
 
-        $('a').click(function() {
-            // 'payload' is a JSON encoded response from the server
-            $.get(this.href, function(payload) {
+            $('a').click(function() {
+                // 'payload' is a JSON encoded response from the server
+                $.get(this.href, function(payload) {
 
-                // Dynamically load 'js', 'css' resources for this page.
-                bootload(payload.bootload, function() {
+                    // Dynamically load 'js', 'css' resources for this page.
+                    bootload(payload.bootload, function() {
 
-                    // Swap in the new page's content
-                    $('#content').html(payload.html)
+                        // Swap in the new page's content
+                        $('#content').html(payload.html)
 
-                    // Execute the onloadRegister'edjs code 
-                    execute(payload.onload)
-                });
-            }
-        });
+                        // Execute the onloadRegister'edjs code 
+                        execute(payload.onload)
+                    });
+                }
+            });
 
-        …
+        […]xxx
 
         Bootloader:
         Load static resources via ‘script’, ‘link’ tag injection Before entering a
@@ -303,7 +416,7 @@ Performance
         Bootloader polls the corresponding invisible div height to determine if the
         CSS package arrives.
 
-        …
+        […]xxx
 
         Problems:
 
@@ -367,7 +480,7 @@ Encapsulating Behavior with pub/sub
     The message row text goes from bold to plain
     The message content appears in the viewer pane”
 
-    …
+    […]
 
     “In general, it's a good idea to have a "view" layer which simply deals
     with displaying the data and sending events about user actions on that data
@@ -376,66 +489,6 @@ Encapsulating Behavior with pub/sub
 …
 
 .. ............................................................................
-
-CSS Code Organization
-=====================
-
-.. class:: handout
-
-    `OOCSS`_ employs heavy reuse of CSS making your .css files smaller. In some
-    cases it can also help the browser to repaint less often.
-
-    Two main principles:
-
-    1.  Separate structure and skin
-    2.  Separate container and content
-
-    Standard module format; originally from `YUI`_.
-
-        A module, or “object”, consists of four things:
-
-        1.  HTML, which can be one or more nodes of the DOM,
-        2.  CSS declarations about the style of those nodes all of which begin
-            with the class name of the wrapper node
-        3.  Components like background images and sprites required for display,
-            and
-        4.  JavaScript behaviors, listeners, or methods associated with the
-            object.
-
-        — http://wiki.github.com/stubbornella/oocss/faq
-
-    Guidelines:
-
-    * Module must contain 1 or more body regions.
-    * Module may contain 1 header region and may contain 1 footer region.
-      They can be extended via skin classes.
-    * Keep the inside transparent.
-    * Don't use ``id``.
-
-      * Do put ``id`` in the code to use for link targets and in JavaScript
-        calls — just don’t reference ``id`` in your CSS (unless you’re creating
-        a singleton on purpose).
-
-    * Extend existing objects by adding additional classes to the modules::
-
-        <div class="leftCol myColumn"> ... </div>
-
-      Don’t override the existing module classes::
-
-        .leftCol{… custom css here …}
-
-`OOCSS`_ standard module format::
-
-    <div class="mod">
-        <div class="inner">
-            <div class="hd">…</div>
-            <div class="bd">…</div>
-            <div class="ft">…</div>
-        </div>
-    </div>
-
-.. _`OOCSS`: http://oocss.org/
-.. _`YUI`: http://developer.yahoo.com/yui/
 
 .. ............................................................................
 
