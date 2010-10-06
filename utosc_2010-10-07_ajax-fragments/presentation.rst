@@ -18,8 +18,15 @@ Introduction
 
     We’re going to talk about methods of making reusable Ajax widgets that you
     can sprinkle all over your site. This talk was originally inspired by the
-    Facebook presentation at JSConf 2010 but we will talk about both the
-    front-end and the back-end to acheive something similar.
+    Facebook presentation at JSConf 2010 by Makinde Adeagbo entitled `Primer`_.
+
+.. figure:: ./img/primer.png
+    :scale: 70%
+
+Introduction
+============
+
+.. class:: handout
 
     This talk is really three separate presentations crammed together and we do
     not have enough time to cover everything in detail.
@@ -237,7 +244,7 @@ Ajax Fragments
                 …
             </form>
 
-        .. figure:: ./facebook-ajaxify-form.png
+        .. figure:: ./img/facebook-ajaxify-form.png
 
         Nowadays, most of Facebook runs without complete page refreshes, by
         dynamically flipping the content and the fragment ID. (What Facebook calls
@@ -430,31 +437,51 @@ Performance
 
         — http://www.slideshare.net/ajaxexperience2009/chanhao-jiang-and-david-wei-presentation-quickling-pagecache
 
-::
+.. sidebar:: `Even Faster Web Sites`_
+    :class: center
 
-    /**
-     * Adding a single line to this ﬁle requires great internal reﬂection
-     * and thought. You must ask yourself if your one line addition is so
-     * important, so critical to the success of the company, that it warrants
-     * a slowdown for every user on every page load. Adding a single letter
-     * here could cost thousands of man hours around the world.
-     *
-     * That is all.
-     */
+    .. figure:: ./img/even-faster-websites.jpg
+        :scale: 30 %
+
+.. class:: tiny
+
+    .. code-block:: javascript
+
+        /**
+         * Adding a single line to this ﬁle requires great
+         * internal reﬂection and thought. You must ask
+         * yourself if your one line addition is so important,
+         * so critical to the success of the company, that it
+         * warrants a slowdown for every user on every page
+         * load. Adding a single letter here could cost
+         * thousands of man hours around the world.
+         *
+         * That is all.
+         */
+
+.. /* fix bad syntax highlighting
+
+.. _`Even Faster Web Sites`: http://oreilly.com/catalog/9780596522315
+
+Performance
+===========
+
+.. class:: handout
+
+    Facebook's rearchitecture goal was **2.5 seconds** per page.
 
 .. look into labJS or requireJS for async-loading?
 
-**2.5 seconds**
+.. class:: incremental
 
-Put JavaScript at the bottom of the page. **(Sometimes!)**
+    * Put JavaScript at the bottom of the page. (Sometimes!)
+    * Load only necessary JS up-front and lazy-load the rest. This is a challenege.
 
-Load only necessary JS up-front and lazy-load the rest. This is a challenege.
-
-* Use “stub” functions to avoid undefined errors for not-yet-downloaded
-  dependencies.
-* Put both the code to be executed as well as the event-handler attachments in
-  the same lazy-loaded code so that clicking (or other interactions) simply
-  cannot cause undefined errors.
+      * Use “stub” functions to avoid undefined errors for not-yet-downloaded
+        dependencies.
+      * Put both the code to be executed as well as the event-handler
+        attachments in the same lazy-loaded code so that clicking (or other
+        interactions) simply cannot cause undefined errors.
 
 .. ............................................................................
 
