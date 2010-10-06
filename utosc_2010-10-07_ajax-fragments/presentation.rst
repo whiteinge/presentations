@@ -274,6 +274,38 @@ Signal the Googlebot to try::
 
 .. ............................................................................
 
+jQuery Code Organization
+========================
+
+* Use classes to organize your code
+* Write methods that do exactly one thing
+* Use ``$.proxy()`` to define ``this``
+
+.. ............................................................................
+
+Encapsulating Behavior with pub/sub
+===================================
+
+.. class:: handout
+
+    “[I]magine a standard three-pane email client. … When you click on a
+    message you just received, several things happen:
+
+    The mailbox unread count gets decremented
+    The message’s unread indicator goes away
+    The message row text goes from bold to plain
+    The message content appears in the viewer pane”
+
+    […]
+
+    “In general, it's a good idea to have a "view" layer which simply deals
+    with displaying the data and sending events about user actions on that data
+    (ie. clicks, etc.) to a "controller" layer, which then decides what to do.”
+
+…
+
+.. ............................................................................
+
 Performance
 ===========
 
@@ -463,6 +495,8 @@ Performance
 
 .. _`Even Faster Web Sites`: http://oreilly.com/catalog/9780596522315
 
+.. ............................................................................
+
 Performance
 ===========
 
@@ -475,7 +509,8 @@ Performance
 .. class:: incremental
 
     * Put JavaScript at the bottom of the page. (Sometimes!)
-    * Load only necessary JS up-front and lazy-load the rest. This is a challenege.
+    * Load only necessary JS up-front and lazy-load the rest. This is a
+      challenege.
 
       * Use “stub” functions to avoid undefined errors for not-yet-downloaded
         dependencies.
@@ -485,37 +520,50 @@ Performance
 
 .. ............................................................................
 
-jQuery Code Organization
-========================
-
-* Use classes to organize your code
-* Write methods that do exactly one thing
-* Use ``$.proxy()`` to define ``this``
-
-.. ............................................................................
-
-Encapsulating Behavior with pub/sub
-===================================
+JsonResponse
+============
 
 .. class:: handout
 
-    “[I]magine a standard three-pane email client. … When you click on a
-    message you just received, several things happen:
+    NOTE: Basic JSON encoder doesn't handle some Django datatypes. DateTimes,
+    lazy translation strings.
 
-    The mailbox unread count gets decremented
-    The message’s unread indicator goes away
-    The message row text goes from bold to plain
-    The message content appears in the viewer pane”
+    http://docs.djangoproject.com/en/1.2/topics/serialization/#id2::
 
-    […]
+        from django.utils.functional import Promise
+        from django.utils.encoding import force_unicode
 
-    “In general, it's a good idea to have a "view" layer which simply deals
-    with displaying the data and sending events about user actions on that data
-    (ie. clicks, etc.) to a "controller" layer, which then decides what to do.”
+        class LazyEncoder(simplejson.JSONEncoder):
+            def default(self, obj):
+                if isinstance(obj, Promise):
+                    return force_unicode(obj)
+                return super(LazyEncoder, self).default(obj)
 
-…
+::
+
+    import json
+    from django import http
+
+    class JsonResponse(http.HttpResponse):
+        def __init__(self, data, **kwargs):
+            http.HttpResponse.__init__(self,
+                content=json.JSONEncoder().encode(data),
+                mimetype='application/json',
+                **kwargs)
 
 .. ............................................................................
+
+Piston
+======
+
+::
+
+    |- settings.py
+    |- urls.py
+    +- api/
+        |- __init__.py
+        |- urls.py
+        `- handlers.py
 
 .. ............................................................................
 
