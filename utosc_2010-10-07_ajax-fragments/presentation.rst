@@ -23,6 +23,10 @@ Introduction
 .. figure:: ./img/primer.png
     :scale: 70%
 
+    This is a test caption.
+
+.. _`primer`: http://www.slideshare.net/makinde/javascript-primer
+
 Introduction
 ============
 
@@ -98,7 +102,6 @@ Introduction
     I’ll show a proof-of-concept Django project that utilizes all these
     techniques and best-practices. The code is available on GitHub.
 
-.. _`primer`: http://www.slideshare.net/makinde/javascript-primer
 .. _`Sammy`: http://code.quirkey.com/sammy/
 .. _`jquery.hashlisten`: http://github.com/sinefunc/jquery.hashlisten
 .. _`Even Faster Web Sites`: http://oreilly.com/catalog/9780596522315
@@ -277,9 +280,106 @@ Signal the Googlebot to try::
 jQuery Code Organization
 ========================
 
+http://www.slideshare.net/rmurphey/building-large-jquery-applications
+http://blog.rebeccamurphey.com/2009/12/03/demystifying-custom-events-in-jquery
+http://jqfundamentals.com/book/book.html
+
 * Use classes to organize your code
 * Write methods that do exactly one thing
 * Use ``$.proxy()`` to define ``this``
+
+::
+
+    var DED = (function() {
+
+        var private_var;
+
+        function private_method()
+        {
+            // do stuff here
+        }
+
+        return
+        {
+            method_1 : function()
+                {
+                    // do stuff here
+                },
+            method_2 : function()
+                {
+                    // do stuff here
+                }
+        };
+    })();
+
+
+::
+
+    $(document).ready(function() {
+        var feature = (function() {
+            
+            var $items = $('#myFeature li'),
+                $container = $('<div class="container"></div>'),
+                $currentItem,
+
+                urlBase = '/foo.php?item=',
+                
+                createContainer = function() {
+                    var $i = $(this),
+                        $c = $container.clone().appendTo($i);
+
+                    $i.data('container', $c);
+                },
+                
+                buildUrl = function() {
+                    return urlBase + $currentItem.attr('id');
+                },
+                
+                showItem = function() {
+                    var $currentItem = $(this);
+                    getContent(showContent);
+                },
+                
+                showItemByIndex = function(idx) {
+                    $.proxy(showItem, $items.get(idx));
+                },
+                
+                getContent = function(callback) {
+                    $currentItem.data('container').load(buildUrl(), callback);
+                },
+                
+                showContent = function() {
+                    $currentItem.data('container').show();
+                    hideContent();
+                },
+                
+                hideContent = function() {
+                    $currentItem.siblings()
+                        .each(function() { 
+                            $(this).data('container').hide(); 
+                    });
+                };
+
+            $items
+                .each(createContainer)
+                .click(showItem);
+                
+            return { showItemByIndex : showItemByIndex };
+        })();
+        
+        feature.showItemByIndex(0);
+    });
+
+…
+
+    Typically, I'll have a single 'main' js file for each application. So, if I
+    was writing a "survey" application, i would have a js file called
+    "survey.js". This would contain the entry point into the jQuery code. I
+    create jQuery references during instantiation and then pass them into my
+    objects as parameters. This means that the javascript classes are 'pure' and
+    don't contain any references to CSS ids or classnames.
+
+    — http://stackoverflow.com/questions/247209/javascript-how-do-you-organize-this-mess
 
 .. ............................................................................
 
@@ -504,8 +604,6 @@ Performance
 
     Facebook's rearchitecture goal was **2.5 seconds** per page.
 
-.. look into labJS or requireJS for async-loading?
-
 .. class:: incremental
 
     * Put JavaScript at the bottom of the page. (Sometimes!)
@@ -517,6 +615,45 @@ Performance
       * Put both the code to be executed as well as the event-handler
         attachments in the same lazy-loaded code so that clicking (or other
         interactions) simply cannot cause undefined errors.
+
+::
+
+    var elem1 = document.createElement('script');
+    elem1.src = 'http://some.domain/lib.js';
+    document.getElementsByTagName('head')[0].appendChild(elem1);
+
+    function addStylesheet(url) {
+        var stylesheet = document.createElement('link');
+        stylesheet.rel = 'stylesheet';
+        stylesheet.type = 'text/css';
+        stylesheet.href =  url;
+        document.getElementsByTagName('head')[0].appendChild(stylesheet);
+    }
+    function addScript(url) {
+        var script = document.createElement('script');
+        script.src = url;
+        document.getElementsByTagName('head')[0].appendChild(script);
+    }
+
+RequireJS
+=========
+
+.. class:: handout
+
+    CommonJS require() but optimized for the web
+    Works on Rhino & Node
+    Works very will with Google's Closure compiler
+
+::
+
+    require(['jquery', 'http://some.domain/lib.js', function($) {
+        //Extend jQuery
+        $.fn.foo = function() {};
+        $(function() {
+            //execute on
+            //page load
+        });
+    });
 
 .. ............................................................................
 
