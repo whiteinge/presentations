@@ -25,6 +25,13 @@ Basics
 
 ``man zsh`` vs. ``man zshall``
 
+-----------------
+Interactive Setup
+-----------------
+
+autoload -Uz zsh-newuser-install
+zsh-newuser-install -f
+
 -------------------
 The Emacs of Shells
 -------------------
@@ -195,6 +202,15 @@ Files that are group readable and writable, but not readable, writeable, or
 executable by others::
 
     ls *(f:g+rw,o-rwx:)
+
+---
+zmv
+---
+
+
+zmv '(*)-(*).mpeg3' '$2_$1.mp3'
+alias mmv='noglob zmv -W'
+mmv *pl.bak backups/*.pl
 
 --------------
 Alias Suffixes
