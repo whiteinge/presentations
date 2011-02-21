@@ -91,10 +91,41 @@ MacTeX
 Basics
 ======
 
-* .sty vs .cls vs .tex
-* documentclass{}
-* usepackage{}
+* .tex
+* .cls
+* .sty
 
+.cls
+====
+
+“Classes”::
+
+    \documentclass{}
+
+* Mandatory
+* One per document
+* Ideally, completely define document structure 
+
+  * E.g., ``article`` class defines ``\section``, ``\tableofcontents``,
+    ``\author``, and so on.
+
+— www.tug.org/pracjourn/2005-3/asknelly/nelly-sty-&-cls.pdf
+
+.sty
+====
+
+“Style files” or “packages”::
+
+    \usepackage{}
+
+* Optional
+* Can appear many times
+* Ideally, amendments to a .cls file or additional functionality
+
+  * E.g., ``graphicx`` provides methods to include images and apply graphic
+    effects to a document.
+
+— www.tug.org/pracjourn/2005-3/asknelly/nelly-sty-&-cls.pdf
 
 Useful Packages
 ===============
@@ -109,6 +140,8 @@ Helpers
 
 * http://www.lyx.org/
 * docutils
+
+  * http://docutils.sourceforge.net/docs/user/latex.html
 
 
 .. vim:filetype=rst
