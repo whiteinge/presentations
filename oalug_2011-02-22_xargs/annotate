@@ -1,0 +1,41 @@
+#! /bin/bash
+# Display stdout and stderr output after program termination
+# Adapted from annotate-output by Chuan-kai Lin
+# Original annotate-output author info and copyright notice as follows
+
+# this script was downloaded from:
+# http://jeroen.a-eskwadraat.nl/sw/annotate 
+# and is part of devscripts 2.10.46
+
+# Executes a program annotating the output linewise with time and stream
+# Version 1.2
+
+# Copyright 2003, 2004 Jeroen van Wolffelaar <jeroen@wolffelaar.nl>
+
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; version 2 of the License
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA
+
+OUT=`mktemp /tmp/atomic.XXXXXX` || exit 1
+ERR=`mktemp /tmp/atomic.XXXXXX` || exit 1
+
+# echo "------ `date +%H:%M:%S` Started $@" > $ERR
+# echo "------ STDERR" >> $ERR
+# echo "------ STDOUT" >> $OUT
+"$@" >> $OUT 2>> $ERR ; EXIT=$?
+
+cat $ERR
+cat $OUT
+# echo "------ `date +%H:%M:%S` Finished with exitcode $EXIT"
+rm -f $OUT $ERR
+
+exit $EXIT
