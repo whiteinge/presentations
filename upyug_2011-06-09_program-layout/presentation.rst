@@ -2,12 +2,14 @@
 Program layout best practices
 =============================
 
-:Organization: Utah Python User Group
+:Organization: Utah Django User Group
 :Author: Seth House <seth@eseth.com>
-:Date: 2011-06-09
+:Date: 2011-06-23
 
 Packages and modules
 ====================
+
+Packages and modules
 
 Module skeleton
 ---------------
@@ -151,12 +153,28 @@ Executing modules as scripts
 Django
 ======
 
+Django
+
+Avoid manage.py
+---------------
+
+.. r2b_note::
+
+    * Sets ``PYTHONPATH`` (not really but sort of)
+    * Sets ``DJANGO_SETTINGS_MODULE``
+    * Assumes ``settings.py``
+
+::
+
+    django-admin.py
+
 Avoid manage.py
 ---------------
 
 ::
 
-    django-admin.py
+    DJANGO_SETTINGS_MODULE=myproject.settings\
+            django-admin.py
 
 Avoid local_settings.py
 -----------------------
@@ -167,6 +185,140 @@ Avoid local_settings.py
         from local_settings import *
     except ImportError, exp:
         pass
+
+Avoid local_settings.py
+-----------------------
+
+::
+
+    from myproject.settings import *
+
+    INSTALLED_APPS += [
+        'djangodebugtoolbar',
+    ]
+
+    CACHES['default']['BACKEND'] = \
+            'django.core.cache.backends.
+                locmem.LocMemCache'
+
+Keep sensitive data out of settings
+-----------------------------------
+
+::
+
+    import ConfigParser
+    secret = ConfigParser.ConfigParser()
+    secret.optionxform = lambda x: x.upper()
+    secret.read('/path/to/mysecrets.conf')
+
+Keep sensitive data out of settings
+-----------------------------------
+
+::
+
+    SECRET_KEY = secret.get('MAIN', 'SECRET_KEY')
+    DATABASES = {
+        'default': dict(secret.items('DB_DEFAULT')),
+        'slave': dict(secret.items('DB_SLAVE')),
+    }
+
+Keep sensitive data out of settings
+-----------------------------------
+
+::
+
+    [MAIN]
+    SECRET_KEY = SW$RFDEW$TR
+
+    [DB_DEFAULT]
+    ENGINE = django.db.backends.postgresql_psycopg2
+    NAME = mydbname
+    USER = mydbuser
+
+Use managers
+------------
+
+::
+
+    class MyModel(models.Model):
+        @classmethod
+        def something(cls):
+            ...
+
+        @classmethod
+        def anotherthing(cls):
+            ...
+
+        @classmethod
+        def somethingelse(cls):
+            ...
+
+Use managers
+------------
+
+::
+
+    class MyModelManager(models.Manager):
+        def girls(self):
+            return self.filter(girls=True)
+
+        def boys(self):
+            return self.filter(boys=True)
+
+    class MyModel(models.Model):
+        objects = MyModelManager()
+    
+
+Use managers
+------------
+
+::
+
+    >>> from django.contrib.auth.models import User
+    >>> User.objects.create_superuser(...)
+    >>> User.objects.make_random_password()
+
+Use managers
+------------
+
+::
+
+    class MyModelManager(models.Manager):
+        def increment(self):
+            return self.update(
+                counter=models.F('counter') + 1)
+
+Use managers
+------------
+
+::
+
+    class MyModelManager(models.Manager):
+        def heavy_query(self):
+            sql = """\
+                SQL goes here...
+                """ % (self.model._meta.db_table)
+
+            cursor = connection.cursor()
+            cursor.execute(sql)
+
+            return dict(cursor.fetchall())
+    
+
+Use managers
+------------
+
+::
+
+    class MyModelManager(models.Manager):
+        def active(self):
+            return self.filter(pub_date__lte=now())
+
+        def complete(self):
+            return self.filter(content__isnull=False)
+
+        def public_forms(self):
+            return self.active().complete()
 
 Use managers
 ------------
@@ -189,6 +341,8 @@ Use managers
 
 Command-line apps
 =================
+
+Command-line apps
 
 The hashbang
 ------------
