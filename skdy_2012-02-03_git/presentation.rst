@@ -2,9 +2,9 @@
 Git: Remotes, Branching, and Rebasing
 =====================================
 
-:Organization: SendOutCards
+:Organization: Skullcandy
 :Author: Seth House <seth@eseth.com>
-:Date: 2011-07-22
+:Date: 2012-02-03
 
 .. raw:: latex
 
@@ -44,6 +44,13 @@ Mirroring a repo
 .. code-block:: bash
 
     git push --mirror myremote
+
+or:
+
+.. code-block:: bash
+
+    git push myremote \
+        refs/remotes/myremote/*:refs/heads/*
 
 Remote branches
 ---------------
@@ -144,13 +151,6 @@ Or:
 
     git fetch
     git rebase @{u}
-
-Or:
-
-.. code-block:: bash
-
-    git fetch
-    git reset --hard @{u}
 
 Branching
 =========
