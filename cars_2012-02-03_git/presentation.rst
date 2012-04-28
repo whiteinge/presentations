@@ -2,9 +2,9 @@
 Git: Remotes, Branching, and Rebasing
 =====================================
 
-:Organization: Skullcandy
+:Organization: Cars.com
 :Author: Seth House <seth@eseth.com>
-:Date: 2012-02-03
+:Date: 2012-04-27
 
 .. raw:: latex
 
