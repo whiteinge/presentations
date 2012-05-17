@@ -6,15 +6,9 @@ Sphinx, the Python Documentation System
 :Author: Seth House <seth@eseth.com>
 :Date: 2012-05-05
 
+.. include:: ../beamerdefs.txt
+
 .. |rST| replace:: reStructuredText
-
-.. Outline
-
-    * extensions
-
-    * hook points
-
-    * Appendix of output formats and links
 
 |rST| vs. Sphinx
 ================
@@ -25,39 +19,38 @@ Sphinx, the Python Documentation System
 
         The primary goal of reStructuredText is to define a markup syntax for
         use in Python docstrings and other documentation domains, that is
-        readable and simple, yet powerful enough for non-trivial use. The
-        intended purpose of the reStructuredText markup is twofold:
-
-        * the establishment of a set of standard conventions allowing the
-          expression of structure within plaintext, and
-        * the conversion of such documents into useful structured data formats.
+        readable and simple, yet powerful enough for non-trivial use.
 
         The secondary goal of reStructuredText is to be accepted by the Python
-        community [...] as a standard for Python inline documentation [...].
+        community […] as a standard for Python inline documentation.
 
-        - http://docutils.sourceforge.net/docs/ref/rst/introduction.html#goals
+        […]
+
+        10. Extensible. The markup should provide a simple syntax and interface
+            for adding more complex general markup, and custom markup.
+
+        — http://docutils.sourceforge.net/docs/ref/rst/introduction.html#goals
 
     The goals of Sphinx
 
         Extensive cross-references: semantic markup and automatic links for
         functions, classes, glossary terms and similar pieces of information.
-        [...] Automatic indices: general index as well as a module index.
+        […] Automatic indices: general index as well as a module index.
 
-        - http://pythonic.pocoo.org/2008/3/21/sphinx-is-released
+        — http://pythonic.pocoo.org/2008/3/21/sphinx-is-released
 
-* `reStructuredText Primer <http://sphinx.pocoo.org/rest.html>`_
-* `Sphinx Markup Constructs <http://sphinx.pocoo.org/markup>`_
+“reStructuredText Primer”
 
-|rST| `goal #10`__
+vs.
 
-    Extensible. The markup should provide a simple syntax and interface for
-    adding more complex general markup, and custom markup.
+“Sphinx Markup Constructs”
 
-.. __: http://docutils.sourceforge.net/docs/ref/rst/introduction.html#goals
+http://sphinx.pocoo.org/contents.html
 
 Vocabulary: directives
-======================
+----------------------
 
+Full list of default |rST| directives:
 http://docutils.sourceforge.net/docs/ref/rst/directives.html
 
 .. code-block:: rst
@@ -75,8 +68,9 @@ http://docutils.sourceforge.net/docs/ref/rst/directives.html
         (a simple paragraph).
 
 Vocabulary: roles
-=================
+-----------------
 
+Full list of default |rST| roles:
 http://docutils.sourceforge.net/docs/ref/rst/roles.html
 
 .. code-block:: rst
@@ -91,14 +85,14 @@ http://docutils.sourceforge.net/docs/ref/rst/roles.html
     :math:`A_\text{c} = (\pi/4) d^2`.
 
 Quick Start
-===========
+-----------
 
 .. code-block:: bash
 
     % sphinx-quickstart
 
 The TOC tree
-============
+------------
 
 .. container:: r2b-notes
 
@@ -122,7 +116,7 @@ The TOC tree
         numeric
 
 File organization
-=================
+-----------------
 
 .. code-block:: rst
 
@@ -135,6 +129,11 @@ File organization
 
 Cross-referencing documents
 ===========================
+
+Cross-referencing documents
+
+Cross-referencing documents
+---------------------------
 
 .. code-block:: rst
 
@@ -149,7 +148,7 @@ Cross-referencing documents
 * Index-generating references (``:envvar:``, ``:term:``, ``.. index::``)
 
 Semantic markup
-===============
+---------------
 
 * ``:abbr:``
 * ``:command:``
@@ -162,6 +161,11 @@ Semantic markup
 
 ``conf.py`` tricks
 ==================
+
+``conf.py`` tricks
+
+``conf.py`` tricks
+------------------
 
 It's Python!
 
@@ -186,37 +190,13 @@ It's Python!
 
 .. __: http://read-the-docs.readthedocs.org/en/latest/faq.html#i-get-import-errors-on-libraries-that-depend-on-c-modules
 
-Extensions
-==========
-
-* extlinks
-
-  .. code-block:: rst
-
-    :issue:`384`
-    
-* intersphinx (``objects.inv``)
-
-  .. code-block:: rst
-
-    :py:class:`zipfile.ZipFile`
-
-autodoc
-=======
-
-.. container:: r2b-note
-
-    * modules, classes, exceptions, functions, data, methods, attributes
-
-.. code-block:: rst
-
-    .. automodule:: mypackage.mymodule
-        :members:
-
-``autodoc-process-docstring(app, what, name, obj, options, lines)``
-
 Templating
 ==========
+
+Templating
+
+Templating
+----------
 
 .. code-block:: django
 
@@ -237,8 +217,47 @@ Templating
 
     html_sidebars = { ... }
 
-Extensions
-==========
+Built-in extensions
+===================
+
+Built-in extensions
+
+Built-in extensions
+-------------------
+
+* extlinks
+
+  .. code-block:: rst
+
+    :issue:`384`
+    
+* intersphinx (``objects.inv``)
+
+  .. code-block:: rst
+
+    :py:class:`zipfile.ZipFile`
+
+autodoc
+-------
+
+.. container:: r2b-note
+
+    * modules, classes, exceptions, functions, data, methods, attributes
+
+.. code-block:: rst
+
+    .. automodule:: mypackage.mymodule
+        :members:
+
+``autodoc-process-docstring(app, what, name, obj, options, lines)``
+
+Writing extensions
+==================
+
+Writing extensions
+
+Writing extensions
+------------------
 
 .. code-block:: python
 
@@ -257,7 +276,7 @@ Extensions
 .. ** vim syntax fix
 
 Sphinx build events
-===================
+-------------------
 
 http://sphinx.pocoo.org/ext/appapi.html#events
 
@@ -273,8 +292,13 @@ http://sphinx.pocoo.org/ext/appapi.html#events
     app.config
     app.builder.warn("Look out!")
 
+Appendix
+========
+
+Appendix
+
 Appendix: |rST| output formats
-==============================
+------------------------------
 
 * rst2html
 * rst2latex
@@ -284,7 +308,7 @@ Appendix: |rST| output formats
 * rst2xml
 
 Appendix: Sphinx builders
-=========================
+-------------------------
 
 * StandaloneHTMLBuilder
 * DirectoryHTMLBuilder
@@ -305,7 +329,7 @@ Appendix: Sphinx builders
 * CheckExternalLinksBuilder
 
 Appendix: Other links
-=====================
+---------------------
 
 * http://rst2a.com/
 * http://docutils.sourceforge.net/docs/user/links.html
