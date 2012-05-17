@@ -1,0 +1,75 @@
+.. Helper substitutions for getting Beamer one-off constructs into
+.. presentations run through rst2beamer.py
+.. Many thanks to Amjith <http://github.com/amjith>
+
+.. generic substitutions {{{1
+.. ...........................................................................
+
+.. Generic close block used by most of the following
+.. |>| raw:: latex
+
+    }
+
+.. inline substitutions {{{1
+.. ...........................................................................
+.. Usage:
+.. x    |small<| This is small |>|
+
+.. |title<| raw:: latex
+
+    \frametitle{
+
+.. |subtitle<| raw:: latex
+
+    \framesubtitle{
+
+.. |small<| raw:: latex
+
+    {\small
+
+.. block substitutions {{{1
+.. ...........................................................................
+.. Usage:
+.. x    |block<| This is a block title |>|
+.. x    This is the block content
+.. x    |end_block|
+
+.. |frame| raw:: latex
+
+    \begin{frame}
+
+.. |end_frame| raw:: latex
+
+    \end{frame}
+
+.. |center| raw:: latex
+
+    \begin{center}
+
+.. |end_center| raw:: latex
+
+    \end{center}
+
+.. |block<| raw:: latex
+
+    \begin{block}{
+
+.. |end_block| raw:: latex
+
+    \end{block}
+
+.. |example<| raw:: latex
+
+    \begin{exampleblock}{
+
+.. |end_example| raw:: latex
+
+    \end{exampleblock}
+
+.. |alert<| raw:: latex
+
+    \begin{alertblock}{
+
+.. |end_alert| raw:: latex
+
+    \end{alertblock}
