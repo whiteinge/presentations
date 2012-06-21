@@ -258,23 +258,276 @@ Arrays
 
 ``zshparam(1)`` manpage under "ARRAY PARAMETERS"
 
-Arrays
+Create
 ------
 
-Joins, splits, set operations(!)
+::
+
+    % local -a myarray
+    % myarray=( one two three )
+    % local -A myassoc
+    % myassoc=( keyone valone keytwo valtwo )
+
+Check the type
+--------------
+
+::
+
+    % echo ${(t)myarray}
+    array
+    % echo ${(t)myassoc}
+    association
+
+Get the size
+------------
+
+::
+
+    % echo ${#myarray}
+    3
+    % echo ${#myassoc}
+    2
+
+Get the keys/values (assoc)
+---------------------------
+
+::
+
+    % echo ${(k)myassoc}
+    keyone keytwo
+    % echo ${(v)myassoc}
+    valone valtwo
+    % echo ${(kv)myassoc}
+    keyone valone keytwo valtwo
+
+Append
+------
+
+::
+
+    % myarray+=( five )
+
+Change items in-place
+---------------------
+
+::
+
+    % myarray[4]=( four )
+
+Join
+----
+
+::
+
+    % echo ${(j:, :)myarray}
+    one, two, three, four
+
+    % echo ${(F)myarray}
+    one
+    two
+    three
+    four
+
+Split
+-----
+
+::
+
+    % stringbar="five six seven"
+    % arraybar=( ${(s: :)stringbar} )
+    % echo ${(j:, :)arraybar}
+    five, six, seven
+
+    % stringbaz="five\nsix\nseven"
+    % echo ${(f)stringbaz}
+    five
+    six
+    seven
+
+    % ${(f)"$(< "${myfile}")"}
+
+Indexing and slicing
+--------------------
+
+::
+
+    % echo ${myarray[1]}
+    one
+    % echo ${myarray[2,3]}
+    two three
+    % echo ${myarray[-1]}
+    four
+    % echo ${myarray[1,-1]}
+    one two three four
+
+Sorting
+-------
+
+::
+
+    % local -a unorderedarray
+    % unorderedarray=( d b e a f c )
+    % echo ${(o)unorderedarray}
+    a b c d e f
+    % echo ${(O)unorderedarray}
+    f e d c b a
+
+    % numerical=( 3 2 4 1 5 )
+    % echo ${(n)numerical}
+    1 2 3 4 5
+
+Set operations??!
+-----------------
+
+http://www.zsh.org/mla/workers/2008/msg01422.html
+
+Intersection::
+
+    % arrayleft=( one two three four )
+    % arrayright=( three four five six )
+    % echo ${(@M)arrayleft:#${(~j,|,)arrayright}}
+    three four
 
 Argument handling
 =================
 
 ``zshmodules(1)`` manpage under "zparseopts"
 
+Refresher::
+
+    $@
+        All positional params
+    $#
+        Number of positional params
+    $0
+        Name of script/function being called
+    $1 ... $9
+        Positional params
+
 zparseopts
 ----------
 
 ::
 
-    function mplayerx2() {
-        local -a args
-        zparseopts -D -E -a args -- s: -speed:
-        mplayer -af scaletempo -speed ${args[2]:=1.5} $1
-    }
+    zparseopts [ -D ] [ -K ] [ -M ] [ -E ] \
+            [ -a array ] [ -A assoc ] specs
+
+Each spec describes one option and must be of the form: ``opt[=array]``::
+
+    % set -- -a -b -c --long
+    % zparseopts a=o_a b=o_b c=o_c -long=o_long
+    % echo ${o_a}
+    -a
+    % ${o_long}
+    --long
+
+Mandatory arguments
+-------------------
+
+``opt:[=array]``::
+
+    % set -- -r
+    % zparseopts r:=o_r
+    zparseopts: missing argument for option: r
+
+    % set -- --one first --two=second --threethird
+    % zparseopts -one:=o_one -two:=o_two -three:=o_three
+    % echo ${(j:, :)o_one}
+    --one, first
+
+    # NOTE:
+    % echo ${(j:, :)o_two}
+    --two, =second
+    % echo ${(j:, :)o_three}
+    --three, third
+
+Optional arguments
+------------------
+
+.. FIXME: how to pull option out of the string in order to use the value??
+
+``opt::[=array]``::
+
+    % set -- --one first --two=second --threethird
+    % zparseopts -D -E -one::=o_one -two::=o_two \
+            -three::=o_three
+    % echo ${(j:, :)o_one}
+    --one
+    % echo ${(j:, :)o_two}
+    --two=second
+    % echo ${(j:, :)o_three}
+    --threethird
+    % echo $@
+    first
+
+Passing a flag more than once
+-----------------------------
+
+``name+[=array]``::
+
+    % set -- -v -v -v   # set -- -vvv
+    % zparseopts v+=o_v
+    % echo ${(j:, :)o_v}
+    -v, -v, -v
+
+Store options in a default array
+--------------------------------
+
+``-a``::
+
+    % set -- -a -b -c --long
+    % zparseopts -a myopts a b c -long
+    % echo ${(j:, :)myopts}
+    -a, -b, -c, --long
+
+Store options in a default associative array
+--------------------------------------------
+
+``-A``::
+
+    % set -- -a -b -c --long someval
+    % zparseopts -A myopts a b c -long:
+    % echo ${(kvF)myopts}
+    -a
+
+    -b
+
+    -c
+
+    --long
+    someval
+
+Remove captured options from positional params
+----------------------------------------------
+
+``-D``::
+
+    % set -- -i
+    % echo $#
+    1
+    % zparseopts -D i=o_i
+    % echo $#
+    0
+
+Continue parsing even if unknown option found
+---------------------------------------------
+
+``-E``::
+
+    % set -- -q -a
+    % zparseopts a=o_a
+    % echo $o_a
+
+    % zparseopts -E a=o_a
+    % echo $o_a
+    -a
+
+Example: using zparseopts in a function
+---------------------------------------
+
+::
+
+    helptext=""
+    zparseopts -- \
+        r:o_r \
+        || echo $helptext && return 1
