@@ -39,8 +39,8 @@ A series of twenty-minute presentations on Git.
 
     http://git-scm.com/book/
 
-Understanding Git objects
-=========================
+Git objects
+===========
 
 Commit objects
 --------------
@@ -195,8 +195,8 @@ Directed acyclic graph (DAG)
 
 .. figure:: img/branchesonetwo.pdf
 
-Understanding Git refnames
-==========================
+Git refnames
+============
 
 Git refs
 --------
@@ -339,8 +339,8 @@ Demonstration
 * Make a new commit
 * Delete that branch
 
-Understanding Git remotes
-=========================
+Git remotes
+===========
 
 Remotes
 -------
