@@ -339,6 +339,214 @@ Demonstration
 * Make a new commit
 * Delete that branch
 
+Merges and mergetool
+====================
+
+Fast-forward merges
+-------------------
+
+* Moves the branch pointer
+* That's it
+
+Demonstration
+-------------
+
+.. container:: r2b-note
+
+    ::
+
+        % git init testrepo && cd testrepo
+
+        % for commit in A B; do touch $commit && git add $commit && git commit -m "Added $commit" && git tag $commit; done
+
+        % git checkout -b testff
+        Switched to a new branch 'testff'
+
+        % touch C
+
+        % git add C
+
+        % git ci -m "Added C"
+
+        % git checkout master
+
+        % git graph-dag master testff | dot -Tpng | display
+
+        % git merge testff
+        Updating 2c55408..00ed466
+        Fast-forward
+         0 files changed, 0 insertions(+), 0 deletions(-)
+         create mode 100644 C
+
+        % git graph-dag HEAD | dot -Tpng | display
+
+* Make a new branch
+* Make a new commit
+* Return to the original branch
+* Merge the new branch
+
+Merge commits
+-------------
+
+.. container:: r2b-note
+
+    A merge commit makes it easier to revert an entire branch merge. There is a
+    single point for the merge so you don't have to trace which commits came
+    from where.
+
+* A commit object with two parents
+
+Demonstration
+-------------
+
+* Make a new branch
+* Make a new commit
+* Return to the original branch
+* Merge the new branch using ``--no-ff``
+
+.. container:: r2b-note
+
+    ::
+
+        % git init testrepo && cd testrepo
+
+        % for commit in A B; do touch $commit && git add $commit && git commit -m "Added $commit" && git tag $commit; done
+
+        % git checkout -b testff
+        Switched to a new branch 'testff'
+
+        % touch C
+
+        % git add C
+
+        % git ci -m "Added C"
+
+        % git checkout master
+
+        % git graph-dag master testff | dot -Tpng | display
+
+        % git merge --no-ff testff
+        Merge made by the 'recursive' strategy.
+         0 files changed, 0 insertions(+), 0 deletions(-)
+         create mode 100644 M
+
+        % git graph-dag HEAD | dot -Tpng | display
+
+Merge conflicts
+---------------
+
+* Stages all successful automatic merges
+* Surrounds conflicts with conflict markers
+
+Demonstration
+-------------
+
+* Make a branch
+* Make an edit
+* Make a new branch
+* Make a conflicting edit
+* Merge the other branch
+* Resolve the conflict
+* Stage the change
+* Commit (use/modify the default message)
+
+.. container:: r2b-note
+
+    ::
+
+        % git init testrepo
+
+        % cd ./testrepo
+
+        % echo "something is wrong" > A
+
+        % git add A && git commit -m "Added A" && git tag A
+
+        % for commit in B C D; do touch $commit && git add $commit && git commit -m "Added $commit" && git tag $commit; done
+
+        % echo "Something 1s Wrong" > A
+
+        % git add A
+
+        % git commit -m "Modified A"
+
+        % git checkout -b branchtwo A
+
+        % for commit in E F G H I; do touch $commit && git add $commit && git commit -m "Added $commit" && git tag $commit; done
+
+        % echo "Something Is Wrong" > A
+
+        % git add A
+
+        % git commit -m "Modified A"
+
+        % git checkout master
+
+        % git merge branchtwo
+        Auto-merging A
+        CONFLICT (content): Merge conflict in A
+        Automatic merge failed; fix conflicts and then commit the result.
+
+        % git status
+        # On branch master
+        # Changes to be committed:
+        #
+        #       new file:   E
+        #       new file:   F
+        #       new file:   G
+        #       new file:   H
+        #       new file:   I
+        #
+        # Unmerged paths:
+        #   (use "git add/rm <file>..." as appropriate to mark resolution)
+        #
+        #       both modified:      A
+        #
+
+        % cat A
+        <<<<<<< HEAD
+        Something 1s Wrong
+        =======
+        Something Is Wrong
+        >>>>>>> branchtwo
+
+        % vi A # fix the conflict
+
+        % git add A
+
+        % git commit
+
+mergetool
+---------
+
+.. container:: r2b-note
+
+    LOCAL
+        A temporary file containing the contents of the file on the current
+        branch.
+    BASE
+        A temporary file containing the common base for the merge.
+    REMOTE
+        A temporary file containing the contents of the file to be merged.
+    MERGED
+        The file containing the conflict markers. Git has performed as much
+        automatic conflict resolution as possible and the state of this file is
+        a combination of both LOCAL and REMOTE with conflict markers
+        surrounding anything that Git could not resolve itself. The mergetool
+        should write the result of the resolution to this file.
+
+Three-way merge
+
+* LOCAL
+* BASE
+* REMOTE
+* MERGED
+
+Demonstration
+-------------
+
+* View a merge conflict in a three-way diff program
+
 Git remotes
 ===========
 
