@@ -170,7 +170,7 @@ Directed acyclic graph (DAG)
     Your repository::
 
         % for commit in A B C D
-        for> touch $commit && git add $commit && git commit -m "Added $commit"
+        for> touch $commit && git add $commit && git commit -m "Added $commit" && git tag $commit
 
 .. figure:: img/branchone.pdf
 
@@ -182,7 +182,7 @@ Directed acyclic graph (DAG)
     Their repository::
 
         % for commit in E F G H I
-        for> touch $commit && git add $commit && git commit -m "Added $commit"
+        for> touch $commit && git add $commit && git commit -m "Added $commit" && git tag $commit
 
 .. figure:: img/branchtwo.pdf
 
@@ -415,8 +415,6 @@ Demonstration
         Auto-merging A
         CONFLICT (content): Merge conflict in A
         Automatic merge failed; fix conflicts and then commit the result.
-
-        % git mergetool
 
 * Fetch a remote branch
 * Compare commits
