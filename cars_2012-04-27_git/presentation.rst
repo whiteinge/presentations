@@ -39,8 +39,8 @@ A series of twenty-minute presentations on Git.
 
     http://git-scm.com/book/
 
-Git objects
-===========
+Objects
+=======
 
 Commit objects
 --------------
@@ -195,8 +195,8 @@ Directed acyclic graph (DAG)
 
 .. figure:: img/branchesonetwo.pdf
 
-Git refnames
-============
+refnames
+========
 
 Git refs
 --------
@@ -547,8 +547,8 @@ Demonstration
 
 * View a merge conflict in a three-way diff program
 
-Git remotes
-===========
+Remotes
+=======
 
 Remotes
 -------
