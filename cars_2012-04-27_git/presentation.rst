@@ -686,3 +686,183 @@ Remote tracking
 * At-a-glance comparison
 * Syntactic sugar
 * Track any ref (not just "remote branches")
+
+Rebase
+======
+
+Rebase on incoming changesets
+-----------------------------
+
+.. container:: r2b-note
+
+    “Forward-port local commits to the updated upstream head”
+
+    Defaults to rebasing onto the remote-tracking branch (``@{upstream}``).
+
+    Defaults to the current branch unless you specify which branch should be
+    checked out first.
+
+``git rebase <upstream> <branch>``
+
+* ``git fetch && git rebase``
+* ``git pull --rebase``
+
+Demonstration
+-------------
+
+.. container:: r2b-note
+
+    Create a contrived repository that reflects a local branch that is tracking
+    its remote counterpart and both have diverged::
+
+        % git init testrepo
+
+        % for commit in A B; do touch $commit && git add $commit && git commit -m "Added $commit" && git tag $commit; done
+
+        % git checkout -b fakeremote A
+
+        % for commit in C D E; do touch $commit && git add $commit && git commit -m "Added $commit" && git tag $commit; done
+
+        % git checkout master
+
+        % git update-ref refs/remotes/origin/master fakeremote
+
+        % git branch -D fakeremote
+
+        % git branch --set-upstream master origin/master
+
+        % git status
+        # On branch master
+        # Your branch and 'origin/master' have diverged,
+        # and have 1 and 3 different commit(s) each, respectively.
+        #
+        nothing to commit (working directory clean)
+
+        % git graph-dag master origin/master | dot -Tpng | display
+
+        % git rebase
+        First, rewinding head to replay your work on top of it...
+        Applying: Added B
+
+        % git graph-dag master origin/master | dot -Tpng | display
+
+* Simulate a local and upstream branch that have diverged
+* Rebase
+
+Rebase in detail
+----------------
+
+``git rebase <upstream> <branch>``
+
+* Commits shown by ``git log <upstream>..HEAD``
+* Current branch is reset ``git reset --hard <upstream>``
+* ``ORIG_HEAD`` is set to branch point before the reset
+* Commits reapplied, one by one, in order
+
+Demonstration
+-------------
+
+.. container:: r2b-note
+
+    ::
+
+        % git init testrepo
+
+        % cd testrepo
+
+        % for commit in A B; do touch $commit && git add $commit && git commit -m "Added $commit" && git tag $commit; done
+
+        % git checkout -b feature A
+
+        % for commit in C D E; do touch $commit && git add $commit && git commit -m "Added $commit" && git tag $commit; done
+
+        % git graph-dag master feature | dot -Tpng | display
+
+        % git rebase master
+        First, rewinding head to replay your work on top of it...
+        Applying: Added C
+        Applying: Added D
+        Applying: Added E
+
+        % git graph-dag master feature | dot -Tpng | display
+
+        % git graph-dag master feature E -- | dot -Tpng | display
+
+* Given two branches with divergent history
+* Replay the second branch on top of the first
+
+Rebase a subset (transplant)
+----------------------------
+
+* Transplant a topic branch based on one branch to another
+
+Demonstration
+-------------
+
+* Branch ``featureA`` based off ``master``
+* Branch ``featureB`` based off ``featureA``
+* Realize ``featureB`` is unrelated and should be based off ``master`` instead
+
+.. container:: r2b-note
+
+    ::
+
+        % git init testrepo
+
+        % cd ./testrepo
+
+        % for commit in A B C; do touch $commit && git add $commit && git commit -m "Added $commit" && git tag $commit; done
+
+        % git checkout -b featureA B
+
+        % for commit in D E F; do touch $commit && git add $commit && git commit -m "Added $commit" && git tag $commit; done
+
+        % git checkout -b featureB E
+
+        % for commit in G H; do touch $commit && git add $commit && git commit -m "Added $commit" && git tag $commit; done
+
+        % git graph-dag master featureA featureB | dot -Tpng | display
+
+        % git rebase --onto master E featureB
+        First, rewinding head to replay your work on top of it...
+        Applying: Added G
+        Applying: Added H
+
+        % git graph-dag master featureA featureB | dot -Tpng | display
+
+        % git graph-dag master featureA featureB H -- | dot -Tpng | display
+
+Demonstration
+-------------
+
+.. figure:: img/transplant.pdf
+
+Demonstration
+-------------
+
+.. figure:: img/transplanted.pdf
+
+Interactive
+-----------
+
+``git rebase -i HEAD~5``
+
+* Reshuffle, fixup, squash commits
+
+Demonstration
+-------------
+
+* Make seven commits
+* Squash, reword, and fixup
+
+.. container:: r2b-note
+
+    ::
+
+        % git init testrepo
+
+        % cd testrepo
+
+        % for commit in A B C D E F G; do touch $commit && git add $commit && git commit -m "Added $commit" && git tag $commit; done
+
+        % git rebase -i HEAD~5
