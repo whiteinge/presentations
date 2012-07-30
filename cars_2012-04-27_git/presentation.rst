@@ -866,3 +866,32 @@ Demonstration
         % for commit in A B C D E F G; do touch $commit && git add $commit && git commit -m "Added $commit" && git tag $commit; done
 
         % git rebase -i HEAD~5
+
+Objects internals
+=================
+
+Comparison to Mercurial and Subversion
+--------------------------------------
+
+.. container:: r2b-note
+
+    PyCon 2010:Hg and Git : Can't we all just get along? by Scott Chacon
+    http://www.fosslc.org/drupal/node/664
+
+    revlog is a common storage format for version control. Subversion,
+    Bitkeeper (?), and Mercurial all use it.
+
+    Mercurial and Git use a directed graph (DAG). With Subversion you have to
+    calculate the merge base manually.
+
+    revlog typically uses a changeset that points to a manifest that points to
+    a blob.
+
+revlog
+    A delta-based storage format.
+manifest
+    Flat list of files. Points to a previous manifest.
+blob
+    Points to a previous blob.
+
+associative storage
