@@ -809,28 +809,26 @@ Demonstration
 
         % git init testrepo
 
-        % cd ./testrepo
+        % cd testrepo
 
-        % for commit in A B C; do touch $commit && git add $commit && git commit -m "Added $commit" && git tag $commit; done
+        % for commit in A B C; do touch $commit && git add $commit && git commit -m "Added $commit"; done
 
-        % git checkout -b featureA B
+        % git checkout -b featureA HEAD~1
 
-        % for commit in D E F; do touch $commit && git add $commit && git commit -m "Added $commit" && git tag $commit; done
+        % for commit in D E F; do touch $commit && git add $commit && git commit -m "Added $commit"; done
 
-        % git checkout -b featureB E
+        % git checkout -b featureB HEAD~1
 
-        % for commit in G H; do touch $commit && git add $commit && git commit -m "Added $commit" && git tag $commit; done
+        % for commit in G H; do touch $commit && git add $commit && git commit -m "Added $commit"; done
 
         % git graph-dag master featureA featureB | dot -Tpng | display
 
-        % git rebase --onto master E featureB
+        % git rebase --onto master HEAD~2 featureB
         First, rewinding head to replay your work on top of it...
         Applying: Added G
         Applying: Added H
 
-        % git graph-dag master featureA featureB | dot -Tpng | display
-
-        % git graph-dag master featureA featureB H -- | dot -Tpng | display
+        % git graph-dag master featureA featureB ORIG_HEAD | dot -Tpng | display
 
 Demonstration
 -------------
