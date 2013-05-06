@@ -14,6 +14,14 @@
 
     \pause
 
+.. |center| raw:: latex
+
+    \begin{center}
+
+.. |end_center| raw:: latex
+
+    \end{center}
+
 .. inline substitutions {{{1
 .. ...........................................................................
 .. Usage:
@@ -45,14 +53,6 @@
 .. |end_frame| raw:: latex
 
     \end{frame}
-
-.. |center| raw:: latex
-
-    \begin{center}
-
-.. |end_center| raw:: latex
-
-    \end{center}
 
 .. |block<| raw:: latex
 
