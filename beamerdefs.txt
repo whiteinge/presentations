@@ -22,6 +22,22 @@
 
     \end{center}
 
+.. |left| raw:: latex
+
+    \begin{flushleft}
+
+.. |end_left| raw:: latex
+
+    \end{flushleft}
+
+.. |right| raw:: latex
+
+    \begin{flushright}
+
+.. |end_right| raw:: latex
+
+    \end{flushright}
+
 .. inline substitutions {{{1
 .. ...........................................................................
 .. Usage:
