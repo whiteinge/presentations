@@ -55,6 +55,14 @@
 
     {\small
 
+.. |t_alert<| raw:: latex
+
+    \alert{
+
+.. |t_structure<| raw:: latex
+
+    \structure{
+
 .. block substitutions {{{1
 .. ...........................................................................
 .. Usage:
