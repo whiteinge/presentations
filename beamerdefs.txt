@@ -78,6 +78,10 @@
 
     \end{frame}
 
+.. |part<| raw:: latex
+
+    \part{
+
 .. |block<| raw:: latex
 
     \begin{block}{
