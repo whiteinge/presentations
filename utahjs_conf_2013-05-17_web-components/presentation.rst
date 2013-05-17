@@ -18,7 +18,14 @@ An overview
 Slide notes
 -----------
 
-https://github.com/whiteinge/presentations/tree/master/utahjs_conf_2013-05-17_web-components
+.. container:: r2b-note
+
+    Each of these topics could be its own 50-minute presentation. Please review
+    the copious slide notes for more reading.
+
+`https://github.com/whiteinge/presentations`__
+
+.. __: https://github.com/whiteinge/presentations/tree/master/utahjs_conf_2013-05-17_web-components
 
 What are web components
 -----------------------
@@ -70,7 +77,7 @@ What are web components
 
         Google engineer; heavily involved in Polymer, html5rocks.com, more
 
-* ``<element>`` |pause|
+* ``<element>`` / ``document.register()`` |pause|
 * Shadow DOM |pause|
 * ``<template>`` |pause|
 * MutationObserver |pause|
@@ -80,13 +87,15 @@ What are web components
 Why are web components exciting?
 --------------------------------
 
-* Embeddable widgets
+* Encapsulation
 
-  * Social media buttons |pause|
+  * Embeddable widgets
 
-* Reusable element libs / element frameworks
+    (social media icons) |pause|
 
-  * Tabs, modals, nav bars, accordions, carousels, etc |pause|
+  * Reusable element libs / element frameworks
+
+    (tabs, modals, nav bars, accordions, carousels) |pause|
 
 * Front-end MV* frameworks
 
@@ -309,6 +318,9 @@ Template
 ========
 
 .. container:: r2b-note
+
+    * Used to provide a DOM structure. (Then, for example, a templating layer
+      could be placed above this such as MDV.)
 
     **Other resources**
 
@@ -585,6 +597,11 @@ Templating and data binding
         </template>
     </ul>
 
+Templating and data binding
+---------------------------
+
+.. code-block:: html
+
     <script>
         document.querySelector('#example').model = [
             {name: 'Sally', skills: ['carpentry']},
@@ -641,6 +658,15 @@ Polymer
 -------
 
 .. container:: r2b-note
+
+    * Custom elements
+
+      * Polyfills both the ``<element>`` tag and ``document.register()``
+
+    * Shadow DOM
+
+      * Polyfilled using wrapper elements
+      * No CSS encapsulation
 
     **Other resources**
 
