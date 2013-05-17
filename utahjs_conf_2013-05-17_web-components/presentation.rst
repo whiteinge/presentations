@@ -15,6 +15,11 @@ What's coming
 An overview
 ===========
 
+Slide notes
+-----------
+
+https://github.com/whiteinge/presentations/tree/master/utahjs_conf_2013-05-17_web-components
+
 What are web components
 -----------------------
 
