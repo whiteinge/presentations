@@ -18,6 +18,14 @@
 
     \end{frame}
 
+.. |plain| raw:: latex
+
+    \begin{frame}[plain]
+
+.. |end_plain| raw:: latex
+
+    \end{frame}
+
 .. |title<| raw:: latex
 
     \frametitle{
