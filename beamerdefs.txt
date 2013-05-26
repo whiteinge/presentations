@@ -1,18 +1,67 @@
-.. Helper substitutions for getting Beamer one-off constructs into
-.. presentations run through rst2beamer.py
-.. Many thanks to Amjith <http://github.com/amjith>
+.. Substitutions for Beamer constructs for use with rst2beamer.py
+.. vim:ft=rst
+
+.. global substitutions {{{1
+.. ............................................................................
+
+.. Insert a beamer frame::
+        |frame|
+        |title<| Title |>|
+        |subtitle<| Subtitle |>|
+        |end_frame|
+
+.. |frame| raw:: latex
+
+    \begin{frame}
+
+.. |end_frame| raw:: latex
+
+    \end{frame}
+
+.. |title<| raw:: latex
+
+    \frametitle{
+
+.. |subtitle<| raw:: latex
+
+    \framesubtitle{
+
+.. Mark the beginning of a completely different part of the presentation::
+        |part<| Unrelated Section Two |>|
+.. |part<| raw:: latex
+
+    \part{
+
+.. Place a logo text or image that will appear on each slide::
+        |logo<|
+        .. image:: logo.pdf
+            :height: 0.5 cm
+            :align: right
+        |>|
+.. |logo<| raw:: latex
+
+    \logo{
 
 .. generic substitutions {{{1
 .. ...........................................................................
 
-.. Generic close block used by most of the following
+.. Generic close block used by most of the following substitutions
 .. |>| raw:: latex
 
     }
 
+.. Insert an artibrary pause; useful for enumerations and elsewhere::
+        * My
+        * Neat |pause|
+        * List
 .. |pause| raw:: latex
 
     \pause
+
+.. Text alignment substitutions::
+        |center|
+        Centered content
+        |end_center|
 
 .. |center| raw:: latex
 
@@ -40,16 +89,9 @@
 
 .. inline substitutions {{{1
 .. ...........................................................................
-.. Usage:
-.. x    |small<| This is small |>|
 
-.. |title<| raw:: latex
-
-    \frametitle{
-
-.. |subtitle<| raw:: latex
-
-    \framesubtitle{
+.. Inline text styles::
+        |small<| This is small |>|
 
 .. |small<| raw:: latex
 
@@ -65,22 +107,11 @@
 
 .. block substitutions {{{1
 .. ...........................................................................
-.. Usage:
-.. x    |block<| This is a block title |>|
-.. x    This is the block content
-.. x    |end_block|
 
-.. |frame| raw:: latex
-
-    \begin{frame}
-
-.. |end_frame| raw:: latex
-
-    \end{frame}
-
-.. |part<| raw:: latex
-
-    \part{
+.. Example & alert blocks::
+        |block<| This is a block title |>|
+        This is the block content
+        |end_block|
 
 .. |block<| raw:: latex
 
