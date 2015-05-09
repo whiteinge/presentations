@@ -1,0 +1,104 @@
+cp ~ec2-user/.inputrc /root/
+exec bash
+service salt-master start
+exit
+salt-cloud -p trusty sethtest02
+salt-key 
+salt-cloud -p trusty sethtest04
+yum install salt-{master,cloud}
+vi /etc/yum.repos.d/epel.repo 
+yum install salt-{master,cloud}
+vi /etc/salt/cloud.providers.d/aws.conf
+mv ~ec2-user/2015openwest.pem /etc/salt/
+chmod 600 /etc/salt/2015openwest.pem 
+fg
+salt-cloud -p amazon-linux sethtest01
+salt '*' test.ping
+salt '*' test.ping
+ssh -i /etc/salt/2015openwest.pem ec2-user@10.235.160.68
+salt-cloud -d sethtest01
+salt-cloud -d sethtest02
+salt-cloud -u
+salt-cloud -p amazon-linux sethtest01
+salt-cloud -p amazon-linux sethtest03
+salt '*' test.ping
+salt-cloud -d sethtest03 sethtest04
+salt-key
+export PS1='\w \$ '
+cd
+salt-cloud -p trusty seth03 seth04 -P
+ssh -i /etc/salt/2015openwest.pem ec2-user@10.181.213.168
+salt seth01 state.sls apache
+salt seth01 state.sls apache
+salt '*' state.sls apache
+salt '*' pkg.list_pkgs
+salt '*' pkg.install httpd
+salt '*' state.sls apache
+salt '*' service.status httpd
+salt '*' state.sls apache
+salt '*' state.sls apache
+salt '*' test.ping
+service salt-master restart
+mkdir /srv/reactor
+ssh -i /etc/salt/2015openwest.pem ec2-user@10.181.213.168
+ssh -i /etc/salt/2015openwest.pem ec2-user@10.181.213.168
+export PS1='\w \$ '
+cd
+ls
+salt-cloud -p amazon-linux seth01 seth02 -P
+salt '*' test.ping
+salt '*' pkg.list_pkgs
+salt '*' pkg.install htop
+salt '*' cmd.run whoami
+salt '*' cmd.run uptime
+salt '*' cmd.run ifconfig
+salt '*' network.interfaces
+salt '*' network.interfaces --out=json
+salt '*' user.list_users
+salt '*' cmd.run_all ifconfig
+salt '*' network.ip_addrs
+salt '*' grains.items
+salt '*' grains.items --out=json
+salt '*' grains.items
+salt 'seth01' grains.setval roles '[web,caching]'
+salt 'seth01' grains.items | less
+salt '*' test.ping
+salt -G 'roles:web' test.ing
+salt -G 'roles:web' test.ping
+salt -G 'os_family:RedHat' test.ping
+salt -G 'os_family:Debian' test.ping
+salt --help |less
+salt -C 'seth02 and G@roles:web' test.ping
+salt -C 'seth02 or G@roles:web' test.ping
+salt 'seth01' cmd.run 'cat /etc/salt/grains'
+salt-key 
+salt-key -F
+salt '*' test.ping
+salt '*' test.ping --async
+salt-run jobs.lookup_jid 20150509205046996731
+salt '*' test.sleep 20 --async
+salt-run jobs.lookup_jid 20150509205427753445
+salt-run jobs.lookup_jid 20150509205427753445
+salt '*' test.sleep 20
+salt '*' test.sleep 20
+salt '*' test.sleep 40 --async
+salt seth01 saltutil.find_job 20150509205702419536
+salt seth01 saltutil.running
+salt 'seth01' network.ip_addrs
+salt '*' test.ping
+salt '*' test.ping
+salt '*' test.ping
+salt-run manage.status
+salt-run jobs.list_jobs
+salt-run jobs.running
+salt-run survey.diff '*' grains.get os_family
+salt '*' test.sleep 20
+mkdir /srv/salt
+vim /srv/salt/apache.sls
+salt-run state.events pretty=True
+salt-run state.event pretty=True
+vi /etc/salt/master 
+vim /etc/salt/master 
+salt-run jobs.list_jobs
+salt-run jobs.lookup_jid 20150509221023419810
+salt-run state.event pretty=True
