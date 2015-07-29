@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+
+        <title>React and RxJS</title>
+
+        <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+        <meta name="author" content="Hakim El Hattab">
+
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+        <link rel="stylesheet" href="css/reveal.css">
+        <link rel="stylesheet" href="css/theme/black.css" id="theme">
+
+        <!-- Code syntax highlighting -->
+        <link rel="stylesheet" href="lib/css/zenburn.css">
+
+        <!-- Printing and PDF exports -->
+        <script>
+                var link = document.createElement( 'link' );
+                link.rel = 'stylesheet';
+                link.type = 'text/css';
+                link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+                document.getElementsByTagName( 'head' )[0].appendChild( link );
+        </script>
+
+        <!--[if lt IE 9]>
+        <script src="lib/js/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+        <div class="reveal">
+            <div class="slides">
+
+                <section data-markdown>
+                    <script type="text/template">
+                    # React & RxJS
+                    ## Reactive programming using React with RxJS.
+
+                    ReactJS Utah - July 28, 2015
+
+                    Seth House
+                    @whiteinge (Twitter & GitHub)
+                    </script>
+                </section>
+
+                <section data-markdown>
+                    <script type="text/template">
+                    ## Reactive Extensions
+
+                    ![Rx](http://reactivex.io/assets/Rx_Logo_S.png)
+                    </script>
+                </section>
+
+                <section data-markdown>
+                    <script type="text/template">
+                    ## Observers
+
+                    ```javascript
+                    var Rx = require('rx');
+
+                    var myobsv = Rx.Observer.create(
+                        function(x) {
+                            console.log('onNext: ', x);
+                        },
+                        function(err) {
+                            console.log('onError: ', err);
+                        },
+                        function() {
+                            console.log('onCompleted: ', x);
+                        });
+
+                    myobsv.onNext(1);
+                    myobsv.onNext(2);
+                    myobsv.onCompleted();
+                    ```
+                    </script>
+                </section>
+
+                <section data-markdown>
+                    <script type="text/template">
+                    ```javascript
+                    var keyups = Rx.Observable.fromEvent($input, 'keyup')
+                    ```
+                    </script>
+                </section>
+
+                <section data-markdown>
+                    <script type="text/template">
+                    ## Observables
+
+                    ```javascript
+                    myobsv.subscribe(
+                        function(x) {
+                            console.log('onNext: ', x);
+                        },
+                        function(err) {
+                            console.log('onError: ', err);
+                        },
+                        function() {
+                            console.log('onCompleted: ', x);
+                        });
+
+                    ```
+                    </script>
+                </section>
+
+                <section data-markdown>
+                    <script type="text/template">
+                    ## Event Listenrs
+
+                    ```javascript
+                    var keysource = Rx.dom.keydown(window)
+                        .pluck('keycode')
+                        .filter(x => x === 27);
+
+                    var clicksource = Rx.dom.click(window)
+                        .skip(1) // ignore first click that opens the dropdown
+                        .filter(ev => document.querySelector('#thing')
+                            .contains(ev.target));
+
+                    keysource.merge(clicksource)
+                        .subscribe(closeModal);
+                    ```
+                    </script>
+                </section>
+
+                <section data-markdown>
+                    <script type="text/template">
+                    ## Fetching usernames from GitHub
+
+                    ```javascript
+                    var github_users = Rx.DOM.ajax({
+                            method: 'GET',
+                            url: 'https://api.github.com/users''});
+                        .filter(x => x.status === 200)
+                        .map(JSON.parse)
+                        // Cache the deserialized response.
+                        .shareReplay(1)
+                        // Explode items in JSON response into stream items.
+                        .flatMap(x => Rx.Observable.from(x));
+
+                    var usernames_list = github_users
+                        .pluck('login')
+                        .subscribe(x => console.log('GitHub user:', x));
+                    ```
+                    </script>
+                </section>
+
+                <section data-markdown>
+                    <script type="text/template">
+                    ## Combine users with click events
+
+                    ```javascript
+                    var clicks = Rx.DOM.click(document.querySelector('#thelink'));
+
+                    // Combine each click with a user.
+                    clicks.zip(usernames_list, (click, user) => user)
+                        // When the list is exhausted the event handler is removed.
+                        .subscribe(x => console.log('GitHub user:', x));
+                    ```
+                    </script>
+                </section>
+
+                <section data-markdown>
+                    <script type="text/template">
+                    ## Flux
+
+                    * Unidirectional data flow.
+                    * "Immutable" data structures.
+                    * Minimization of state tracking.
+                    </script>
+                </section>
+
+                <section data-markdown>
+                    <script type="text/template">
+                    ## Dispatcher
+
+                    ```javascript
+                    var Dispatcher = new Rx.Subject();
+                    ```
+                    </script>
+                </section>
+
+                <section data-markdown>
+                    <script type="text/template">
+                    ## Store
+
+                    ```javascript
+                    var myStore = Dispatcher
+                        .filter(x => x.fooEvents === true);
+
+                    var myAjax = myStore
+                        .startWith({action: 'refresh'})
+                        .filter(x => action === 'refresh')
+                        .flatMap(() => Rx.DOM.get('/some/url'))
+                        .shareReplay(1);
+
+                    var myAjaxSummarized = myAjax
+                        .map(summarizeData);
+                    ```
+                    </script>
+                </section>
+
+                <section data-markdown>
+                    <script type="text/template">
+                    ## View
+
+                    ```javascript
+                    var app = myAjaxSummarized
+                        .map(function(summaryData) {
+                            return (
+                                <h3 onClick={Dispatcher.onNext({
+                                    fooEvents: true, action: 'refresh',
+                                })}>Refresh</h3>
+
+                                <ul>
+                                {summaryData.map(x => <li>x</li>)}
+                                </ul>
+                            );
+                    ```
+                    </script>
+                </section>
+
+                <section data-markdown>
+                    <script type="text/template">
+                    ## Side-effects
+
+                    ```javascript
+                    app.subscribe(function(content) {
+                        React.render(
+                            React.createElement('div', content), 
+                            document.querySelector('#content'));
+                    });
+                    ```
+                    </script>
+                </section>
+
+                <section data-markdown>
+                    <script type="text/template">
+                    ## More side-effects
+
+                    ```javascript
+                    Dispatcher.subscribe(function(event) {
+                        console.log('Dispatching event', event);
+                    });
+                    ```
+                    </script>
+                </section>
+           </div>
+        </div>
+
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.js"></script>
+
+        <script>
+
+                // Full list of configuration options available at:
+                // https://github.com/hakimel/reveal.js#configuration
+                Reveal.initialize({
+                        controls: true,
+                        progress: true,
+                        history: true,
+                        center: true,
+
+                        transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+                        // Optional reveal.js plugins
+                        dependencies: [
+                                { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                                { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                                { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                                { src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+                                { src: 'plugin/zoom-js/zoom.js', async: true },
+                                { src: 'plugin/notes/notes.js', async: true }
+                        ]
+                });
+
+        </script>
+
+</body>
+</html>
