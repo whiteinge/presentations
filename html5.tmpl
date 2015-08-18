@@ -10,167 +10,109 @@
 
     * {{ -webkit-print-color-adjust: exact; }}
 
-    .note {{ display: none; }}
-
-    section {{
+    body {{
         text-align: center;
     }}
 
+    .note {{ display: none; }}
+
     .frame {{
-        position: static;
+        page-break-before: always;
+
         width: 100%;
-        height: auto;
-
-        left: auto;
-        top: auto;
-        margin: 0 !important;
-        padding: 0 !important;
-
-        overflow: visible;
-
-        page-break-after: always !important;
-    }}
-
-    body {{
-        width: auto !important;
-        height: auto !important;
-        overflow: hidden !important;
-
-        background: #222;
-        background-color: #222;
-        font-family: "Source Sans Pro", Helvetica, sans-serif;
-        font-size: 38px;
-        font-weight: normal;
-        color: #fff;
-        line-height: 1.3;
-        margin: 0 auto !important;
-        border: 0;
-        padding: 0;
-        float: none !important;
-        overflow: visible;
-    }}
-
-    html {{
-            width: 100%;
-            height: 100%;
-            overflow: visible;
+        height: 100%;
+        overflow: hidden;
     }}
 
     h1, h2, h3, h4, h5, h6 {{
-        margin: 0 auto;
-        color: #fff;
-        font-family: "Source Sans Pro", Helvetica, sans-serif;
-        font-weight: 600;
-        line-height: 1.2;
-        letter-spacing: normal;
+        margin: 0;
         text-transform: uppercase;
-        text-shadow: 0 0 0 #000 !important;
         word-wrap: break-word;
     }}
-
-    h1 {{ font-size: 2.5em; text-shadow: none; }}
-    h2 {{ font-size: 1.6em; }}
-    h3 {{ font-size: 1.3em; }}
-    h4 {{ font-size: 1em; }}
-
-    p {{
-    margin: 20px 0;
-    line-height: 1.3; }}
-
-    /* Ensure certain elements are never larger than the slide itself */
-    img, video, iframe {{
-    max-width: 95%;
-    max-height: 95%; }}
 
     ol, dl, ul {{
-    display: inline-block;
-    text-align: left;
-    margin: 0 0 0 1em; }}
-
-    ol {{ list-style-type: decimal; }}
-    ul {{ list-style-type: disc; }}
-
-    ul ul {{ list-style-type: square; }}
-    ul ul ul {{ list-style-type: circle; }}
-    ul ul, ul ol, ol ol, ol ul {{
-    display: block;
-    margin-left: 40px; }}
-
-    dt {{ font-weight: bold; }}
-    dd {{ margin-left: 40px; }}
-
-    q, blockquote {{ quotes: none; }}
-    blockquote {{
-    display: block;
-    position: relative;
-    width: 70%;
-    margin: 20px auto;
-    padding: 5px;
-    font-style: italic;
-    background: rgba(255, 255, 255, 0.05);
-    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2); }}
-
-    blockquote p:first-child, blockquote p:last-child {{
-    display: inline-block; }}
-
-    q {{ font-style: italic; }}
-
-    pre {{
-        overflow: hidden !important;
-        font-family: Courier, "Courier New", monospace !important;
-        display: block;
-        position: relative;
-        width: 90%;
-        margin: 20px auto;
         text-align: left;
-        font-size: 0.55em;
-        font-family: monospace;
-        line-height: 1.2em;
-        word-wrap: break-word;
-        box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3);
+        margin: 0 0 0 1em;
     }}
 
-    code {{ font-family: monospace; }}
-    pre.code {{
-    display: block;
-    padding: 5px;
-    overflow: auto;
-    max-height: 400px;
-    word-wrap: normal;
-    background: #3F3F3F;
-    color: #DCDCDC; }}
+    pre {{
+        overflow: hidden;
+        width: 90%;
+        margin: 0 auto;
+        text-align: left;
+    }}
 
-    a {{
-    color: #42affa;
-    text-decoration: none;
-    -webkit-transition: color 0.15s ease;
-    -moz-transition: color 0.15s ease;
-    transition: color 0.15s ease; }}
+    p {{
+        line-height: 1.3;
+    }}
 
-    a:hover {{
-    color: #8dcffc;
-    text-shadow: none;
-    border: none; }}
+    /* Ensure elems no larger than the frame. */
+    img, video, iframe {{
+        max-width: 95%;
+        max-height: 95%;
+    }}
 
-    .roll span:after {{
-    color: #fff;
-    background: #068ee9; }}
+    .slide-background {{
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: -1;
+    }}
 
-    section img {{
-    margin: 15px 0px;
-    background: rgba(255, 255, 255, 0.12);
-    border: 4px solid #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15); }}
+    /* Fonts *********************************************************************/
 
-    a img {{
-    -webkit-transition: all 0.15s linear;
-    -moz-transition: all 0.15s linear;
-    transition: all 0.15s linear; }}
+    body {{
+    font-size: 1.4375em;
+    line-height: 1.391304348em;
+    }}
+    h1 {{
+    font-size: 1.695652174em;
+    line-height: 1.64102564em;
+    margin-top: 1.64102564em;
+    margin-bottom: 0.82051282em;
+    }}
+    h2 {{
+    font-size: 1.434782609em;
+    line-height: 1.939393938em;
+    margin-top: 1.93939394em;
+    margin-bottom: 0.96969697em;
+    }}
+    h3 {{
+    font-size: 1.173913043em;
+    line-height: 1.185185186em;
+    margin-top: 1.18518519em;
+    margin-bottom: 1.18518519em;
+    }}
+    h4 {{
+    font-size: 1em;
+    line-height: 1.391304348em;
+    margin-top: 1.39130435em;
+    margin-bottom: 1.39130435em;
+    }}
+    p, ul, ol, pre, table, blockquote {{
+    margin-top: 1.39130435em;
+    margin-bottom: 1.39130435em;
+    }}
 
-    a:hover img {{
-    background: rgba(255, 255, 255, 0.2);
-    border-color: #42affa;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.55); }}
+    /* Theme *********************************************************************/
+
+    body {{
+        background-color: #222;
+        font-family: 'Source Sans Pro', Helvetica, sans-serif;
+        color: #fff;
+    }}
+
+    h1, h2, h3, h4, h5, h6 {{
+        color: #fff;
+    }}
+
+    pre {{
+        font-family: Courier, 'Courier New', monospace;
+        background: #3F3F3F;
+        color: #DCDCDC;
+    }}
     </style>
 
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.7/styles/default.min.css">
