@@ -1,6 +1,8 @@
 2015
 ====
 
+* `A (practical) Introduction to Rx <https://github.com/whiteinge/presentations/tree/master/utahjs_2015-08-18_rx>`__
+* `Using Rx with React <https://github.com/whiteinge/presentations/tree/master/reactjsutah_2015-07-29_react-rx>`__
 * `Configuration management with Salt <https://github.com/whiteinge/presentations/tree/master/openwest_2015-05-09_intro-to-salt>`__
 * `Configuration management best practices <https://github.com/whiteinge/presentations/tree/master/saltconf_2015_configuration-management-best-practices>`__
 
