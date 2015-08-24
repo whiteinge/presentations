@@ -1,6 +1,7 @@
 2015
 ====
 
+* `React and RxJS <https://github.com/whiteinge/presentations/tree/master/react-rally_2015-08-24_react-rxjs>`__
 * `A (practical) Introduction to Rx <https://github.com/whiteinge/presentations/tree/master/utahjs_2015-08-18_rx>`__
 * `Using Rx with React <https://github.com/whiteinge/presentations/tree/master/reactjsutah_2015-07-29_react-rx>`__
 * `Configuration management with Salt <https://github.com/whiteinge/presentations/tree/master/openwest_2015-05-09_intro-to-salt>`__
