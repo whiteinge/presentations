@@ -344,21 +344,38 @@ Shares the Flux philosophy:
     Props are ok. Avoid setState(). Absolutely everything goes through the
     dispatcher.
 
+    Influenced by `What if the user was a Function`__ by Andre Staltz.
+
+    .. __: https://www.youtube.com/watch?v=1zj7M1LnJV4
+
 
 .. class:: frame
 
 Dispatcher
 ==========
 
+Push messages to subscribers; receive messages from elsewhere:
+
 .. code:: javascript
 
     var Dispatcher = new Rx.Subject();
 
-.. container:: note
 
-    Heavily influenced by `What if the user was a Function`__ by Andre Staltz.
+.. class:: frame
 
-    .. __: https://www.youtube.com/watch?v=1zj7M1LnJV4
+Dispatcher
+==========
+
+Example message:
+
+.. code:: javascript
+
+    {
+         channel: MY_MODULE,
+         type: act.SOME_ACTION,
+         data: {extraData: 'important'},
+         args: [DOMEvent],
+    }
 
 
 .. class:: frame
@@ -366,14 +383,26 @@ Dispatcher
 Store
 =====
 
+Subscribe only to certain channels:
+
 .. code:: javascript
 
     var myStore = Dispatcher
-        .filter(x => x.fooEvents === true);
+        .filter(x => x.channel === channels.MY_MODULE);
+
+
+.. class:: frame
+
+Store
+=====
+
+*Manage* state; don't store state.
+
+.. code:: javascript
 
     var myAjax = myStore
-        .startWith({action: actions.REFRESH})
-        .filter(x => action === 'refresh')
+        .startWith({type: act.REFRESH})
+        .filter(x => x.type === act.REFRESH)
         .flatMap(() => Rx.DOM.get('/some/url'))
         .shareReplay(1);
 
@@ -388,12 +417,12 @@ Store
 Store
 =====
 
+Accumulate values over time:
+
 .. code:: javascript
 
-    var myStore = Dispatcher
-        .filter(x => x.fooEvents === true);
-
     var clickCounter = myStore
+        .filter(x => x.type === act.CLICK)
         .scan((acc, x) => { acc += 1; return acc }, 0);
 
 
@@ -402,13 +431,14 @@ Store
 Store
 =====
 
+Combine multiple stores:
+
 .. code:: javascript
 
-    var myStore = Dispatcher
-        .filter(x => x.fooEvents === true);
+    import {otherStore} from 'related/module';
 
     var combinedStore = myStore
-        .combineLatest(otherStore, (x, y) => ({x: x, y: y}));
+        .combineLatest(otherStore, (x, y) => ({x, y}));
 
 
 .. class:: frame
@@ -416,19 +446,24 @@ Store
 View
 ====
 
+Just another transformation step in the stream.
+
 .. code:: javascript
 
     var app = myAjaxSummarized
         .map(function(summaryData) {
             return (
                 <h3 onClick={(ev) => {Dispatcher.onNext({
-                    fooEvents: true, action: actions.REFRESH,
+                    channel: channels.MY_MODULE,
+                    type: act.REFRESH,
                 })}}>Refresh</h3>
 
                 <ul>
-                {summaryData.map(x => <li>x</li>)}
+                    {summaryData.map(x => <li>x</li>)}
                 </ul>
             );
+
+Push messages back into the Dispatcher. (Constants / action creators.)
 
 .. container:: note
 
@@ -440,8 +475,37 @@ View
 
 .. class:: frame
 
+Helpers
+=======
+
+Enforce an interface with a helper function.
+
+.. code:: javascript
+
+    function sendMsg(channel, action, data = {}) {
+        return function(...args) {
+            var msg = {channel, action, data, args};
+            return Dispatcher.onNext(msg);
+        };
+    }
+
+Reduce repetition with currying.
+
+.. code:: javascript
+
+    const send = _.curry(sendMsg, channels.MY_MODULE, 2);
+
+    <h3 onClick={
+        send(type.REFRESH, {extraData: 'important'})
+    }>Refresh</h3>
+
+
+.. class:: frame
+
 Side-effects
 ============
+
+Rendering to the DOM is a one-way side-effect.
 
 .. code:: javascript
 
@@ -450,24 +514,6 @@ Side-effects
             React.createElement('div', content), 
             document.querySelector('#content'));
     });
-
-
-.. class:: frame
-
-Helpers
-=======
-
-.. code:: javascript
-
-    function send(tag, data = {}) {
-        return function(...args) {
-            var msg = {tag: tag, data: data, args: args};
-            return Dispatcher.onNext(msg);
-        };
-    }
-
-    // <h3 onClick={
-    //      send(actions.REFRESH, {fooEvents: true})}>Refresh</h3>
 
 
 .. class:: frame
@@ -515,11 +561,11 @@ Record the dispatcher:
         .subscribe(writeRecording);
 
     // => [
-    //  {action: actions.AUTOCOMPLETE, data: {text: 's'}},
-    //  {action: actions.AUTOCOMPLETE, data: {text: 'se'}},
-    //  {action: actions.AUTOCOMPLETE, data: {text: 'sea'}},
-    //  {action: actions.AUTOCOMPLETE, data: {text: 'sear'}},
-    //  {action: actions.AUTOCOMPLETE, data: {text: 'searc'}},
+    //  {type: act.AUTOCOMPLETE, data: {text: 's'}},
+    //  {type: act.AUTOCOMPLETE, data: {text: 'se'}},
+    //  {type: act.AUTOCOMPLETE, data: {text: 'sea'}},
+    //  {type: act.AUTOCOMPLETE, data: {text: 'sear'}},
+    //  {type: act.AUTOCOMPLETE, data: {text: 'searc'}},
     //  ...
     // ]
 
