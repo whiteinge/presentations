@@ -594,7 +594,7 @@ Slides: https://github.com/whiteinge/presentations
 
 * `The big list of Rx methods <https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md>`__
 * `The Rx Decision Tree <http://reactivex.io/documentation/operators.html#connectable>`__
-* `Netflix's introduction to map/filter/reduce/etc <http://reactivex.io/documentation/operators.html>`__
+* `Netflix's introduction to map/filter/reduce/etc <http://reactivex.io/learnrx/>`__
 * `RxMarbles <http://rxmarbles.com/>`__
 
 .. container:: note
