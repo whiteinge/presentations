@@ -1,6 +1,7 @@
 2015
 ====
 
+* `h() Wrapper Around React.createElement() <https://github.com/whiteinge/presentations/tree/master/2015-09-29_saltstack_h-wrapper/>`__
 * `React and RxJS <https://github.com/whiteinge/presentations/tree/master/react-rally_2015-08-24_react-rxjs>`__
 * `A (practical) Introduction to Rx <https://github.com/whiteinge/presentations/tree/master/utahjs_2015-08-18_rx>`__
 * `Using Rx with React <https://github.com/whiteinge/presentations/tree/master/reactjsutah_2015-07-29_react-rx>`__
