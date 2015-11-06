@@ -38,7 +38,7 @@ Compare and Contrast w/ JSX
         </ul>
     );
 
-.. code:: javascript
+    // vs
 
     return (
         h('ul', [
@@ -71,6 +71,14 @@ Compare and Contrast w/ JSX
 
 .. code:: javascript
 
+    React.createElement('ul', {
+        className: 'someclass',
+    }, [
+        React.createElement('li', null, ['foo']),
+    ]);
+
+    // vs.
+
     h('ul.someclass', [
         h('li', 'foo'),
     ]);
@@ -78,13 +86,8 @@ Compare and Contrast w/ JSX
 
 .. class:: frame
 
-Pretend ``h()`` is HTML
-=======================
-
-* Indent the *same way* you would with HTML.
-
-
-.. class:: frame
+Indent ``h()`` exactly like with HTML
+=====================================
 
 .. code:: javascript
 
@@ -93,41 +96,191 @@ Pretend ``h()`` is HTML
             <li>foo</li>
             <li>bar</li>
         </ul>
-
-        <span>Span Stuff</span>
-        <span>More span Stuff</span>
+        <p>Para Stuff</p>
     </div>
 
-.. code:: javascript
+    // and
 
     h('div', [
         h('ul', [
             h('li', 'foo'),
             h('li', 'bar'),
         ]),
-        h('span', 'Span stuff'),
-        h('span', 'More span stuff'),
+        h('p', 'Para stuff'),
     ]);
 
 
 .. class:: frame
 
+Add ``id`` and ``class`` inline
+===============================
+
 .. code:: javascript
 
-    <div foo='Foo'
-            bar='Bar'
-            baz='Baz'>
-         <span class="classone">Span Stuff</span>
-         <span class="classtwo">More span Stuff</span>
+    <div id="foo" class="bar">Foo</div>
+
+    // vs.
+
+    h('div#foo.bar', 'Foo');
+
+
+.. class:: frame
+
+Use custom HTML attributes like with HTML
+=========================================
+
+.. code:: javascript
+
+    <div
+            foo="Foo"
+            bar="Bar"
+            baz="Baz"
+        >
+        Content here.
     </div>
 
-.. code:: javascript
+    // and
 
     h('div', {
             foo: 'Foo',
             bar: 'Bar',
             baz: 'Baz',
-        }, [
-        h('span.classone', 'Span stuff'),
-        h('span.classtwo', 'More span stuff'),
-    ]);
+        },
+        'Content here.');
+
+
+.. class:: frame
+
+But ``h()`` is JavaScript
+=========================
+
+.. code:: javascript
+
+    h('ul', arrayOfStuff.map(x => h('li', x)));
+
+    // and
+
+    h('table.ss-table', [
+        h('thead',
+            h('tr', visibleGrains.map(x =>
+                h('th.search-header', searchHeader(x))))),
+
+        h('tbody', grains.map(mgrains =>
+            h('tr', mgrains.map(gval =>
+                h('td', gval))))),
+        ]);
+
+
+.. class:: frame
+
+Use JavaScript variables with ``h()``
+=====================================
+
+.. code:: javascript
+
+    var color = 'red';
+
+    h('p', {
+        className: color,
+    }, 'I am red.');
+
+
+Watch out for JavaScript reserved words.
+
+
+.. class:: frame
+
+Use ``h()`` with React Components
+=================================
+
+.. code:: javascript
+
+    import {MyComponent} from './components';
+
+    h(MyComponent, {props: 'here'});
+
+
+.. class:: frame
+
+Components
+==========
+
+* Complex.
+* Verbose.
+* Stateful.
+* Great for encapsulating *private* state or making advanced use of lifecycle
+  methods.
+
+
+.. class:: frame
+
+Components
+==========
+
+.. code:: javascript
+
+    // Creation
+    var MyComponent = React.createClass({
+        propTypes: {
+            ...,
+        },
+        function lifecycleStuffs() {
+            ...,
+        },
+        function someHelperMethod() {
+            ...,
+        },
+        function render() {
+            return h('p', 'stuff');
+        },
+    });
+
+
+.. class:: frame
+
+Stateless functional components
+===============================
+
+.. code:: javascript
+
+    var MyComponent = function(props) {
+        return h('p', 'A component!');
+    };
+
+    h(MyComponent);
+
+
+.. class:: frame
+
+And don't overlook the humble function
+======================================
+
+.. code:: javascript
+
+    var assembleAWhole = function(part1, part2) {
+        return h('div', [
+            part1,
+            part2,
+        ]);
+    };
+
+    // example
+
+    var foo = h('p', 'foo');
+    var bar = h('p', 'bar');
+    var vtreeMarkup = assembleAWhole(foo, bar);
+
+
+.. class:: frame
+
+Escalate to more complexity as needed
+=====================================
+
+* Do you need to...
+
+  * Output straightforward, possibly nested markup?  ``h()``
+  * Combine different bits of markup, possibly dynamically?  ``function``
+  * Want a reusable HTML element? ``Stateless function component``
+  * Want to abstract away complicated markup behind a callable interface?
+    ``Stateless function component``, or ``function``.
+  * Need internal state tracking or lifecycle hooks? ``component``
