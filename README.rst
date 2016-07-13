@@ -1,3 +1,8 @@
+2016
+====
+
+* `A Practical Introduction to Reactive Programming <https://github.com/whiteinge/presentations/tree/master/openwest_2016-07_reactive-programming>`__
+
 2015
 ====
 
