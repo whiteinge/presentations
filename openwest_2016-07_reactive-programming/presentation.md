@@ -9,6 +9,9 @@ Open West 2016
 by Seth House  
 @whiteinge
 
+https://github.com/whiteinge/presentations/  
+tree/master/openwest_2016-07_reactive-programming
+
 ## What is Reactive?
 
 * Declarative.
@@ -204,6 +207,131 @@ TakeUntil.
 * Reuse & share the underlying subscription, or
 * Subscribe individually.
 
+# Use Rx
+
+## Use Descision Trees
+
+* [Which RxJS creation operator?](https://github.com/Reactive-Extensions/RxJS/blob/master/doc/gettingstarted/which-static.md)
+* [Which RxJS instance operator?](https://github.com/Reactive-Extensions/RxJS/blob/master/doc/gettingstarted/which-instance.md)
+
+## Merge Observables
+
+Example questions to ask when combining Ajax requests:
+
+* Output each response as soon as it comes in?
+* Output each response in the same order as the request?
+* Wait for both to complete and combine them?
+* Do one request, and use the result within the next?
+
+## Debugging
+
+```js
+myObservable
+    .filter(x => x.someAttr)
+    .do(x => console.log('Passed the filter: ', x))
+    .map(doSomethingWithSomeAttr)
+    .do(x => console.log('Current value of x: ', x));
+```
+
+# Long Examples
+
+## Close a Modal
+
+```js
+var keysource = Rx.dom.keydown(window)
+    .pluck('keycode')
+    .filter(x => x === 27); // escape key
+
+var clicksource = Rx.dom.click(window)
+    .skip(1) // ignore first click that opens the modal
+    .filter(ev => document.querySelector(this).contains(ev.target));
+
+keysource.merge(clicksource)
+    .take(1)
+    .subscribe(closeModal);
+```
+
+## Track Application State
+
+React's Flux implemented in RxJS. [Full
+example](https://gist.github.com/whiteinge/e8edb98ca8e94d769b8b827de6082427).
+
+```js
+var Dispatcher = new Rx.Subject();
+
+var Store1 = Dispatcher
+    .filter(x => x.tag === 'foo')
+    .scan(collectUserInput)
+    .flatMap(ajaxRequest);
+
+var View1 = Store1
+    .map(formatResponseAsHTML);
+
+var contentEl = document.querySelector('#content');
+var renderer = View1.subscribe(function(content) {
+    React.render(content, contentEl);
+});
+
+```
+
+<div class="notes">
+Simple but _heavily_ customizable (easy to add routing, logging, modules).
+</div>
+
+## Serve HTTP Requests
+
+Use Node.js's builtin HTTP module. [Full example](https://gist.github.com/whiteinge/997d2be18f51637340dc).
+
+```js
+var requests$ = createServer(8000).share();
+
+var handleSomePath = requests$
+    .filter(x => return x.req.url === '/somepath')
+    [...];
+
+function createServer(port) {
+    return Rx.Observable.create(function(observer) {
+        var server = http.createServer(function(req, resp) {
+            observer.onNext({req: req, resp: resp});
+        });
+
+        server.listen(port);
+
+        // Disposing the server observable will stop the server.
+        return function() {
+            observer.onCompleted();
+            server.close();
+        };
+    });
+}
+```
+
+## Listen to Salt's Event Bus
+
+Using RxPy. (Watch for Salt PR.)
+
+```python
+def salt_events_observable(observer):
+    log.debug('Starting Salt event listener.')
+    event_bus = salt.utils.event.get_event(...)
+
+    def deserialize_and_emit(raw):
+        mtag, data = salt.utils.event.SaltEvent.unpack(raw)
+        observer.on_next({'tag': mtag, 'data': data})
+
+    def destroy():
+        log.debug('Destroying Salt event listener.')
+        event_bus.destroy()
+
+    event_bus.set_event_handler(deserialize_and_emit)
+    return destroy
+
+source = Observable.create(salt_events_observable).publish().ref_count()
+job_events = source
+    .filter(lambda x: fnmatch(x['tag'], 'salt/job/*/ret/*'))
+    .subscribe(lambda x: print('Job Event: {0}'.format(x)))
+```
+
 # Resources
 
 ## Sandbox
@@ -216,7 +344,8 @@ data:text/html,<!doctype html><html><script src="https://cdnjs.cloudflare.com/aj
 
 API Docs:
 
-* [The Big List (TM) of operators](https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md)
+* [Operators documentation](http://reactivex.io/documentation/operators.html)
+* [The Big List (TM) of RxJS operators](https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md)
 
 Decision Trees:
 
