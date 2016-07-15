@@ -70,6 +70,23 @@ Ruby, Scala, and Swift.
 
 Platform-specific support for Android, Cocoa, and Netty.
 
+## In Action
+
+```js
+var source = new Rx.Subject();
+
+var subscription1 = source.subscribe(x => console.log('Sub1 next', x));
+var subscription2 = source.subscribe(
+    x => console.log('Sub2 next', x),
+    err => console.log('Sub2 err', err),
+    () => console.log('Sub2 completed.'));
+
+source.onNext('foo');
+subscription1.dispose();
+source.onNext('bar');
+source.onCompleted();
+```
+
 # Short Examples
 
 ## Ajax Request
