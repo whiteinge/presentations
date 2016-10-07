@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>salt-api</title>
+        <meta charset="utf-8">
+        <style>
+        @page {
+            size: 908px 681px;
+            margin: 0;
+        }
+        @media print {
+            .remark-slide-scaler {
+                width: 100% !important;
+                height: 100% !important;
+                transform: scale(1) !important;
+                top: 0 !important;
+                left: 0 !important;
+            }
+        }
+        body { font-family: 'Droid Serif'; }
+        h1, h2, h3 {
+            font-family: 'Droid Sans';
+            font-weight: normal;
+        }
+        .remark-code, .remark-inline-code { font-family: 'Droid Mono'; }
+        a, a > code {
+            color: rgb(249, 38, 114);
+            text-decoration: none;
+        }
+        code {
+            background: #e7e8e2;
+            border-radius: 5px;
+        }
+        .remark-code-line-highlighted     { background-color: #373832; }
+        .pull-left {
+            float: left;
+            width: 47%;
+        }
+        .pull-right {
+            float: right;
+            width: 47%;
+        }
+        .pull-right ~ p {
+            clear: both;
+        }
+        #slideshow .slide .content code {
+            font-size: 0.8em;
+        }
+        #slideshow .slide .content pre code {
+            font-size: 0.9em;
+            padding: 15px;
+        }
+        .inverse {
+            background: #272822;
+            color: #777872;
+            text-shadow: 0 0 20px #333;
+        }
+        .inverse h1, .inverse h2 {
+            color: #f3f3f3;
+            line-height: 0.8em;
+        }
+        .left-column {
+            color: #777;
+            width: 20%;
+            height: 92%;
+            float: left;
+        }
+        .left-column h2:last-of-type, .left-column h3:last-child {
+            color: #000;
+        }
+        .right-column {
+            width: 75%;
+            float: right;
+            padding-top: 1em;
+        }
+        </style>
+    </head>
+    <body>
+        <textarea id="source">
+
+name: section
+layout: true
+class: center, middle, inverse
+
+---
+
+template: section
+background-image: url(assets/planet-salt.png)
+background-repeat: no-repeat
+background-size: contain
+
+# salt-api
+
+## An Overview
+
+by Seth House
+@whiteinge
+
+---
+
+class: center, middle
+layout: false
+
+# salt-api
+
+---
+
+## Generic, modular network access system
+
+```
+commit eb78df5d092dbf69645a8018dd630b644685798f
+Author: Thomas S Hatch <thatch45@gmail.com>
+Date:   Tue Sep 18 16:34:34 2012 -0700
+
+    Initial commit
+
+diff --git a/README.md b/README.md
+new file mode 100644
+index 0000000..f901767
+--- /dev/null
++++ b/README.md
+@@ -0,0 +1,4 @@
++salt-api
++========
++
++Generic, modular network access system
+\ No newline at end of file
+```
+
+---
+
+## Parts
+
+* `salt-api` script & daemon.
+* Netapi modules.
+* _Salt_.
+
+  * Python API.
+  * Eauth.
+
+---
+
+## Netapi Modules
+
+* Bind to a port.
+* Start a service.
+
+---
+
+## Pre-reqs
+
+* Salt's Python API.
+  https://docs.saltstack.com/en/latest/ref/clients
+
+---
+
+## *Client Interfaces
+
+* LocalClient.
+* Caller.
+* RunnerClient.
+* WheelClient.
+* CloudClient.
+* SSHClient.
+* NetapiClient.
+
+[Features comparison.](https://github.com/saltstack/salt/issues/32778)
+
+---
+
+## `LocalClient`
+
+```py
+local = salt.client.LocalClient()
+local.cmd('*', 'cmd.run', ['whoami'])
+```
+
+---
+
+## `LocalClient.cmd()`
+
+```py
+cmd(
+    tgt,
+    fun,
+    arg=(),
+    timeout=None,
+    expr_form='glob',
+    ret='',
+    jid='',
+    kwarg=None,
+    **kwargs)
+```
+
+`kwargs` can include eauth credentials.
+
+---
+
+## `NetapiClient`
+
+1.  Accept a `low` payload.
+2.  Is the master running?
+3.  Does the `low` data contain eauth credentials?
+4.  Which client should this `low` payload go to?
+5.  Instantiate that client and pass the `low` to the right method.
+
+---
+
+## `rest_cherrypy`
+
+* Regular wsgi app.
+* Can be run via:
+
+  * salt-api daemon (managing the builtin CherryPy server).
+  * Any other wsgi-capable web server.
+
+* Since we now dep on Tornado, logical to switch to Saltnado.
+
+  * Still a lot of work and testing to do.
+  * No immediate plans or ongoing effort.
+  * Async API should be in Salt-core.
+  * https://github.com/saltstack/salt/issues/26505
+
+---
+
+## `rest_cherrypy` Features
+
+* Written to drive a JavaScript SPA.
+* Content-negotiation for requests and responses.
+* Light wrapper around Salt's Python API.
+* Can execute multiple Salt commands in a single request/response.
+* Most operations can use a session token/cookie for convenience.
+* Most endpoints are workflow conveniences.
+
+---
+
+## `rest_cherrypy` *Non*-Features
+
+* `rest_cherrypy` and `salt-api` do *not* enforce authentication or authorization.
+* Requires Salt for all operations -- does not do anything in addition to Salt, by design.
+
+---
+
+## `rest_cherrypy` Endpoints
+
+* `/`
+* `/logout`, `/logout`
+* `/minions`
+* `/jobs`
+* `/run`
+* `/events`
+* `/hook`
+* `/keys`
+* `/ws`
+* `/stats`
+
+---
+
+template: section
+
+# Demo Time
+
+        </textarea>
+
+        <script src="assets/remark-latest.min.js"></script>
+        <script>
+        var slideshow = remark.create({
+            navigation: {
+                scroll: false,
+            },
+            highlightLines: true,
+        });
+        </script>
+    </body>
+</html>
