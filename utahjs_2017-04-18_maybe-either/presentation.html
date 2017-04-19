@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Maybe's and Either's for worry-free dot-chaining</title>
+        <meta charset="utf-8">
+        <style>
+        @page {
+            size: 908px 681px;
+            margin: 0;
+        }
+        @media print {
+            .remark-slide-scaler {
+                width: 100% !important;
+                height: 100% !important;
+                transform: scale(1) !important;
+                top: 0 !important;
+                left: 0 !important;
+            }
+        }
+        body { font-family: 'Droid Serif'; }
+        h1, h2, h3 {
+            font-family: 'Droid Sans';
+            font-weight: normal;
+        }
+        .remark-code, .remark-inline-code { font-family: 'Droid Mono'; }
+        a, a > code {
+            color: rgb(249, 38, 114);
+            text-decoration: none;
+        }
+        code {
+            background: #e7e8e2;
+            border-radius: 5px;
+        }
+        .remark-code-line-highlighted     { background-color: #373832; }
+        .pull-left {
+            float: left;
+            width: 47%;
+        }
+        .pull-right {
+            float: right;
+            width: 47%;
+        }
+        .pull-right ~ p {
+            clear: both;
+        }
+        #slideshow .slide .content code {
+            font-size: 0.8em;
+        }
+        #slideshow .slide .content pre code {
+            font-size: 0.9em;
+            padding: 15px;
+        }
+        .inverse {
+            background: #272822;
+            color: #777872;
+            text-shadow: 0 0 20px #333;
+        }
+        .inverse h1, .inverse h2 {
+            color: #f3f3f3;
+            line-height: 0.8em;
+        }
+        .left-column {
+            color: #777;
+            width: 20%;
+            height: 92%;
+            float: left;
+        }
+        .left-column h2:last-of-type, .left-column h3:last-child {
+            color: #000;
+        }
+        .right-column {
+            width: 75%;
+            float: right;
+            padding-top: 1em;
+        }
+        </style>
+    </head>
+    <body>
+        <textarea id="source">
+
+name: section
+layout: true
+class: center, middle, inverse
+
+---
+
+template: section
+
+# Maybe's and Either's for worry-free dot-chaining
+
+## UtahJS SLC 2017-04
+
+by Seth House
+@whiteinge
+
+https://github.com/whiteinge/presentations
+
+---
+
+class: center, middle
+layout: false
+
+# Maybe and Either?
+
+![](assets/fantasy-land.png)
+
+???
+
+Maybe's and Either's are two very small parts of a very large family of
+interconnecting things. The topic has deep roots in mathmatics and comes with a
+series of formal specifications and laws. Plus it uses a host of unusual terms
+(at first glance) and ideas.
+
+But we're not going to get into any of that for two reasons: one, I don't know
+it well enough yet; and two, the interfaces these definitions provide are
+immediately useful for solving real-world problems without having to know the
+underlying theory.
+
+It is plausible that I will make mistakes and run afoul of a formal definition
+or two during this presentation. But the purpose of this presentation is not to
+be precise but rather to show you why this topic can be compelling so that you
+can dive into the specifics at your leisure if you are so inclined. This
+presentation will end with resources for further reading.
+
+---
+
+## Dot-chaining (Lodash)
+
+```js
+var minion_table = _.chain(minion_grains)
+    .values()
+    .map('grains')
+    .filter(x => x.cpuarch != 'sparc')
+    .slice(curPageStart, curPageOffset)
+    .sortBy('num_cpus', 'num_gpus')
+    .map(x => _.pick(x, visibleColumns))
+    .groupBy('os')
+    .value()
+```
+
+---
+
+## Dot-chaining (RxJS)
+
+```js
+var konamiCode = $(document).keyupAsObservable()
+    .map(ev => ev.keyCode)
+    .windowWithCount(10, 1)
+    .selectMany(x => x.sequenceEqual(konami))
+    .filter(equal => equal)
+    .subscribe(() => console.log('KONAMI!'));
+```
+
+---
+
+## Maybe
+
+* Represents a value.
+* ...or not a value.
+* Pass it around as though it was a value.
+* Resolve it when you care; fall back to a default.
+
+---
+
+## Either
+
+* Represents a success or failure condition.
+* Pass it around as though it was a value.
+* Resolve it when you care; handle both options.
+
+---
+
+## Other Common Interfaces
+
+* Accumulate validation errors – Validation.
+* Abstract away asynchronous tasks – Task.
+* ...or build your own.
+
+---
+
+template: section
+
+# Resources
+
+---
+
+class: center, middle
+layout: false
+
+![](assets/origami.png)
+
+[Folktale](http://folktalejs.org/)
+
+http://folktalejs.org/
+
+???
+
+Watch out for the version 1 to version 2 switchover.
+
+---
+
+class: center, middle
+layout: false
+
+![](assets/prof-frisby.png)
+
+https://egghead.io/courses/professor-frisby-introduces-composable-functional-javascript
+
+???
+
+Incredibly approachable introduction.
+
+---
+
+class: center, middle
+layout: false
+
+![](assets/james-forbes.png)
+
+https://james-forbes.com/?/posts/the-perfect-api
+
+???
+
+Great salesmanship on the "why".
+
+---
+
+class: center, middle
+layout: false
+
+![](assets/erik-meijer.png)
+
+Erik Meijer – The essence of interface-based design
+
+https://www.youtube.com/watch?v=JMP6gI5mLHc
+
+???
+
+Great 1-to-1 mapping between the esoteric mathmatical terms and the programming
+equivalents.
+
+---
+
+class: center, middle
+layout: false
+
+![](assets/how-to-bake-pi.png)
+
+http://www.goodreads.com/book/show/23360039-how-to-bake-pi
+
+???
+
+Fun, approachable read on the math.
+
+---
+
+class: center, middle
+layout: false
+
+![](assets/brian-beckman.png)
+
+Brian Beckman: Don't fear the Monad
+
+https://www.youtube.com/watch?v=ZhuHCtR3xq8
+
+???
+
+Dense but enthusiastic.
+
+        </textarea>
+
+        <script src="assets/remark-latest.min.js"></script>
+        <script>
+        var slideshow = remark.create({
+            navigation: {
+                scroll: false,
+            },
+            highlightLines: true,
+        });
+        </script>
+    </body>
+</html>

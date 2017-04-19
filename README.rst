@@ -1,3 +1,8 @@
+2017
+====
+
+* `Maybe and Either for Worry-Free dot-chaining <https://github.com/whiteinge/presentations/tree/master/utahjs_2017-04-18_maybe-either>`__
+
 2016
 ====
 
