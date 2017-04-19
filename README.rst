@@ -7,6 +7,8 @@
 ====
 
 * `A Practical Introduction to Reactive Programming <https://github.com/whiteinge/presentations/tree/master/openwest_2016-07_reactive-programming>`__
+* `salt-api: An Overview <https://github.com/whiteinge/presentations/tree/master/saltstack_2016-10-07_salt-api>`__
+* `Rx Combining Operators <https://github.com/whiteinge/presentations/tree/master/saltstack_2016_06-15_rx-combining-operators>`__
 
 2015
 ====

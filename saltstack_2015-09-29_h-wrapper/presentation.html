@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>h() Wrapper</title>
+    <meta charset="utf-8" />
+
+    <style>
+    /*
+    rst2html5pdf
+
+    A print style sheet to transform the output of rst2html5 into a PDF for slides.
+    */
+
+    * { -webkit-print-color-adjust: exact; }
+
+    body {
+        text-align: center;
+    }
+
+    .note { display: none; }
+
+    .frame {
+        page-break-before: always;
+
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        margin: 0;
+        text-transform: uppercase;
+        word-wrap: break-word;
+    }
+
+    ol, dl, ul {
+        text-align: left;
+        margin: 0 0 0 1em;
+    }
+
+    pre {
+        overflow: hidden;
+        width: 90%;
+        margin: 0 auto;
+        text-align: left;
+    }
+
+    p {
+        line-height: 1.3;
+    }
+
+    /* Ensure elems no larger than the frame. */
+    img, video, iframe {
+        max-width: 95%;
+        max-height: 95%;
+    }
+
+    .slide-background {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: -1;
+    }
+
+    .heading-img {
+        height: 2em;
+        position: absolute;
+        padding-left: 1em;
+    }
+
+    .bigger {
+        font-size: larger;
+    }
+
+    /* Fonts *********************************************************************/
+
+    body {
+    font-size: 1.4375em;
+    line-height: 1.391304348em;
+    }
+    h1 {
+    font-size: 1.695652174em;
+    line-height: 1.64102564em;
+    margin-top: 1.64102564em;
+    margin-bottom: 0.82051282em;
+    }
+    h2 {
+    font-size: 1.434782609em;
+    line-height: 1.939393938em;
+    margin-top: 1.93939394em;
+    margin-bottom: 0.96969697em;
+    }
+    h3 {
+    font-size: 1.173913043em;
+    line-height: 1.185185186em;
+    margin-top: 1.18518519em;
+    margin-bottom: 1.18518519em;
+    }
+    h4 {
+    font-size: 1em;
+    line-height: 1.391304348em;
+    margin-top: 1.39130435em;
+    margin-bottom: 1.39130435em;
+    }
+    p, ul, ol, pre, table, blockquote {
+    margin-top: 1.39130435em;
+    margin-bottom: 1.39130435em;
+    }
+
+    /* Theme *********************************************************************/
+
+    body {
+        background-color: #222;
+        font-family: 'Source Sans Pro', Helvetica, sans-serif;
+        color: #fff;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        color: #fff;
+    }
+
+    pre {
+        font-family: Courier, 'Courier New', monospace;
+        background: #3F3F3F;
+        color: #DCDCDC;
+    }
+
+    a {
+        color: #42affa;
+        text-decoration: none;
+    }
+
+    a:hover {
+        color: #8dcffc;
+    }
+    </style>
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.7/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.7/highlight.min.js"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function(ev) {
+        var codeElems = document.querySelectorAll("pre.code");
+
+        Array.prototype.forEach.call(codeElems, function(block) {
+            hljs.highlightBlock(block);
+        });
+    });
+    </script>
+
+</head>
+<body><div class="container">
+    <h1>h() Wrapper</h1>
+    <p><code>h()</code> wrapper</p>
+    <section class="frame" id="virtual-hyperscript">
+        <h2>virtual-hyperscript</h2>
+        <p><a href="https://github.com/Matt-Esch/virtual-dom/tree/master/virtual-hyperscript">A DSL for creating virtual trees</a></p>
+    </section>
+    <section class="frame" id="many-implementations">
+        <h2>Many Implementations</h2>
+        <ul>
+            <li>Ours: <a href="https://gist.github.com/whiteinge/02a4868ff91aeacf3b99">https://gist.github.com/whiteinge/02a4868ff91aeacf3b99</a></li>
+            <li>react-hyperscript: <a href="https://github.com/mlmorg/react-hyperscript">https://github.com/mlmorg/react-hyperscript</a></li>
+            <li>r-dom: <a href="https://github.com/uber/r-dom">https://github.com/uber/r-dom</a></li>
+            <li>Or, maybe: <code>var h = React.createElement.bind(React);</code></li>
+        </ul>
+    </section>
+    <section class="frame" id="compare-and-contrast-w-jsx">
+        <h2>Compare and Contrast w/ JSX</h2>
+        <pre class="code javascript">return (
+    &lt;ul&gt;
+        &lt;li&gt;foo&lt;/li&gt;
+        &lt;li&gt;bar&lt;/li&gt;
+    &lt;/ul&gt;
+);
+
+// vs
+
+return (
+    h('ul', [
+        h('li', 'foo'),
+        h('li', 'bar'),
+    ])
+);</pre>
+    </section>
+    <section class="frame" id="react-createelement">
+        <h2><code>React.createElement()</code></h2>
+        <pre class="code javascript">// React.createElement('element', {attributes}, [children]);
+
+React.createElement('ul', {
+    className: 'someclass',
+}, [
+    React.createElement('li', null, ['foo']),
+]);</pre>
+    </section>
+    <section class="frame" id="h-is-a-shortcut">
+        <h2><code>h()</code> is a shortcut</h2>
+        <pre class="code javascript">React.createElement('ul', {
+    className: 'someclass',
+}, [
+    React.createElement('li', null, ['foo']),
+]);
+
+// vs.
+
+h('ul.someclass', [
+    h('li', 'foo'),
+]);</pre>
+    </section>
+    <section class="frame" id="indent-h-exactly-like-with-html">
+        <h2>Indent <code>h()</code> exactly like with HTML</h2>
+        <pre class="code javascript">&lt;div&gt;
+    &lt;ul&gt;
+        &lt;li&gt;foo&lt;/li&gt;
+        &lt;li&gt;bar&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;p&gt;Para Stuff&lt;/p&gt;
+&lt;/div&gt;
+
+// and
+
+h('div', [
+    h('ul', [
+        h('li', 'foo'),
+        h('li', 'bar'),
+    ]),
+    h('p', 'Para stuff'),
+]);</pre>
+    </section>
+    <section class="frame" id="add-id-and-class-inline">
+        <h2>Add <code>id</code> and <code>class</code> inline</h2>
+        <pre class="code javascript">&lt;div id="foo" class="bar"&gt;Foo&lt;/div&gt;
+
+// vs.
+
+h('div#foo.bar', 'Foo');</pre>
+    </section>
+    <section class="frame" id="use-custom-html-attributes-like-with-html">
+        <h2>Use custom HTML attributes like with HTML</h2>
+        <pre class="code javascript">&lt;div
+        foo="Foo"
+        bar="Bar"
+        baz="Baz"
+    &gt;
+    Content here.
+&lt;/div&gt;
+
+// and
+
+h('div', {
+        foo: 'Foo',
+        bar: 'Bar',
+        baz: 'Baz',
+    },
+    'Content here.');</pre>
+    </section>
+    <section class="frame" id="but-h-is-javascript">
+        <h2>But <code>h()</code> is JavaScript</h2>
+        <pre class="code javascript">h('ul', arrayOfStuff.map(x =&gt; h('li', x)));
+
+// and
+
+h('table.ss-table', [
+    h('thead',
+        h('tr', visibleGrains.map(x =&gt;
+            h('th.search-header', searchHeader(x))))),
+
+    h('tbody', grains.map(mgrains =&gt;
+        h('tr', mgrains.map(gval =&gt;
+            h('td', gval))))),
+    ]);</pre>
+    </section>
+    <section id="use-javascript-variables-with-h">
+        <h2>Use JavaScript variables with <code>h()</code></h2>
+        <pre class="code javascript">var color = 'red';
+
+h('p', {
+    className: color,
+}, 'I am red.');</pre>
+        <p>Watch out for JavaScript reserved words.</p>
+    </section>
+    <section class="frame" id="use-h-with-react-components">
+        <h2>Use <code>h()</code> with React Components</h2>
+        <pre class="code javascript">import {MyComponent} from './components';
+
+h(MyComponent, {props: 'here'});</pre>
+    </section>
+    <section class="frame" id="components">
+        <h2>Components</h2>
+        <ul>
+            <li>Complex.</li>
+            <li>Verbose.</li>
+            <li>Stateful.</li>
+            <li>Great for encapsulating <em>private</em> state or making advanced use of lifecycle methods.</li>
+        </ul>
+    </section>
+    <section class="frame" id="id1">
+        <h2>Components</h2>
+        <pre class="code javascript">// Creation
+var MyComponent = React.createClass({
+    propTypes: {
+        ...,
+    },
+    function lifecycleStuffs() {
+        ...,
+    },
+    function someHelperMethod() {
+        ...,
+    },
+    function render() {
+        return h('p', 'stuff');
+    },
+});</pre>
+    </section>
+    <section class="frame" id="stateless-functional-components">
+        <h2>Stateless functional components</h2>
+        <pre class="code javascript">var MyComponent = function(props) {
+    return h('p', 'A component!');
+};
+
+h(MyComponent);</pre>
+    </section>
+    <section class="frame" id="and-don-t-overlook-the-humble-function">
+        <h2>And don't overlook the humble function</h2>
+        <pre class="code javascript">var assembleAWhole = function(part1, part2) {
+    return h('div', [
+        part1,
+        part2,
+    ]);
+};
+
+// example
+
+var foo = h('p', 'foo');
+var bar = h('p', 'bar');
+var vtreeMarkup = assembleAWhole(foo, bar);</pre>
+    </section>
+    <section class="frame" id="escalate-to-more-complexity-as-needed">
+        <h2>Escalate to more complexity as needed</h2>
+        <ul>
+            <li>Do you need to...
+                <ul>
+                    <li>Output straightforward, possibly nested markup? <code>h()</code></li>
+                    <li>Combine different bits of markup, possibly dynamically? <code>function</code></li>
+                    <li>Want a reusable HTML element? <code>Stateless function component</code></li>
+                    <li>Want to abstract away complicated markup behind a callable interface? <code>Stateless function component</code>, or <code>function</code>.</li>
+                    <li>Need internal state tracking or lifecycle hooks? <code>component</code></li>
+                </ul>
+            </li>
+        </ul>
+    </section>
+</div></body>
+</html>
