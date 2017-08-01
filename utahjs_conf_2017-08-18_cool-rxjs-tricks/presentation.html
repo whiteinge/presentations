@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Cool RxJS Tricks</title>
+        <meta charset="utf-8">
+        <style>
+        @page {
+            size: 908px 681px;
+            margin: 0;
+        }
+        @media print {
+            .remark-slide-scaler {
+                width: 100% !important;
+                height: 100% !important;
+                transform: scale(1) !important;
+                top: 0 !important;
+                left: 0 !important;
+            }
+        }
+        body { font-family: 'Droid Serif'; }
+        h1, h2, h3 {
+            font-family: 'Droid Sans';
+            font-weight: normal;
+        }
+        .remark-code, .remark-inline-code { font-family: 'Droid Mono'; }
+        a, a > code {
+            color: rgb(249, 38, 114);
+            text-decoration: none;
+        }
+        code {
+            background: #e7e8e2;
+            border-radius: 5px;
+        }
+        .remark-code-line-highlighted     { background-color: #373832; }
+        .pull-left {
+            float: left;
+            width: 47%;
+        }
+        .pull-right {
+            float: right;
+            width: 47%;
+        }
+        .pull-right ~ p {
+            clear: both;
+        }
+        #slideshow .slide .content code {
+            font-size: 0.8em;
+        }
+        #slideshow .slide .content pre code {
+            font-size: 0.9em;
+            padding: 15px;
+        }
+        .inverse {
+            background: #272822;
+            color: #777872;
+            text-shadow: 0 0 20px #333;
+        }
+        .inverse h1, .inverse h2 {
+            color: #f3f3f3;
+            line-height: 0.8em;
+        }
+        .left-column {
+            color: #777;
+            width: 20%;
+            height: 92%;
+            float: left;
+        }
+        .left-column h2:last-of-type, .left-column h3:last-child {
+            color: #000;
+        }
+        .right-column {
+            width: 75%;
+            float: right;
+            padding-top: 1em;
+        }
+        </style>
+    </head>
+    <body>
+        <textarea id="source">
+
+name: section
+layout: true
+class: center, middle, inverse
+
+---
+
+template: section
+
+# Cool RxJS Tricks
+
+## UtahJS Conf 2017
+
+by Seth House
+@whiteinge
+
+https://github.com/whiteinge/presentations
+
+???
+
+Outline
+
+RxJS has been catching on in the JavaScript world in a big way and has a lot of
+people very excited. The learning curve has a reputation as steep and it's not
+always clear what all the excitement is about. This talk will demonstrate
+real-world examples of things RxJS can make almost trivial that are very
+difficult to do with promises and even async/await. We will skip an
+introduction and focus on live demos, but tips and resources for how to get
+started will be provided at the end. Some of the topics we will demonstrate are
+below and will range from difficult operations plucked from real, production
+code to games and jokes.
+
+* Juggle complex coordination of many XHR requests.
+* Granularly track XHR progress.
+* Caching then freeing resources.
+* A drop-in poller with incremental back-off.
+* Facebook's Flux architecture.
+* Routing.
+* Easy state management.
+* Controlling side-effects.
+* Effortless drag and drop.
+* The Konami code as an easter egg.
+* A different way to think about async.
+
+Come to be amazed and ready to be excited to dive into RxJS on your own.
+
+---
+
+class: center, middle
+layout: false
+
+# Reactive Extensions
+
+![](assets/rx.png)
+
+???
+
+There are many flavors of reactive programming and many implementations of
+observables. Reactive Extensions by Microsoft is a mature and full featured
+library that has been implemented across at least twenty languages and
+environments.
+
+http://reactivex.io/languages.html
+
+We will be using RxJS version 4 in this talk. RxJS version 5 recently came out
+of beta which is a ground-up rewrite that has some performance and debuging
+improvements. However RxJS 4 is a rock-solid and battle-tested version that
+will be maintained for the forseable future and I plan to wait for a few
+versions before switching. All the concepts in this talk are applicable to
+both.
+
+---
+
+
+        </textarea>
+
+        <script src="assets/remark-latest.min.js"></script>
+        <script>
+        var slideshow = remark.create({
+            navigation: {
+                scroll: false,
+            },
+            highlightLines: true,
+        });
+        </script>
+    </body>
+</html>
