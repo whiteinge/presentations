@@ -1,0 +1,57 @@
+{
+  "name": "utahjs_conf_2017-08-18_cool-rxjs-tricks",
+  "author": "Seth House <seth@eseth.com> (http://eseth.org)",
+  "version": "1.0.0",
+  "license": "Apache-2.0",
+  "description": "Cool RxJS Tricks demo code",
+  "private": false,
+  "keywords": [
+    "rxjs",
+    "reactive extensions",
+    "rx"
+  ],
+  "main": "dist/src/index.js",
+  "repository": {
+    "type": "git",
+    "url": "http://talks.eseth.com/#rxjs-tricks"
+  },
+  "homepage": "http://talks.eseth.com/#rxjs-tricks",
+  "dependencies": {
+    "rx": "4.1.0",
+    "rx-dom": "7.0.3"
+  },
+  "badepAliases": {
+    "rx": "Rx",
+    "rx-dom": "Rx"
+  },
+  "optionalDependencies": {},
+  "devDependencies": {
+    "browserify-all-dependencies": "0.0.2",
+    "faker": "4.1.0",
+    "identicon.js": "2.3.1",
+    "json-server": "0.12.0",
+    "lodash": "4.17.4",
+    "postbuild": "2.1.0",
+    "shx": "0.2.x",
+    "tap-spec": "4.1.x",
+    "tape": "4.x.x",
+    "ts-node": "2.x.x",
+    "typescript": "2.x.x",
+    "uglify-js": "2.8.x"
+  },
+  "eslintConfig": {
+    "env": {
+      "browser": true,
+      "node": true
+    },
+    "rules": {}
+  },
+  "scripts": {
+    "build": "badeps",
+    "postbuild": "postbuild -i ./tmpl.html -o dist/index.html -j dist -g dist -H",
+    "postinstall": "npm run -s build",
+    "srv:db": "json-server --static ./dist ./github-api/db.js",
+    "srv:db-fail-chance": "npm run srv:db -- --middlewares ./github-api/delay-fail.js",
+    "start": "npm run srv:db-fail-chance"
+  }
+}
