@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Talks</title>
+</head>
+
+<body>
+    <script>
+    (function() {
+        var urls = {
+            'rxjs-tricks': 'https://github.com/whiteinge/presentations/tree/master/utahjs_conf_2017-08-18_cool-rxjs-tricks/',
+        };
+
+        window.addEventListener('hashchange', redirect, false);
+        document.addEventListener('DOMContentLoaded', redirect);
+        document.addEventListener('DOMContentLoaded', render);
+
+        function redirect() {
+            var next = urls[window.location.hash.substr(1)];
+            if (next != null) { window.location.replace(next); }
+        }
+
+        function render() {
+            var container = document.querySelector('body');
+
+            var content = h('ul', {}, Object.keys(urls).map(function(x) {
+                return h('li', {}, [h('a', {href: urls[x]}, [x])]);
+            }));
+
+            container.innerHTML = '';
+            container.appendChild(content);
+        }
+    })();
+
+    function h(tag, attrs, children) {
+        attrs = attrs != null ? attrs : {};
+        children = children != null ? children : [];
+        var el = document.createElement(tag);
+        Object.keys(attrs).forEach(key => el.setAttribute(key, attrs[key]));
+        children
+            .map(child => typeof child === 'string'
+                ? document.createTextNode(child)
+                : child)
+            .forEach(child => el.appendChild(child));
+        return el;
+    }
+    </script>
+</body>
+</html>
