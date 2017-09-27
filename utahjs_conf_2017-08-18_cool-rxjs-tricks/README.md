@@ -2,6 +2,10 @@
 
 Presentation files for a talk given at UtahJS Conf 2017.
 
+Video of the talk: https://youtu.be/hkVq7u94Vzw
+
+Slides:
+
 * [presentation.md](https://github.com/whiteinge/presentations/blob/master/utahjs_conf_2017-08-18_cool-rxjs-tricks/presentation.md) for the slides source and speaker notes.
 * [presentation.pdf](https://github.com/whiteinge/presentations/blob/master/utahjs_conf_2017-08-18_cool-rxjs-tricks/presentation.pdf) for the rendered slides.
 
