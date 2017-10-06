@@ -1,6 +1,7 @@
 2017
 ====
 
+* `Dispatching Types with Flux <https://github.com/whiteinge/presentations/tree/master/utahjs_2017-10-05_dispatching-types>`__
 * `Cool RxJS Tricks <https://github.com/whiteinge/presentations/tree/master/utahjs_conf_2017-08-18_cool-rxjs-tricks/>`__
 * `Maybe and Either for Worry-Free dot-chaining <https://github.com/whiteinge/presentations/tree/master/utahjs_2017-04-18_maybe-either>`__
 
