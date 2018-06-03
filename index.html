@@ -16,16 +16,16 @@
                 left: 0 !important;
             }
         }
-        body { font-family: 'Droid Serif'; }
+        body { font-family: 'Times'; }
         h1, h2, h3 {
-            font-family: 'Droid Sans';
+            font-family: 'Times';
             font-weight: normal;
         }
         .footnote {
             position: absolute;
             bottom: 3em;
         }
-        .remark-code, .remark-inline-code { font-family: 'Droid Mono'; }
+        .remark-code, .remark-inline-code { font-family: 'Hasklig'; }
         a, a > code {
             color: rgb(249, 38, 114);
             text-decoration: none;
@@ -46,12 +46,14 @@
         .pull-right ~ p {
             clear: both;
         }
-        #slideshow .slide .content code {
-            font-size: 0.8em;
+        .remark-slide blockquote {
+            text-align: left;
         }
-        #slideshow .slide .content pre code {
+        .remark-slide pre code {
+            font-family: 'Hasklig';
             font-size: 0.9em;
             padding: 15px;
+            text-align: left;
         }
         .inverse {
             background: #272822;
