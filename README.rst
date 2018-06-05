@@ -1,3 +1,8 @@
+2018
+====
+
+* `Why JavaScript Programmers Should Learn Algebraic Data Types <https://github.com/whiteinge/presentations/tree/master/lambdaconf_2018-06-05_js-adts>`__
+
 2017
 ====
 

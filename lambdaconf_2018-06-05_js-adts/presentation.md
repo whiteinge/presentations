@@ -19,6 +19,8 @@ by Seth House
 @whiteinge<br>
 seth@eseth.com
 
+http://talks.eseth.com/#js-adts
+
 ???
 
 Title: Why JavaScript Programmers Should Learn Algebraic Data Types
