@@ -1,3 +1,8 @@
+2019
+====
+
+* `Git Internals Workshop <https://github.com/whiteinge/presentations/tree/master/mx_2018-03-21_git-internals/>`__
+
 2018
 ====
 
