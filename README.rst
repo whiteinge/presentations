@@ -1,6 +1,7 @@
 2019
 ====
 
+* `Shell Basics <https://github.com/whiteinge/presentations/tree/master/mx_2018-07-25_shell/>`__
 * `Software Complexity <https://github.com/whiteinge/presentations/tree/master/utah-clojure_2019-05-22_adts-composition/>`__
 * `Git Internals Workshop <https://github.com/whiteinge/presentations/tree/master/mx_2018-03-21_git-internals/>`__
 

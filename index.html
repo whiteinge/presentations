@@ -25,26 +25,26 @@
             position: absolute;
             bottom: 3em;
         }
-        .remark-code, .remark-inline-code { font-family: 'Hasklig'; }
         a, a > code {
             color: rgb(249, 38, 114);
             text-decoration: none;
         }
-        code {
+        .remark-code, .remark-inline-code {
+            font-family: 'Hasklig';
             background: #f0f0f0;
+            font-size: 0.9em;
+        }
+        .remark-code {
             border-radius: 5px;
             display: block;
             overflow-x: auto;
-            padding: .5em;
-        }
-        .remark-code-line-highlighted { background-color: #373832; }
-        .remark-slide blockquote {
+            padding: 15px;
             text-align: left;
         }
-        .remark-slide pre code {
-            font-family: 'Hasklig';
-            font-size: 0.9em;
-            padding: 15px;
+        .remark-code-line-highlighted {
+            background-color: #373832;
+        }
+        .remark-slide blockquote {
             text-align: left;
         }
         .inverse {
@@ -53,7 +53,7 @@
             text-shadow: 0 0 20px #333;
         }
         .inverse h1, .inverse h2 {
-            color: #f3f3f3;
+            color: #777872;
             line-height: 0.8em;
         }
         .left-column {
@@ -66,6 +66,19 @@
         }
         .right-column ~ p {
             clear: both;
+        }
+        table {
+            border-spacing: 0;
+            table-layout: fixed;
+            width: 100%;
+        }
+        td, th {
+            border-bottom: 1px solid lightgrey;
+            text-align: left;
+            padding: 0.5em 1em;
+        }
+        td:empty {
+            display: none;
         }
         </style>
 
