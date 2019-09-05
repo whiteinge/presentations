@@ -1,9 +1,12 @@
 2019
 ====
 
-* `Shell Basics <https://github.com/whiteinge/presentations/tree/master/mx_2018-07-25_shell/>`__
+* `Function Decoration <https://github.com/whiteinge/presentations/tree/master/mx_2019-08-19_function-decoration/>`__
+* `JavaScript's this <https://github.com/whiteinge/presentations/tree/master/mx_2019-08-04_this/>`__
+* `Shell Basics <https://github.com/whiteinge/presentations/tree/master/mx_2019-07-25_shell/>`__
+* `HTTP and mitmproxy <https://github.com/whiteinge/presentations/tree/master/mx_2019-06-13_http-and-mitmproxy/>`__
 * `Software Complexity <https://github.com/whiteinge/presentations/tree/master/utah-clojure_2019-05-22_adts-composition/>`__
-* `Git Internals Workshop <https://github.com/whiteinge/presentations/tree/master/mx_2018-03-21_git-internals/>`__
+* `Git Internals Workshop <https://github.com/whiteinge/presentations/tree/master/mx_2019-03-21_git-internals/>`__
 
 2018
 ====
