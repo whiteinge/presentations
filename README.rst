@@ -1,6 +1,7 @@
 2019
 ====
 
+* `Merge vs. Rebase <https://github.com/whiteinge/presentations/tree/master/mx_2019-08-12_merge-vs-rebase/>`__
 * `Function Decoration <https://github.com/whiteinge/presentations/tree/master/mx_2019-08-19_function-decoration/>`__
 * `JavaScript's this <https://github.com/whiteinge/presentations/tree/master/mx_2019-08-04_this/>`__
 * `Shell Basics <https://github.com/whiteinge/presentations/tree/master/mx_2019-07-25_shell/>`__
