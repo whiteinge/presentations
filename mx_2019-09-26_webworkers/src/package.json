@@ -1,0 +1,19 @@
+{
+  "name": "web-worker-presentation",
+  "author": "Seth House",
+  "version": "1.0.0",
+  "license": "Apache-2.0",
+  "description": "",
+  "private": false,
+  "keywords": [],
+  "main": "index.js",
+  "homepage": "",
+  "dependencies": {
+    "http-server": "^0.11.1"
+  },
+  "optionalDependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "start": "http-server"
+  }
+}
