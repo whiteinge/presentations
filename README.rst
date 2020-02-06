@@ -1,3 +1,8 @@
+2020
+====
+
+* `Browsers HTTP and You! <https://github.com/whiteinge/presentations/tree/master/mx_2020-02-06_browsers-and-http/>`__
+
 2019
 ====
 
