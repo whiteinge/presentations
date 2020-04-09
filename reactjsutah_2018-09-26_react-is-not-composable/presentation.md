@@ -9,6 +9,88 @@ Alternate title:
     but let's not get carried away.
 </h3>
 
+???
+
+TODO: revamp this presentation to be more focused and call out the following
+things:
+
+
+https://twitter.com/BenLesh/status/1178778651099312129
+
+https://twitter.com/tomdale/status/1178848438328410113
+
+> I see components used for:
+> 1. Styling
+> 2. Error handling
+> 3. Mutable state
+> 4. Notifications
+> 5. A/B testing
+> 6. API calls
+> 7. API Caching
+> 8. ...
+>
+> I'm all for separating concerns. The problem is that components are supposed to be a view, not a way to build everything in your app.
+>
+> — https://twitter.com/ericnormand/status/1515710592014819328
+
+---
+
+also react team calling function components and hooks functional is a    f u c k i n g     joke
+its functional!
+how?
+outside of the fact that they are functions
+is there a single other aspect that makes them 'functional'?
+explicit dependencies? X
+renders the same thing given the same input? X
+pure? X
+compose
+functional
+they use all the words
+
+https://reactjs.org/blog/2019/08/08/react-v16.9.0.html#an-update-on-data-fetching
+
+https://overreacted.io/a-complete-guide-to-useeffect/
+
+Diagram the cross-sectionality of true component composition.
+
+
+> Encapsulation and Extension exist in a natural state of tension. A program
+> with elaborate encapsulation resists breakage but can also be difficult to
+> refactor in other ways. Be mindful of when it's best to Compose and when it's
+> best to Extend.
+
+> This is a general issue with closures. Closures couple functions to
+> environments, and that makers them very elegant in the small, and very handy
+> for making opaque data structures. Alas, their strength in the small is their
+> weakness in the large. When you're trying to make reusable components, this
+> coupling is sometimes a hindrance.
+
+JavaScript Spessore
+https://github.com/raganwald/javascript-spessore/tree/master/published
+
+
+
+> Component-based user interface implementations generally feature pieces of
+> state, and actions scattered along the component tree in non-obvious ways.
+> For instance, a todo list application may be written as <TodoList
+> items><TodoItem></TodoList>. Assuming a TodoItem manages its deletion, it has
+> to communicate the deletion up the hierarchy for the parent TodoList to be
+> called with the updated item list. Assuming instead it is the parent TodoList
+> that manages the deletion of its items, it may nevertheless have to
+> communicate the deletion to the child TodoItem (maybe to execute some
+> clean-up actions).
+> 
+> The bottom line is that to match actions to a given event, it is necessary to
+> look into each component implementation to understand the event and actions
+> it handles, together with the messaging protocol it engages in with its
+> dependent components in the component tree, and then repeat the same process
+> with the dependent components till an independent component is reached. Only
+> then can a complete list of actions triggered by an event be produced. 
+> 
+> — https://www.infoq.com/articles/functional-UI-introduction-no-framework/
+
+
+
 ## ReactJS Utah 2018
 
 by Seth House
