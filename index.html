@@ -70,6 +70,17 @@
         .right-column ~ p {
             clear: both;
         }
+        .image-slide.image-slide-tall { background-size: auto 100%; }
+        .image-slide.image-slide-wide { background-size: 100% auto; }
+        .image-slide h1,
+        .image-slide h2,
+        .image-slide h3,
+        .image-slide h4,
+        .image-slide h5,
+        .image-slide h6,
+        .image-slide .remark-slide-number {
+            display: none;
+        }
         table {
             border-spacing: 0;
             table-layout: fixed;
@@ -82,6 +93,10 @@
         }
         td:empty {
             display: none;
+        }
+        .quiet {
+            font-size: smaller;
+            color: gray;
         }
         </style>
 
