@@ -1,6 +1,11 @@
 2020
 ====
 
+
+
+
+* `SSH Introduction and Tricks <https://github.com/whiteinge/presentations/tree/master/mx_2020-07-20_ssh-intro-tricks/>`__
+* `A Short History: XMLHttpRequest and Promises <https://github.com/whiteinge/presentations/tree/master/mx_2020-04-14_xmlhttprequest-and-promises/>`__
 * `Browsers HTTP and You! <https://github.com/whiteinge/presentations/tree/master/mx_2020-02-06_browsers-and-http/>`__
 
 2019
