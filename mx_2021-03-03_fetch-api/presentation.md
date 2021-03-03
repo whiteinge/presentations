@@ -437,7 +437,7 @@ or not.
     fetch('https://httpbin.org/image', {
         headers: {accept: 'image/webp'}})
     .then(x => x.blob())
-    .then(blob => window.open(URL.createObjectURL(blob)))
+    .then(blob => window.open(window.URL.createObjectURL(blob)))
 })(event)">Show me!</button>
 ```
 
