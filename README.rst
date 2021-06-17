@@ -1,6 +1,7 @@
 2021
 ====
 
+* `Interviewing and Interviewing for JavaScript <https://github.com/whiteinge/presentations/tree/master/mx_2021-06-22-interviewing/>`__
 * `The Fetch API <https://github.com/whiteinge/presentations/tree/master/mx_2021-03-03_fetch-api/>`__
 
 2020
