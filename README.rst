@@ -1,6 +1,7 @@
 2021
 ====
 
+* `CSS-in-JS at MX <https://github.com/whiteinge/presentations/tree/master/mx_2021-11-09_cssinjs/>`__
 * `Interviewing and Interviewing for JavaScript <https://github.com/whiteinge/presentations/tree/master/mx_2021-06-22-interviewing/>`__
 * `The Fetch API <https://github.com/whiteinge/presentations/tree/master/mx_2021-03-03_fetch-api/>`__
 
