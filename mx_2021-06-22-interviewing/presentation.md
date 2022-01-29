@@ -388,3 +388,19 @@ const newObject = {...oldObject, foo: 'Foo!'}
 ## Interest in a Checklist?
 
 Interest in standardizing (somewhat) our common MX questions?
+
+---
+
+???
+
+# MX Interview Certification
+
+## Administer a Skills Test / review Work Product (Optional)
+
+Skill assessment tests are tests designed to help us ensure candidates possess the skills necessary for a specific role. Skills tests should:
+
+    Be a minimum of six questions
+    Include at least one text response question
+    Include an “immersive” style question, in which the candidate edits a document, spreadsheet, or presentation
+    Build up to more difficult questions 
+    Always give the candidate the best chance of success
