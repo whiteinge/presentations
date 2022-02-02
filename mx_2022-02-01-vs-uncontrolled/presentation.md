@@ -164,6 +164,10 @@ const data = Object.fromEntries(new FormData(myform))
 
 * Form attributes.
 * Form elements: `myform.elements`.
+
+  * Careful not to name any form fields that will shadow existing DOM
+    attributes like `length` or `submit`.
+
 * Available via events: `ev => ev.target.form`.
 
 --
@@ -259,7 +263,7 @@ const data = Array.from(myform.elements)
 
   <br/>
 
-  <button type="submit" name="submit" disabled={true}>
+  <button type="submit" name="submitbtn" disabled={true}>
     Submit
   </button>
 </form>
@@ -340,6 +344,12 @@ input:valid {border: 1px solid green;}
 </form>
 ```
 
+???
+
+Sometimes useful when you have a dynamic form where fields are added and
+removed frequently. Be wary as you have two sources of truth -- one should be
+primary and the other should be a mirror that is (hopefully) kept up-to-date.
+
 ---
 
 class: center, middle
@@ -352,9 +362,10 @@ class: center, middle
 
 --
 
-Embrace or resist
+Embrace or resist (the platform).
 
-![](./embrace-or-resist.png)
+<a href="https://thunderlotusgames.com/sundered/"><img
+src="./embrace-or-resist.png"></a>
 
 ---
 
@@ -369,28 +380,61 @@ class: center, middle
 --
 
 ```js
-<dialog>
-    <form
-        method="dialog"
-        disabled={formRefSpinning}
-        onSubmit={(ev) => {
-            ev.persist();
-            ev.preventDefault(); // Stop the modal from closing.
-            setFormRefSpinning(true);
-            setTimeout(() => {
-                ev.target.submit(); // Close the modal later.
-                setFormRefSpinning(false);
-            }, 2000);
-        }}
-    >
-        <Button type="submit">Wait 2s then close. {formRefSpinning && <Spinner inline />}</Button>
+<dialog id="mydialog">
+    <form method="dialog" >
+        <p>Modal content here!</p>
+        <button type="submit">Close</button>
     </form>
 </dialog>
 
+<button type="button" onclick="mydialog.showModal()">Show</button>
+
 <style>
-{`
-    dialog[open] { max-width: 80%; max-height: 80% }
-    dialog::backdrop { background: 'black'; opacity: 90% }
-`}
+dialog[open] { max-width: 80%; max-height: 80% }
+dialog::backdrop { background: 'black'; opacity: 90% }
+</style>
+```
+
+---
+
+## `dialog` plus async
+
+```html
+<dialog id="mydialog">
+    <form
+        method="dialog"
+        onsubmit="((ev) => {
+            ev.preventDefault(); // Stop the modal from closing.
+            ev.target.elements.submitbtn.disabled = true
+            ev.target.elements.spinner.value = '🌀'
+            setTimeout(() => {
+                ev.target.submit(); // Close the modal later.
+                ev.target.elements.submitbtn.disabled = false
+                ev.target.elements.spinner.value = ''
+            }, 2000);
+        })(event)"
+    >
+        <button type="submit" name="submitbtn">
+            Wait 2s then close.
+            <output name="spinner" for="mydialog"></output>
+        </button>
+    </form>
+</dialog>
+
+<button type="button" onclick="mydialog.showModal()">Show</button>
+```
+
+???
+
+```html
+<style>
+dialog[open] { max-width: 80%; max-height: 80%; }
+dialog::backdrop { background: 'black'; opacity: 90%; }
+
+@keyframes spin { to {transform:rotate(360deg);} }
+button > output {
+    animation: spin 1000ms linear infinite;
+    display: inline-block;
+}
 </style>
 ```
