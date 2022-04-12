@@ -1,6 +1,7 @@
 2022
 ====
 
+* `Redux Boilerplate <https://github.com/whiteinge/presentations/tree/master/mx_2022-05-20_redux-boilerplate/>`__
 * `Controlled Inputs vs Uncontrolled Inputs <https://github.com/whiteinge/presentations/tree/master/mx_2022-02-01-vs-uncontrolled/>`__
 
 2021
