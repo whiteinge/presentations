@@ -42,6 +42,7 @@
 * `Dispatching Types with Flux <https://github.com/whiteinge/presentations/tree/master/utahjs_2017-10-05_dispatching-types>`__
 * `Cool RxJS Tricks <https://github.com/whiteinge/presentations/tree/master/utahjs_conf_2017-08-18_cool-rxjs-tricks/>`__ `🎬 <https://youtu.be/hkVq7u94Vzw>`__
 * `Maybe and Either for Worry-Free dot-chaining <https://github.com/whiteinge/presentations/tree/master/utahjs_2017-04-18_maybe-either>`__
+*  SaltStack Configuration Management Best Practices — SaltConf17 `🎬 <https://www.youtube.com/watch?v=xr8Zh1zvd7k>`__
 
 2016
 ====
@@ -67,6 +68,7 @@
 
 * `Git: Merging <https://github.com/whiteinge/presentations/tree/master/saltstack_2014-07-17_git-merge-forward>`__
 * `Continuous code delivery and integration <https://github.com/whiteinge/presentations/tree/master/openwest_2014-05-09_continuous-delivery>`__ `🎬 <https://youtu.be/15xXX3xhJNM>`__
+*  SaltStack Fundamentals — Round Rock Geeks `🎬 <https://youtu.be/AqtBCIreDjA>`__
 * `Continuous code delivery and integration with SaltStack <https://github.com/whiteinge/presentations/tree/master/saltconf_2014_continuous-delivery>`__
 
 2013
