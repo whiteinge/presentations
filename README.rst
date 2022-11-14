@@ -80,7 +80,7 @@
 * `Real-time infrastructure management with Salt <https://github.com/whiteinge/presentations/tree/master/openwest_2013-05-03_real-time-infrastructure>`__ `🎬 <https://www.youtube.com/watch?v=AqtBCIreDjA&feature=youtu.be&t=6m33s>`__
 * `D3.js <https://github.com/whiteinge/presentations/tree/master/utahjs_2013-04-16_d3>`__
 * `AWK <https://github.com/whiteinge/presentations/tree/master/oalug_2013-03-26_awk>`__
-*  Real-Time Infrastructure Management with Salt — Openwest 2013 `🎬 <https://youtu.be/jJJ8cfDjcTc>__`
+*  Real-Time Infrastructure Management with Salt — Openwest 2013 `🎬 <https://youtu.be/jJJ8cfDjcTc>`__
 * `Functions, combinators, and decorators in JavaScript <https://github.com/whiteinge/presentations/tree/master/utahjs_2013-02-19_functions-combinators>`__ `🎬 <http://www.youtube.com/watch?v=XqbG6-l_boY>`__
 * `Stupid tmux tricks <https://github.com/whiteinge/presentations/tree/master/oalug_2013-01-29_tmux>`__
 
