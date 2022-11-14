@@ -33,20 +33,22 @@
 2018
 ====
 
-* `React is Not Composable <https://github.com/whiteinge/presentations/tree/master/reactjsutah_2018-09-26_react-is-not-composable>`__
+* `React is Not Composable <https://github.com/whiteinge/presentations/tree/master/reactjsutah_2018-09-26_react-is-not-composable>`__ `🎬 <https://youtu.be/30h6CHKCKmQ>`__
 * `Why JavaScript Programmers Should Learn Algebraic Data Types <https://github.com/whiteinge/presentations/tree/master/lambdaconf_2018-06-05_js-adts>`__ `🎬 <https://youtu.be/B0VoyujJWIE>`__
 
 2017
 ====
 
 * `Dispatching Types with Flux <https://github.com/whiteinge/presentations/tree/master/utahjs_2017-10-05_dispatching-types>`__
-* `Cool RxJS Tricks <https://github.com/whiteinge/presentations/tree/master/utahjs_conf_2017-08-18_cool-rxjs-tricks/>`__
+* `Cool RxJS Tricks <https://github.com/whiteinge/presentations/tree/master/utahjs_conf_2017-08-18_cool-rxjs-tricks/>`__ `🎬 <https://youtu.be/hkVq7u94Vzw>`__
 * `Maybe and Either for Worry-Free dot-chaining <https://github.com/whiteinge/presentations/tree/master/utahjs_2017-04-18_maybe-either>`__
 
 2016
 ====
 
 * `A Practical Introduction to Reactive Programming <https://github.com/whiteinge/presentations/tree/master/openwest_2016-07_reactive-programming>`__
+*  SaltStack Configuration Management Best Practices — SaltConf16 `🎬 <https://youtu.be/s967lYS_nd4>`__
+*  Testing Salt States — SaltConf16 `🎬 <https://youtu.be/lSft_aIovfU>`__
 * `salt-api: An Overview <https://github.com/whiteinge/presentations/tree/master/saltstack_2016-10-07_salt-api>`__
 * `Rx Combining Operators <https://github.com/whiteinge/presentations/tree/master/saltstack_2016_06-15_rx-combining-operators>`__
 
@@ -64,7 +66,7 @@
 ====
 
 * `Git: Merging <https://github.com/whiteinge/presentations/tree/master/saltstack_2014-07-17_git-merge-forward>`__
-* `Continuous code delivery and integration <https://github.com/whiteinge/presentations/tree/master/openwest_2014-05-09_continuous-delivery>`__
+* `Continuous code delivery and integration <https://github.com/whiteinge/presentations/tree/master/openwest_2014-05-09_continuous-delivery>`__ `🎬 <https://youtu.be/15xXX3xhJNM>`__
 * `Continuous code delivery and integration with SaltStack <https://github.com/whiteinge/presentations/tree/master/saltconf_2014_continuous-delivery>`__
 
 2013
@@ -76,9 +78,9 @@
 * `Web Components <https://github.com/whiteinge/presentations/tree/master/utahjs_conf_2013-05-17_web-components>`__
 * `CherryPy <https://github.com/whiteinge/presentations/tree/master/upyug_2013-05-09_cherrypy>`__ `🎬 <http://www.youtube.com/watch?v=IvbvfUeN9Eo>`__
 * `Real-time infrastructure management with Salt <https://github.com/whiteinge/presentations/tree/master/openwest_2013-05-03_real-time-infrastructure>`__ `🎬 <https://www.youtube.com/watch?v=AqtBCIreDjA&feature=youtu.be&t=6m33s>`__
-
 * `D3.js <https://github.com/whiteinge/presentations/tree/master/utahjs_2013-04-16_d3>`__
 * `AWK <https://github.com/whiteinge/presentations/tree/master/oalug_2013-03-26_awk>`__
+*  Real-Time Infrastructure Management with Salt — Openwest 2013 `🎬 <https://youtu.be/jJJ8cfDjcTc>__`
 * `Functions, combinators, and decorators in JavaScript <https://github.com/whiteinge/presentations/tree/master/utahjs_2013-02-19_functions-combinators>`__ `🎬 <http://www.youtube.com/watch?v=XqbG6-l_boY>`__
 * `Stupid tmux tricks <https://github.com/whiteinge/presentations/tree/master/oalug_2013-01-29_tmux>`__
 
@@ -87,7 +89,7 @@
 
 * `git svn <https://github.com/whiteinge/presentations/tree/master/cars_2012-07-27_git-svn>`__
 * `Gerrit <https://github.com/whiteinge/presentations/tree/master/cars_2012-06-27_gerrit>`__
-* `Zsh: A high-level overview of shell-use and scripting <https://github.com/whiteinge/presentations/tree/master/utosc_2012-05-05_zsh>`__
+* `Zsh: A high-level overview of shell-use and scripting <https://github.com/whiteinge/presentations/tree/master/utosc_2012-05-05_zsh>`__ `🎬 <https://youtu.be/R6hJ8Nqjgv8>`__
 * `Sphinx, the Python Documentation System <https://github.com/whiteinge/presentations/tree/master/utosc_2012-05-05_sphinx>`__
 * `Git mastery in twenty minutes increments <https://github.com/whiteinge/presentations/tree/master/cars_2012-04-27_git>`__ `🎬 <http://www.youtube.com/playlist?list=PLA4B47B9B5F3691E3>`__
 
