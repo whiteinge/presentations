@@ -34,7 +34,7 @@
 ====
 
 * `React is Not Composable <https://github.com/whiteinge/presentations/tree/master/reactjsutah_2018-09-26_react-is-not-composable>`__
-* `Why JavaScript Programmers Should Learn Algebraic Data Types <https://github.com/whiteinge/presentations/tree/master/lambdaconf_2018-06-05_js-adts>`__
+* `Why JavaScript Programmers Should Learn Algebraic Data Types <https://github.com/whiteinge/presentations/tree/master/lambdaconf_2018-06-05_js-adts>`__ `🎬 <https://youtu.be/B0VoyujJWIE>`__
 
 2017
 ====
@@ -70,15 +70,16 @@
 2013
 ====
 
-* `Vim: the why and how <https://github.com/whiteinge/presentations/tree/master/plug_2013-07-16_vim>`__
+* `Vim: the why and how <https://github.com/whiteinge/presentations/tree/master/plug_2013-07-16_vim>`__ `🎬 <https://www.youtube.com/watch?v=gKshvGM7qUc>`__
 * `Configuration management with Salt <https://github.com/whiteinge/presentations/tree/master/oalug_2013-06-25_salt-states>`__
 * `Real-time cloud management with Salt <https://github.com/whiteinge/presentations/tree/master/unlocked-io_2013-06-14_salt-breadth>`__
 * `Web Components <https://github.com/whiteinge/presentations/tree/master/utahjs_conf_2013-05-17_web-components>`__
-* `CherryPy <https://github.com/whiteinge/presentations/tree/master/upyug_2013-05-09_cherrypy>`__
-* `Real-time infrastructure management with Salt <https://github.com/whiteinge/presentations/tree/master/openwest_2013-05-03_real-time-infrastructure>`__
+* `CherryPy <https://github.com/whiteinge/presentations/tree/master/upyug_2013-05-09_cherrypy>`__ `🎬 <http://www.youtube.com/watch?v=IvbvfUeN9Eo>`__
+* `Real-time infrastructure management with Salt <https://github.com/whiteinge/presentations/tree/master/openwest_2013-05-03_real-time-infrastructure>`__ `🎬 <https://www.youtube.com/watch?v=AqtBCIreDjA&feature=youtu.be&t=6m33s>`__
+
 * `D3.js <https://github.com/whiteinge/presentations/tree/master/utahjs_2013-04-16_d3>`__
 * `AWK <https://github.com/whiteinge/presentations/tree/master/oalug_2013-03-26_awk>`__
-* `Functions, combinators, and decorators in JavaScript <https://github.com/whiteinge/presentations/tree/master/utahjs_2013-02-19_functions-combinators>`__
+* `Functions, combinators, and decorators in JavaScript <https://github.com/whiteinge/presentations/tree/master/utahjs_2013-02-19_functions-combinators>`__ `🎬 <http://www.youtube.com/watch?v=XqbG6-l_boY>`__
 * `Stupid tmux tricks <https://github.com/whiteinge/presentations/tree/master/oalug_2013-01-29_tmux>`__
 
 2012
@@ -88,7 +89,7 @@
 * `Gerrit <https://github.com/whiteinge/presentations/tree/master/cars_2012-06-27_gerrit>`__
 * `Zsh: A high-level overview of shell-use and scripting <https://github.com/whiteinge/presentations/tree/master/utosc_2012-05-05_zsh>`__
 * `Sphinx, the Python Documentation System <https://github.com/whiteinge/presentations/tree/master/utosc_2012-05-05_sphinx>`__
-* `Git mastery in twenty minutes increments <https://github.com/whiteinge/presentations/tree/master/cars_2012-04-27_git>`__
+* `Git mastery in twenty minutes increments <https://github.com/whiteinge/presentations/tree/master/cars_2012-04-27_git>`__ `🎬 <http://www.youtube.com/playlist?list=PLA4B47B9B5F3691E3>`__
 
 2011
 ====
