@@ -683,7 +683,8 @@ Flux](https://medium.com/swlh/the-case-for-flux-379b7d1982c6).
 - Often overblown.
 --
 
-- Simple publish/subscribe .quiet[(good)], buried inside a component API .quiet[(bad)].
+- Simple publish/subscribe .quiet[(good)], buried inside a component API
+  .quiet[(bad; surprise re-renders!)].
 --
 
 - Use as you would a module-level variable, but with React machinery instead of
@@ -710,13 +711,29 @@ Context has all the drawbacks of both component state and of Redux-esque
 global state, but with none of the benefits of either.
 
 Drawbacks:
+
 - Still tied to the component hierarchy.
+
   - Both the provider and the consumer must opt-in to making a given value
     available. It's (obviously) easier to move data up and down the component
     hierarchy but how often do people just put it at the top and avoid the
     hassle? In which case, what was the point?
 
+  - The `Provider` portion of the context API affects re-rendering behavior for
+    _all_ children(!).
+
+    > All consumers that are descendants of a Provider will re-render whenever
+    > the Provider’s value prop changes.
+    >
+    > — <https://reactjs.org/docs/context.html>
+
+    This is a big problem. Why does it exist? There is no end-user benefit to
+    this behavior and it requires detailed insider knowlege, and hacks and
+    workarounds to avoid cascade renders. The Provider API is _entirely_
+    redundant with the module import required for `contextType`/`useContext`.
+
 Missing benefits:
+
 - Principled state management (out-of-box).
 - Unaware of component life cycle.
 - Component API means it cannot be used outside of React components.
