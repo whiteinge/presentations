@@ -738,6 +738,17 @@ Missing benefits:
 - Unaware of component life cycle.
 - Component API means it cannot be used outside of React components.
 
+The whole purpose of side-loading data into a component is to _bypass_ the
+component tree. The `Provider` API steps on its own toes while trying to solve
+that problem. Prior to hooks React did not have
+a subscription/unsubscription-friendly API and instead relied on changing
+downstream props as a _kind_ of subscription API.
+
+Context is not complicated and yet it comes with so, so many caveats. There's
+a pervasive idea in the React community that "everything should be a component"
+and the `Provider` API is a perfect example of where that thinking gets you
+into trouble.
+
 ---
 
 ### Hooks
