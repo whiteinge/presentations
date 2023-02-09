@@ -1,3 +1,8 @@
+2023
+====
+
+* `Intermediate Git <https://github.com/whiteinge/presentations/tree/master/rocksolid_2023-09-13_intermediate-git/>`__
+
 2022
 ====
 
