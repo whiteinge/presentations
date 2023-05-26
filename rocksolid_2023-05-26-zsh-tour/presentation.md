@@ -164,6 +164,8 @@ tetriscurses
 
 ### Module: Completions
 
+In the `zshcompwid(1)` manpage.
+
 (Can also use bash completion definitions.)
 
 ```sh
@@ -173,6 +175,8 @@ curl -<tab>
 curl <tab>
 kill -<tab>
 kill <tab>
+cd <tab>
+cd -<tab>
 ```
 
 --
@@ -218,11 +222,55 @@ zstyle -e ':completion:*:(ssh|scp|sshfs):*' hosts 'reply=(
 ```sh
 # :completion:function:completer:command:argument:tag
 zstyle ':completion:*:*:ls:*' menu yes select
+zstyle ':completion:*:*:ls:*' menu yes select=long
+zstyle ':completion:*:*:ls:*' menu yes select interactive
+zstyle ':completion:*:*:ls:*' menu yes select search
 zstyle ':completion:*:*:ls:*' file-sort time
 zstyle ':completion:*:*:ls:*' file-sort name
 zstyle ':completion:*:*:ls:*' file-sort size
-zstyle ':completion:*'        format 'Completing %d'
+zstyle ':completion:*:*:ls:*' file-sort size reverse
+zstyle ':completion:*:*:ls:*' file-list all
+zstyle ':completion:*'        format '%F{green}-- completing --%d'
+zstyle ':completion:*:warnings' \
+    format '%F{red}-- no matches found --%f'
+zstyle ':completion:*:*:-command-:*:*' \
+    group-order alias builtins functions commands
+zstyle ':completion:*' complete-options true
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
+zstyle ':completion:*' matcher-list '' \
+    'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 ```
+
+--
+
+```sh
+zle -C foo complete-word _generic
+bindkey '^f' foo
+zstyle ':completion:foo:*' completer _expand_alias
+```
+
+???
+
+— https://thevaluable.dev/zsh-completion-guide-examples/
+
+---
+
+### Module: Completion options
+
+In manpage `zshoptions (1)` (search for "Completion").
+
+```sh
+setopt MENU_COMPLETE
+```
+
+- `ALWAYS_TO_END` — Place cursor to end of word completed.
+- `LIST_PACKED` — The completion menu takes less space.
+- `AUTO_MENU` — Display the completion menu after two `<tab>` presses.
+- `AUTO_COMPLETE` — Select first match given by the completion menu.
+- `AUTO_PARAM_SLASH` — Add trailing slash instead of space for dir completion.
+- `COMPLETE_IN_WORD` — Don't move cursor to end of word on completion.
+- `GLOB_COMPLETE` — Trigger completion after a glob `*`.
+- `LIST_ROWS_FIRST` — Matches are sorted in rows instead of columns.
 
 ---
 
