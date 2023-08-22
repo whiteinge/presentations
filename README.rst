@@ -1,6 +1,7 @@
 2023
 ====
 
+* `git commit --fixup <https://github.com/whiteinge/presentations/tree/master/rocksolid_2023-08-22_git-fixup/>`__
 * `Zsh Features Tour <https://github.com/whiteinge/presentations/tree/master/rocksolid_2023-05-26-zsh-tour/>`__
 * `Git Rebase Deep Dive <https://github.com/whiteinge/presentations/tree/master/rocksolid_2023-09-27-rebase/>`__
 * `Intermediate Git <https://github.com/whiteinge/presentations/tree/master/rocksolid_2023-09-13_intermediate-git/>`__
