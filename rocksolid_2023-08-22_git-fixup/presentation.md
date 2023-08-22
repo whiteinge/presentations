@@ -225,6 +225,35 @@ D---E---F---G master
 
 ---
 
+## Aside: undoing a commit with reset
+
+`git reset HEAD~1`
+
+- Keeps the same merge-base.
+- Allows you to recreate the commit from scratch.
+- Useful! (And avoids Git machinery.)
+
+--
+- But if the commit is good:
+  - Add to the commit:  
+    `git commit --amend`
+  - Reword the commit message:  
+    `git commit --amend -o`
+  - Move the commit elsewhere:  
+    `git cherry-pick <SHA>`
+  - Move multiple commits to separate branches:
+    ```sh
+    git branch -c <new branch 1>
+    git branch -c <new branch 2>
+    git branch -c <new branch 3>
+    git checkout <new branch 1>
+    git rebase -i
+    # ...repeat for the other branches
+    ```
+- (Stay after to talk details.)
+
+---
+
 ## Rebase flowchart
 
 - Has the PR already been reviewed?
