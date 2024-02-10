@@ -897,6 +897,29 @@ class: center, middle
 ---
 ### Debate: is "hiding" async a valuable end-goal?
 
+???
+
+This blog post argues so. Continuation-passing style (CPS) was originally
+a compiler optimization technique that somehow we've all inherited as the
+defacto way of writing async code. When you make an await call it's actually
+doing the CPS-transform step for you.
+
+> It’s a clue to the compiler to say, “break the function in half here”.
+> Everything after the await gets hoisted into a new function that the compiler
+> synthesizes on your behalf.
+>
+> [...]
+>
+> With callbacks, promises, async-await, and generators, you ultimately end up
+> taking your asynchronous function and smearing it out into a bunch of
+> closures that live over in the heap.
+>
+> — <https://journal.stuffwithstuff.com/2015/02/01/what-color-is-your-function/>
+
+It makes the claim that Go has solved this in the best way. Is that
+a syntactical benefit or a semantic one? Can you really, truly ignore whether
+a function in Go is async or not?
+
 ---
 ## Debate: Crockford, Raganwald — keep JS small
 
