@@ -22,19 +22,20 @@
 2020
 ====
 
-* `SSH Introduction and Tricks <https://github.com/whiteinge/presentations/tree/master/mx_2020-07-20_ssh-intro-tricks/>`__
-* `A Short History: XMLHttpRequest and Promises <https://github.com/whiteinge/presentations/tree/master/mx_2020-04-14_xmlhttprequest-and-promises/>`__
-* `Browsers HTTP and You! <https://github.com/whiteinge/presentations/tree/master/mx_2020-02-06_browsers-and-http/>`__
+* Testing RxJS redux-observable Epics `🎬 <https://youtu.be/U_qwGChPIYM>`__
+* `SSH Introduction and Tricks <https://github.com/whiteinge/presentations/tree/master/mx_2020-07-20_ssh-intro-tricks/>`__ `🎬 <https://youtu.be/HV1zZe3VPaY>`__
+* `A Short History: XMLHttpRequest and Promises <https://github.com/whiteinge/presentations/tree/master/mx_2020-04-14_xmlhttprequest-and-promises/>`__ `🎬 <https://youtu.be/MbG1ah2myPY>`__
+* `Browsers HTTP and You! <https://github.com/whiteinge/presentations/tree/master/mx_2020-02-06_browsers-and-http/>`__ `🎬 <https://youtu.be/ZazQd2BCA08>`__
 
 2019
 ====
 
-* `Web Workers <https://github.com/whiteinge/presentations/tree/master/mx_2019-09-26_webworkers/>`__
-* `Merge vs. Rebase <https://github.com/whiteinge/presentations/tree/master/mx_2019-08-12_merge-vs-rebase/>`__
-* `Function Decoration <https://github.com/whiteinge/presentations/tree/master/mx_2019-08-19_function-decoration/>`__
-* `JavaScript's this <https://github.com/whiteinge/presentations/tree/master/mx_2019-08-04_this/>`__
-* `Shell Basics <https://github.com/whiteinge/presentations/tree/master/mx_2019-07-25_shell/>`__
-* `HTTP and mitmproxy <https://github.com/whiteinge/presentations/tree/master/mx_2019-06-13_http-and-mitmproxy/>`__
+* `Web Workers <https://github.com/whiteinge/presentations/tree/master/mx_2019-09-26_webworkers/>`__ `🎬 <https://youtu.be/i-1n4ZhrMr8>`__
+* `Merge vs. Rebase <https://github.com/whiteinge/presentations/tree/master/mx_2019-08-12_merge-vs-rebase/>`__ `🎬 <https://youtu.be/O3g1f31JDc4>`__
+* `Function Decoration <https://github.com/whiteinge/presentations/tree/master/mx_2019-08-19_function-decoration/>`__ `🎬 <https://youtu.be/ExSji6NCvM8>`__
+* `JavaScript's this <https://github.com/whiteinge/presentations/tree/master/mx_2019-08-04_this/>`__ `🎬 <https://youtu.be/kyG61zGu6bE>`__
+* `Shell Basics <https://github.com/whiteinge/presentations/tree/master/mx_2019-07-25_shell/>`__ `🎬 <https://youtu.be/AHVtLvEfs_E>`__
+* `HTTP and mitmproxy <https://github.com/whiteinge/presentations/tree/master/mx_2019-06-13_http-and-mitmproxy/>`__ `🎬 <https://youtu.be/RuI-mxXHYx8>`__
 * `Software Complexity <https://github.com/whiteinge/presentations/tree/master/utah-clojure_2019-05-22_adts-composition/>`__
 * `Git Internals Workshop <https://github.com/whiteinge/presentations/tree/master/mx_2019-03-21_git-internals/>`__
 

@@ -1,5 +1,9 @@
 # Web workers
 
+## Video recording
+
+https://youtu.be/i-1n4ZhrMr8
+
 ## Content
 
 * View the slides in the PDF (or the Markdown source).
