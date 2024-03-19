@@ -219,12 +219,15 @@ zstyle -e ':completion:*:(ssh|scp|sshfs):*' hosts 'reply=(
 
 ### Module: Completions (behavior)
 
+See the `zshcompsys(1)` manpage.
+
 ```sh
 # :completion:function:completer:command:argument:tag
 zstyle ':completion:*:*:ls:*' menu yes select
 zstyle ':completion:*:*:ls:*' menu yes select=long
 zstyle ':completion:*:*:ls:*' menu yes select interactive
 zstyle ':completion:*:*:ls:*' menu yes select search
+zstyle ':completion:*:*:ls:*' complete-options true
 zstyle ':completion:*:*:ls:*' file-sort time
 zstyle ':completion:*:*:ls:*' file-sort name
 zstyle ':completion:*:*:ls:*' file-sort size
@@ -235,8 +238,9 @@ zstyle ':completion:*:warnings' \
     format '%F{red}-- no matches found --%f'
 zstyle ':completion:*:*:-command-:*:*' \
     group-order alias builtins functions commands
-zstyle ':completion:*' complete-options true
+# Case insensitive:
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
+# Complete partial words:
 zstyle ':completion:*' matcher-list '' \
     'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 ```
