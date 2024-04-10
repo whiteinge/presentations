@@ -223,6 +223,8 @@ D---E---F---G master
 ```
 ]
 
+The `--keep-base` flag will automate the latter.
+
 ---
 
 ## Aside: undoing a commit with reset
