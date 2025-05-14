@@ -358,6 +358,25 @@ class: center, middle
 
 ---
 
+## Pros and Cons
+
+- Uncontrolled inputs can be much more simple:
+  - The DOM keeps the form values instead of you having to wire that into your
+    store.
+  - The DOM can automatically reset the form back to defaults without you
+    having to store the original values in addition to the changed values.
+
+- Uncontrolled inputs break unidirectional data flow:
+  - Data flows up, but not back down.
+  - If you need to re-render the page as result of a change in the form, you
+    must trigger a render manually.
+  - If you imperatively write data back to the DOM in response to a form change
+    (error message, textarea character count, dependent selects, etc) then
+    React isn't aware of those changes and _may_ wipe them out on a subsequent
+    render.
+
+---
+
 ## What can controlled inputs learn from from uncontrolled inputs?
 
 --
