@@ -1,3 +1,8 @@
+2025
+====
+
+* `Adventures in DeGoogling <https://github.com/whiteinge/presentations/tree/master/oalug_2025-10-15_degoogling/>`__
+
 2023
 ====
 
