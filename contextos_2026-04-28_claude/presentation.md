@@ -635,7 +635,7 @@ to jump back to a previous turn. Easy to confuse.
 <x-inc>
 
 - `/keybindings` — customize your own.
-- `/config` — enable Vim mode!
+- `/config` — enable Vim mode! 😮
 
 </x-inc>
 
