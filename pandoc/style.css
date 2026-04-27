@@ -1,0 +1,203 @@
+@page {
+    size: 908px 681px;
+    margin: 0;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Times', serif;
+    background: #ddd;
+}
+
+section.slide {
+    box-sizing: border-box;
+    width: 908px;
+    height: 681px;
+    padding: 1em 4em;
+    font-size: 20px;
+    background: white;
+    color: #222;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    page-break-after: always;
+    break-after: page;
+}
+
+section.slide h1 { font-size: 55px; }
+section.slide h2 { font-size: 45px; }
+section.slide h3 { font-size: 35px; }
+
+@media screen {
+    section.slide {
+        margin: 1em auto;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+    }
+}
+
+@media print {
+    body { background: none; }
+    section.slide { margin: 0; box-shadow: none; }
+}
+
+section.slide h1,
+section.slide h2,
+section.slide h3,
+section.slide h4,
+section.slide h5,
+section.slide h6 {
+    font-family: 'Times', serif;
+    font-weight: normal;
+}
+
+section.slide a, section.slide a > code {
+    color: rgb(249, 38, 114);
+    text-decoration: none;
+}
+
+section.slide pre {
+    background: #f0f0f0;
+    border-radius: 5px;
+    padding: 15px;
+    overflow: hidden;
+    text-align: left;
+}
+
+section.slide code {
+    font-family: 'DejaVu Sans Mono', monospace;
+    font-size: 0.9em;
+    background: #f0f0f0;
+}
+
+section.slide pre code {
+    background: none;
+    padding: 0;
+}
+
+section.slide blockquote {
+    text-align: left;
+    border-left: 5px solid #f0f0f0;
+    padding-left: 0.5em;
+}
+
+section.slide img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+section.slide table {
+    border-spacing: 0;
+    table-layout: fixed;
+    width: 100%;
+}
+
+section.slide td, section.slide th {
+    border-bottom: 1px solid lightgrey;
+    text-align: left;
+    padding: 0.5em 1em;
+}
+
+section.slide td:empty {
+    display: none;
+}
+
+section.slide .footnote {
+    position: absolute;
+    bottom: 3em;
+    left: 3em;
+    right: 3em;
+    font-size: smaller;
+}
+
+section.slide .smaller { font-size: smaller; }
+section.slide .quiet { font-size: smaller; color: gray; }
+
+/* class hooks */
+section.slide.center {
+    align-items: center;
+    text-align: center;
+}
+
+section.slide.middle {
+    justify-content: center;
+}
+
+section.slide.inverse {
+    background: #272822;
+    color: #777872;
+}
+
+section.slide.inverse h1,
+section.slide.inverse h2,
+section.slide.inverse h3 {
+    color: #777872;
+    line-height: 0.8em;
+}
+
+section.slide.inverse pre,
+section.slide.inverse code {
+    background: #1d1e19;
+    color: #f8f8f2;
+}
+
+section.slide.image-slide {
+    padding: 0;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+section.slide.image-slide.cover { background-size: cover; }
+
+section.slide.image-slide h1,
+section.slide.image-slide h2,
+section.slide.image-slide h3,
+section.slide.image-slide h4,
+section.slide.image-slide h5,
+section.slide.image-slide h6 {
+    display: none;
+}
+
+section.slide.inline-list ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+section.slide.inline-list ul li { display: inline; }
+
+section.slide .left-column { float: left; width: 47%; }
+section.slide .right-column { float: right; width: 47%; }
+section.slide .right-column + * { clear: both; }
+
+/* keep x-inc visible by default; print expansion is handled in JS */
+x-inc { display: contents; }
+
+/* Adjacent lists (including those wrapped in x-inc) appear as one continuous list */
+section.slide :is(ul, ol):has(+ :is(ul, ol, x-inc)),
+section.slide x-inc:has(+ :is(ul, ol, x-inc)) > :is(ul, ol) {
+    margin-bottom: 0;
+}
+section.slide :is(ul, ol) + :is(ul, ol),
+section.slide :is(ul, ol) + x-inc > :is(ul, ol),
+section.slide x-inc + :is(ul, ol),
+section.slide x-inc + x-inc > :is(ul, ol) {
+    margin-top: 0;
+}
+
+/* slide notes: visible in raw markdown viewers, hidden in slide and PDF */
+section.slide aside { display: none; }
+
+/* logical page numbers, injected by slides.js at print time */
+section.slide .page-num {
+    position: absolute;
+    bottom: 12px;
+    right: 20px;
+    opacity: 0.5;
+}
+section.slide.image-slide .page-num { display: none; }

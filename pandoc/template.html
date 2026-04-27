@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html$if(lang)$ lang="$lang$"$endif$>
+<head>
+<meta charset="utf-8">
+<title>$if(title)$$title$$else$Slides$endif$</title>
+<link rel="stylesheet" href="../pandoc/style.css">
+$for(header-includes)$
+$header-includes$
+$endfor$
+</head>
+<body>
+$body$
+<script src="../pandoc/slides.js" defer></script>
+</body>
+</html>
